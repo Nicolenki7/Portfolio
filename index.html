@@ -18,49 +18,54 @@
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; overflow-x: hidden; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0); background-size: 40px 40px; z-index: -1; }
 
+        /* Idiomas */
         .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(22, 22, 26, 0.9); padding: 10px; border: var(--border-tech); border-radius: 4px; display: flex; gap: 10px; }
-        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; padding: 5px 10px; }
+        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; }
         .lang-btn.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
         header { padding: 100px 20px 60px; text-align: center; border-bottom: var(--border-tech); }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; margin: 0; text-transform: uppercase; color: #fff; letter-spacing: -2px; position: relative; }
-        
-        /* Efecto Glitch para enlaces */
-        .contact-bar { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .glitch-link { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.85rem; 
-            color: var(--accent-color); 
-            text-decoration: none; 
-            padding: 5px 10px; 
-            border: 1px solid transparent;
-            transition: 0.2s;
-        }
-        .glitch-link:hover {
-            border: 1px solid var(--accent-color);
-            text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
-            background: rgba(0, 242, 255, 0.05);
-        }
+        h1 { font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; margin: 0; text-transform: uppercase; color: #fff; letter-spacing: -2px; }
 
+        /* Contact Bar Glitch */
+        .contact-bar { margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .glitch-link { 
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-color); 
+            text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: 0.2s;
+        }
+        .glitch-link:hover { border: 1px solid var(--accent-color); background: rgba(0, 242, 255, 0.05); text-shadow: 1px 0 #ff00c1, -1px 0 #00fff9; }
+        
         section { padding: 80px 10%; }
         h2 { font-family: 'JetBrains Mono', monospace; border-left: 4px solid var(--accent-color); padding-left: 15px; text-transform: uppercase; font-size: 1.6rem; margin-bottom: 40px; color: #fff; }
 
+        /* About & Stack - Restaurado el tamaño original */
         .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
-        
-        /* Tags Interactivos */
+        .highlight-box { background: rgba(22, 22, 26, 0.6); border: var(--border-tech); padding: 25px; border-radius: 4px; }
         .tech-tag { 
             display: inline-block; background: rgba(0, 242, 255, 0.1); color: var(--accent-color); 
             padding: 4px 10px; font-size: 0.75rem; border: 1px solid rgba(0, 242, 255, 0.3); 
-            border-radius: 3px; margin: 4px; font-family: 'JetBrains Mono'; cursor: help; transition: 0.3s;
+            border-radius: 3px; margin: 4px; font-family: 'JetBrains Mono'; cursor: pointer; 
         }
-        .tech-tag:hover { background: var(--accent-color); color: var(--bg-color); }
-        #stack-info { margin-top: 15px; font-size: 0.85rem; min-height: 40px; color: var(--accent-color); font-family: 'JetBrains Mono'; border-top: 1px dashed rgba(0, 242, 255, 0.3); padding-top: 10px; }
+        #stack-info { margin-top: 20px; font-size: 0.85rem; color: var(--accent-color); font-family: 'JetBrains Mono'; border-top: 1px dashed rgba(0, 242, 255, 0.2); padding-top: 15px; min-height: 50px; }
+
+        /* Swiper Certificados - Corregido */
+        .certSwiper { width: 100%; height: auto; padding: 20px 0; }
+        .cert-slide { display: flex; align-items: center; justify-content: center; background: none !important; border: none !important; }
+        .cert-slide img { max-width: 100%; height: auto; border-radius: 4px; cursor: zoom-in; transition: 0.3s; border: var(--border-tech); }
+        .swiper-button-next, .swiper-button-prev { color: var(--accent-color); }
+
+        /* CV Grid - Restaurado */
+        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .cv-link { 
+            display: block; padding: 15px; color: var(--accent-color); text-decoration: none; 
+            font-family: 'JetBrains Mono', monospace; border: 1px solid var(--accent-color); 
+            text-align: center; transition: 0.3s; font-weight: bold; 
+        }
+        .cv-link:hover { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 20px var(--accent-color); }
 
         /* Modal Zoom */
-        #certModal { display: none; position: fixed; z-index: 2000; padding: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; }
-        #modalImg { max-width: 90%; max-height: 90%; border: 1px solid var(--accent-color); }
+        #certModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; }
+        #modalImg { max-width: 85%; max-height: 85%; border: 1px solid var(--accent-color); box-shadow: 0 0 40px rgba(0,242,255,0.3); }
 
-        .swiper-button-next, .swiper-button-prev { color: var(--accent-color); transform: scale(0.7); }
         footer { text-align: center; padding: 40px; opacity: 0.4; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-top: var(--border-tech); }
 
         @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
@@ -95,17 +100,20 @@
                 <p>Analista e Ingeniero de Datos con perfil híbrido orientado a la resolución de problemas de negocio complejos. Mi enfoque integra el rigor de la ingeniería con una visión estratégica forjada en los sectores de <strong>Turismo, Consumo Masivo y Telecomunicaciones</strong>.</p>
                 <p>Especialista en el diseño de arquitecturas <strong>Data Mesh</strong> y ecosistemas modernos en <strong>Microsoft Fabric</strong>. Experto en orquestar el ciclo completo del dato: desde la ingesta híbrida en Capa Bronze hasta la entrega de valor en Capa Gold.</p>
             </div>
-            <div class="highlight-box" style="background: rgba(22, 22, 26, 0.6); border: var(--border-tech); padding: 25px;">
-                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">CORE_STACK (Click para info)</h3>
+            <div class="highlight-box">
+                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">CORE_STACK (Interactivos)</h3>
                 <div id="stack-container">
-                    <span class="tech-tag" data-info="Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
-                    <span class="tech-tag" data-info="Data Warehouse en la nube para almacenamiento y procesamiento masivo.">Snowflake</span>
-                    <span class="tech-tag" data-info="Plataforma de análisis de datos con Apache Spark de alto rendimiento.">Databricks</span>
-                    <span class="tech-tag" data-info="Ingeniería de datos a gran escala y procesamiento distribuido.">PySpark</span>
-                    <span class="tech-tag" data-info="Visualización avanzada y modelado de datos con DAX.">Power BI</span>
-                    <span class="tech-tag" data-info="Análisis predictivo y despliegue de modelos estadísticos.">Machine Learning</span>
+                    <span class="tech-tag" data-info="Microsoft Fabric: Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
+                    <span class="tech-tag" data-info="Snowflake: Data Warehouse en la nube para almacenamiento masivo.">Snowflake</span>
+                    <span class="tech-tag" data-info="Databricks: Plataforma de análisis de datos basada en Apache Spark.">Databricks</span>
+                    <span class="tech-tag" data-info="PySpark: Procesamiento de datos distribuido a gran escala.">PySpark</span>
+                    <span class="tech-tag" data-info="Power BI: Visualización avanzada y modelado complejo con DAX.">Power BI</span>
+                    <span class="tech-tag" data-info="Tableau: Análisis visual profundo y dashboards ejecutivos.">Tableau</span>
+                    <span class="tech-tag" data-info="Looker Studio: Reportes interactivos integrados en ecosistemas cloud.">Looker Studio</span>
+                    <span class="tech-tag" data-info="Machine Learning: Modelado predictivo y despliegue de soluciones IA.">Machine Learning</span>
+                    <span class="tech-tag" data-info="Gobernanza/QA: Control de calidad (QA/QC) y gobierno de datos.">QA/QC & Governance</span>
                 </div>
-                <div id="stack-info">> Selecciona una tecnología...</div>
+                <div id="stack-info">> Haz clic en una tecnología para ver detalles...</div>
             </div>
         </div>
     </section>
@@ -114,7 +122,7 @@
         <h2 id="txt-projects-title">02. Ecosistemas de Análisis</h2>
         <div class="swiper projectSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" onclick="location.href='proyectos/crypto-medallion.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer;">
+                <div class="swiper-slide" onclick="location.href='proyectos/crypto-medallion.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer; border-radius:4px; overflow:hidden;">
                     <img src="img/projects/crypto_cover.png" alt="Crypto" style="height: 200px; width:100%; object-fit: cover;">
                     <div style="padding:20px;">
                         <h3 style="color:var(--accent-color); margin:0;">Crypto Analytics 2025</h3>
@@ -139,9 +147,9 @@
     <section id="cv">
         <h2 id="txt-cv-title">04. Documentación Técnica</h2>
         <div class="cv-grid">
-            <a href="docs/cv_Es_Ult.pdf" download class="cv-link">[ DESCARGAR_CV_ES ]</a>
-            <a href="docs/cv_ENG_Ult.pdf" download class="cv-link">[ DOWNLOAD_CV_EN ]</a>
-            <a href="docs/cv_PT_Ult_Remote.pdf" download class="cv-link">[ BAIXAR_CV_PT ]</a>
+            <a href="docs/cv_Es_Ult.pdf" download class="cv-link">[ ESPAÑOL_ES ]</a>
+            <a href="docs/cv_ENG_Ult.pdf" download class="cv-link">[ ENGLISH_EN ]</a>
+            <a href="docs/cv_PT_Ult_Remote.pdf" download class="cv-link">[ PORTUGUÊS_PT ]</a>
         </div>
     </section>
 
@@ -150,18 +158,19 @@
     </div>
 
     <footer>
-        NICOLAS ZALAZAR // SYSTEM_V3.0 // 2025
+        NICOLAS ZALAZAR // PORTFOLIO_V3.1 // 2025 // SYSTEM_OPERATIONAL
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Lógica de Stack Interactivo
+        // Lógica de Stack
         document.querySelectorAll('.tech-tag').forEach(tag => {
             tag.addEventListener('click', function() {
                 document.getElementById('stack-info').innerText = `> ${this.getAttribute('data-info')}`;
             });
         });
 
+        // Idiomas
         const content = {
             es: { subtitle: "Data Analyst & Solution Architect | Specialized in ML & Engineering", titleAbout: "01. Perfil de Misión", titleProj: "02. Ecosistemas", titleCert: "03. Validaciones", titleCv: "04. Documentación" },
             en: { subtitle: "Data Analyst & Solutions Architect | Data Engineering & AI", titleAbout: "01. Mission Profile", titleProj: "02. Ecosystems", titleCert: "03. Technical Validations", titleCv: "04. Documentation" },
@@ -178,9 +187,13 @@
             event.target.classList.add('active');
         }
 
+        // Generar Certificados
         const wrapper = document.getElementById('cert-wrapper');
         for (let i = 1; i <= 15; i++) {
-            wrapper.innerHTML += `<div class="swiper-slide"><img src="img/certs/cert_${i}.png" onclick="openCert(this.src)" style="cursor:zoom-in;"></div>`;
+            wrapper.innerHTML += `
+                <div class="swiper-slide cert-slide">
+                    <img src="img/certs/cert_${i}.png" onclick="openCert(this.src)">
+                </div>`;
         }
 
         function openCert(src) {
@@ -189,12 +202,13 @@
             modal.style.display = 'flex';
         }
 
+        // Swipers
         new Swiper(".projectSwiper", { slidesPerView: 1, spaceBetween: 30, breakpoints: { 768: { slidesPerView: 2 } } });
         new Swiper(".certSwiper", { 
             slidesPerView: 2, spaceBetween: 20, loop: true, 
-            autoplay: { delay: 3000 }, 
+            autoplay: { delay: 3000, disableOnInteraction: false }, 
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            breakpoints: { 1024: { slidesPerView: 5 } } 
+            breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 5 } } 
         });
     </script>
 </body>
