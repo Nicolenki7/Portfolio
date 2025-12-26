@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolas Zalazar | Data Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --accent-color: #00f2ff; /* Azul IA futurista */
+            --text-color: #e0e0e0;
+            --card-bg: #16161a;
+            --border-tech: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fondo con trama tecnológica */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        header {
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: var(--border-tech);
+            background: linear-gradient(to bottom, rgba(0, 242, 255, 0.03), transparent);
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            text-transform: uppercase;
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        /* Sección About Me - Venta Profesional */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .highlight-box {
+            background: rgba(0, 242, 255, 0.05);
+            border: var(--border-tech);
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .highlight-box h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        /* Swiper Customization */
+        .swiper {
+            width: 100%;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border: var(--border-tech);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: var(--border-tech);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin: 0;
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 15px;
+        }
+
+        /* Estilos de Certificados */
+        .cert-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 250px;
+        }
+
+        .cert-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(20%);
+            transition: 0.3s;
+        }
+        
+        .cert-slide:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Botón CV */
+        .cv-container {
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 242, 255, 0.05), transparent);
+            padding: 100px 20px;
+        }
+
+        .cv-button {
+            display: inline-block;
+            padding: 18px 45px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            border: 2px solid var(--accent-color);
+            background: transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cv-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 40px var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            border-top: var(--border-tech);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nicolas Zalazar</h1>
+        <div class="subtitle">Data Analyst & Solution Architect | Specialized in ML & Engineering</div>
+        <p style="max-width: 700px; margin: 25px auto; opacity: 0.8; font-size: 1.1rem;">
+            Construyendo puentes entre el caos de los datos masivos y la claridad estratégica de las decisiones de negocio.
+        </p>
+    </header>
+
+    <section id="about">
+        <h2>01. Perfil de Misión (About Me)</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    Soy un analista de datos orientado a <strong>resultados</strong> que no se detiene en la visualización. Mi enfoque integra el rigor técnico del Data Engineering con la capacidad predictiva del Machine Learning para ofrecer soluciones de 360 grados.
+                </p>
+                <p>
+                    <strong>¿Por qué contratarme?</strong> En un entorno donde los datos crecen exponencialmente, mi valor reside en la <strong>señal</strong>, no en el ruido. Tengo la capacidad de automatizar pipelines complejos en Fabric, modelar arquitecturas Medallion y desplegar interfaces interactivas que hablan el lenguaje del negocio.
+                </p>
+            </div>
+            <div class="highlight-box">
+                <h3>CORE_COMPETENCIES</h3>
+                <ul style="list-style: none; padding: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+                    <li>> Escalamiento rápido de soluciones Tech</li>
+                    <li>> Arquitectura de datos End-to-End</li>
+                    <li>> Pensamiento Crítico & Storytelling</li>
+                    <li>> Adaptabilidad multi-sectorial</li>
+                    <li>> Enfoque en eficiencia de procesos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>02. Ecosistemas de Análisis (The Lab)</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" onclick="location.href='proyectos/crypto-medallion.html'">
+                    <img src="img/portfolio/crypto_cover.png" alt="Crypto Project" class="project-img">
+                    <div class="project-info">
+                        <h3>Crypto Medallion Analytics</h3>
+                        <p>Ingeniería y predicción de mercado sobre Microsoft Fabric.</p>
+                        <div class="tech-badge">STATUS: OPERATIONAL</div>
+                    </div>
+                </div>
+                </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section id="certs">
+        <h2>03. Validaciones Técnicas</h2>
+        <div class="swiper certSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide cert-slide">
+                    <img src="img/certs/cert_1.png" alt="Certificado Profesional">
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="cv-container">
+        <h2>04. Acceso a Perfil Profesional</h2>
+        <p style="margin-bottom: 40px; opacity: 0.7; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Disponible para roles de <strong>Data Analyst</strong> con alto componente técnico. Mi progreso es escalable y mi compromiso con la excelencia es constante.
+        </p>
+        <a href="docs/CV_Nicolas_Zalazar.pdf" download class="cv-button">
+            [ DESCARGAR_EXPEDIENTE_PDF ]
+        </a>
+    </section>
+
+    <footer>
+        <p>NICOLAS ZALAZAR // PORTFOLIO_V1.0 // 2025 // ALL_SYSTEMS_GO</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: false,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        const certSwiper = new Swiper(".certSwiper", {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 2500, disableOnInteraction: false },
+            breakpoints: {
+                768: { slidesPerView: 4 },
+                1024: { slidesPerView: 5 }
+            }
+        });
+    </script>
+</body>
+</html>
