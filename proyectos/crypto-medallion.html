@@ -32,51 +32,28 @@
             z-index: -1;
         }
 
-        /* Selector de Idiomas similar al Index */
         .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(22, 22, 26, 0.9); padding: 10px; border: var(--border-tech); border-radius: 4px; display: flex; gap: 10px; }
-        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; }
+        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
         .lang-btn.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
-        nav {
-            padding: 20px 10%;
-            border-bottom: var(--border-tech);
-            background: rgba(10, 10, 12, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        nav { padding: 20px 10%; border-bottom: var(--border-tech); background: rgba(10, 10, 12, 0.9); position: sticky; top: 0; z-index: 100; }
+        nav a { color: var(--accent-color); text-decoration: none; font-family: 'JetBrains Mono', monospace; }
 
-        nav a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        header { margin-bottom: 60px; }
+        h1 { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; color: #fff; margin: 0; }
+        .tagline { color: var(--accent-color); font-family: 'JetBrains Mono', monospace; margin-top: 10px; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        header { margin-bottom: 60px; text-align: left; }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; }
-        .tagline { color: var(--accent-color); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
-
-        .hero-image { width: 100%; border: var(--border-tech); border-radius: 8px; margin-bottom: 40px; box-shadow: 0 0 40px rgba(0, 242, 255, 0.1); }
-        .content-section { margin-bottom: 80px; }
-        h2 { font-family: 'JetBrains Mono', monospace; color: var(--accent-color); font-size: 1.4rem; border-bottom: 1px solid rgba(0, 242, 255, 0.3); padding-bottom: 10px; margin-bottom: 30px; }
+        .hero-image { width: 100%; border: var(--border-tech); border-radius: 8px; margin-bottom: 40px; }
+        .content-section { margin-bottom: 60px; }
+        h2 { font-family: 'JetBrains Mono', monospace; color: var(--accent-color); border-bottom: 1px solid rgba(0, 242, 255, 0.2); padding-bottom: 10px; }
         
-        .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0; }
-        .tech-card { background: var(--card-bg); padding: 20px; border: var(--border-tech); border-left: 4px solid var(--accent-color); }
-        .tech-card h3 { margin-top: 0; font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: #fff; }
+        .step-img { width: 100%; border: var(--border-tech); border-radius: 4px; margin: 20px 0; }
+        
+        .cta-box { background: rgba(0, 242, 255, 0.05); border: 1px dashed var(--accent-color); padding: 40px; text-align: center; }
+        .btn-live { display: inline-block; padding: 15px 30px; background: var(--accent-color); color: #000; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-weight: bold; border-radius: 4px; }
 
-        img.step-img { width: 100%; border: var(--border-tech); margin: 20px 0; border-radius: 4px; }
-        .cta-box { background: rgba(0, 242, 255, 0.05); border: 1px dashed var(--accent-color); padding: 40px; text-align: center; margin-top: 60px; }
-        .btn-live { display: inline-block; padding: 15px 35px; background: var(--accent-color); color: var(--bg-color); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        .btn-live:hover { box-shadow: 0 0 25px var(--accent-color); transform: scale(1.05); }
-
-        footer { text-align: center; padding: 60px; opacity: 0.4; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body>
@@ -87,9 +64,7 @@
         <button class="lang-btn" onclick="changeLang('pt')">PT</button>
     </div>
 
-    <nav>
-        <a href="../index.html" id="nav-back">< [ VOLVER_AL_SISTEMA ]</a>
-    </nav>
+    <nav><a href="../index.html" id="nav-back">< [ VOLVER_AL_SISTEMA ]</a></nav>
 
     <div class="container">
         <header>
@@ -97,108 +72,117 @@
             <div class="tagline">DATA_ENGINEERING + MACHINE_LEARNING + BI</div>
         </header>
 
-        <img src="../img/projects/crypto_cover.png" alt="Hero Image" class="hero-image">
+        <img src="../img/projects/crypto_cover.png" class="hero-image">
 
         <section class="content-section">
-            <h2 id="txt-sec1-title">01. El Problema: Ruido vs. Señal</h2>
-            <div id="txt-sec1-p">
-                <p>¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición? Diseñé un ecosistema para procesar datos masivos y proyectar resultados basados en evidencia estadística.</p>
-            </div>
+            <h2 id="txt-h1">01. El Problema</h2>
+            <p id="txt-p1">¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición? En los mercados financieros, el "ruido" suele ocultar la rentabilidad. Diseñé un ecosistema para validar estos movimientos mediante ingeniería de precisión y evidencia estadística.</p>
         </section>
 
         <section class="content-section">
-            <h2 id="txt-sec2-title">02. Ingeniería de Datos (Arquitectura Medallion)</h2>
-            <p id="txt-sec2-p">Utilicé <strong>Microsoft Fabric</strong> para orquestar un pipeline de datos resiliente, refinando la información progresivamente.</p>
-            
-            <img src="../img/projects/pipeline.png" alt="Data Pipeline" class="step-img">
-            
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <h3 id="txt-bronze-t">CAPA_BRONZE</h3>
-                    <p id="txt-bronze-p" style="font-size: 0.9rem;">Ingesta híbrida mediante Dataflows Gen2 y PySpark. Captura de datos crudos.</p>
-                </div>
-                <div class="tech-card">
-                    <h3 id="txt-gold-t">CAPA_GOLD</h3>
-                    <p id="txt-gold-p" style="font-size: 0.9rem;">Modelado semántico optimizado para BI y consumo de ML. El dato se convierte en valor.</p>
-                </div>
-            </div>
+            <h2 id="txt-h2">02. Ingeniería de Datos (Arquitectura Medallion)</h2>
+            <p id="txt-p2">Utilicé Microsoft Fabric para orquestar un pipeline de datos resiliente:</p>
+            <ul>
+                <li id="li1"><strong>Capa Bronze:</strong> Ingesta híbrida mediante Dataflows Gen2 y PySpark.</li>
+                <li id="li2"><strong>Capa Silver:</strong> Limpieza y normalización de esquemas.</li>
+                <li id="li3"><strong>Capa Gold:</strong> Modelado semántico optimizado para BI.</li>
+            </ul>
+            <img src="../img/projects/pipeline.png" class="step-img">
+            <img src="../img/projects/modelosemantico_gold.png" class="step-img">
         </section>
 
         <section class="content-section">
-            <h2 id="txt-sec3-title">03. BI y Validación</h2>
-            <img src="../img/projects/crypto_dashboard_1.png" alt="Dashboard" class="step-img">
-            <p id="txt-sec3-p">Identificamos anomalías de mercado donde el precio subía sin respaldo de liquidez, evitando "trampas" financieras.</p>
+            <h2 id="txt-h3">03. BI y Validación</h2>
+            <img src="../img/projects/crypto_dashboard_1.png" class="step-img">
+            <p id="txt-p3">Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar "trampas" de mercado.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 id="txt-h4">04. Ciencia de Datos: Predicción</h2>
+            <p id="txt-p4">Entrené un modelo de Regresión Lineal para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un R² de 0.9863.</p>
+            <img src="../img/projects/machine_learning.png" class="step-img">
+            <p id="txt-p5">En el gráfico superior, se observa cómo la regresión viaja a través de las dimensiones de volatilidad para encontrar el punto de equilibrio.</p>
         </section>
 
         <div class="cta-box">
-            <h2 id="txt-cta-title" style="border:none; margin-bottom: 20px;">¿Desea probar el simulador?</h2>
-            <a href="https://crypto-medallion-ml-app-mq3eccyg95sxpc7ytwgoiv.streamlit.app/" target="_blank" class="btn-live" id="txt-cta-btn">
-                [ EJECUTAR_SIMULACIÓN_LIVE ]
-            </a>
+            <h2 id="txt-cta-h">¿Desea probar el simulador?</h2>
+            <a href="https://crypto-medallion-ml-app-mq3eccyg95sxpc7ytwgoiv.streamlit.app/" target="_blank" class="btn-live" id="txt-cta-b">[ EJECUTAR_SIMULACIÓN_LIVE ]</a>
         </div>
     </div>
 
-    <footer>
-        NICOLAS ZALAZAR // PROJECT_ID: CRYPTO_2025 // 2025
-    </footer>
+    <footer>NICOLAS ZALAZAR // PROJECT_ID: CRYPTO_2025 // 2025</footer>
 
     <script>
         const content = {
             es: {
                 back: "< [ VOLVER_AL_SISTEMA ]",
-                sec1T: "01. El Problema: Ruido vs. Señal",
-                sec1P: "En los mercados financieros, el ruido suele ocultar la rentabilidad. Diseñé un ecosistema para validar movimientos mediante ingeniería de precisión y evidencia estadística.",
-                sec2T: "02. Ingeniería de Datos (Medallion)",
-                sec2P: "Orquestación en Microsoft Fabric para refinamiento progresivo del dato.",
-                bronzeT: "CAPA_BRONZE", bronzeP: "Ingesta híbrida y captura de datos crudos.",
-                goldT: "CAPA_GOLD", goldP: "Modelado semántico optimizado para BI y ML.",
-                sec3T: "03. BI y Validación",
-                sec3P: "Cruce de volumen y volatilidad para identificar trampas de mercado y falta de liquidez.",
-                ctaT: "¿Desea probar el simulador?",
+                h1: "01. El Problema",
+                p1: "¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición? En los mercados financieros, el 'ruido' suele ocultar la rentabilidad. Diseñé un ecosistema para validar estos movimientos mediante ingeniería de precisión y evidencia estadística.",
+                h2: "02. Ingeniería de Datos (Arquitectura Medallion)",
+                p2: "Utilicé Microsoft Fabric para orquestar un pipeline de datos resiliente:",
+                li1: "Capa Bronze: Ingesta híbrida mediante Dataflows Gen2 y PySpark.",
+                li2: "Capa Silver: Limpieza y normalización de esquemas.",
+                li3: "Capa Gold: Modelado semántico optimizado para BI.",
+                h3: "03. BI y Validación",
+                p3: "Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar 'trampas' de mercado.",
+                h4: "04. Ciencia de Datos: Predicción",
+                p4: "Entrené un modelo de Regresión Lineal para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un R² de 0.9863.",
+                p5: "En el gráfico superior, se observa cómo la regresión viaja a través de las dimensiones de volatilidad para encontrar el punto de equilibrio.",
+                ctaH: "¿Desea probar el simulador?",
                 ctaB: "[ EJECUTAR_SIMULACIÓN_LIVE ]"
             },
             en: {
                 back: "< [ BACK_TO_SYSTEM ]",
-                sec1T: "01. The Problem: Noise vs. Signal",
-                sec1P: "In financial markets, noise often hides profitability. I designed an ecosystem to validate movements through precision engineering and statistical evidence.",
-                sec2T: "02. Data Engineering (Medallion)",
-                sec2P: "Orchestration in Microsoft Fabric for progressive data refinement.",
-                bronzeT: "BRONZE_LAYER", bronzeP: "Hybrid ingestion and raw data capture.",
-                goldT: "GOLD_LAYER", goldP: "Semantic modeling optimized for BI and ML.",
-                sec3T: "03. BI & Validation",
-                sec3P: "Cross-referencing volume and volatility to identify market traps and liquidity gaps.",
-                ctaT: "Want to try the simulator?",
+                h1: "01. The Problem",
+                p1: "Is it possible to validate the authenticity of a market movement before executing a position? In financial markets, 'noise' often hides profitability. I designed an ecosystem to validate these movements through precision engineering and statistical evidence.",
+                h2: "02. Data Engineering (Medallion Architecture)",
+                p2: "I used Microsoft Fabric to orchestrate a resilient data pipeline:",
+                li1: "Bronze Layer: Hybrid ingestion via Dataflows Gen2 and PySpark.",
+                li2: "Silver Layer: Schema cleaning and normalization.",
+                li3: "Gold Layer: Semantic modeling optimized for BI.",
+                h3: "03. BI & Validation",
+                p3: "By cross-referencing average volume with volatility, we identified anomalies where prices rose without liquidity support, helping investors avoid market 'traps'.",
+                h4: "04. Data Science: Prediction",
+                p4: "I trained a Linear Regression model to project monthly closing prices. The result was statistical convergence with an R² of 0.9863.",
+                p5: "In the graph above, we can see how the regression travels through volatility dimensions to find the equilibrium point.",
+                ctaH: "Want to try the simulator?",
                 ctaB: "[ EXECUTE_LIVE_SIMULATION ]"
             },
             pt: {
                 back: "< [ VOLTAR_AO_SISTEMA ]",
-                sec1T: "01. O Problema: Ruído vs. Sinal",
-                sec1P: "Nos mercados financeiros, o ruído costuma ocultar a rentabilidade. Desenvolvi um ecossistema para validar movimentos por meio de engenharia de precisão.",
-                sec2T: "02. Engenharia de Dados (Medallion)",
-                sec2P: "Orquestração no Microsoft Fabric para refinamento progressivo dos dados.",
-                bronzeT: "CAMADA_BRONZE", bronzeP: "Ingestão híbrida e captura de dados brutos.",
-                goldT: "CAMADA_GOLD", goldP: "Modelagem semântica otimizada para BI e ML.",
-                sec3T: "03. BI e Validação",
-                sec3P: "Cruzamento de volume e volatilidade para identificar armadilhas de mercado.",
-                ctaT: "Deseja testar o simulador?",
+                h1: "01. O Problema",
+                p1: "É possível validar a autenticidade de um movimento de mercado antes de executar uma posição? Nos mercados financeiros, o 'ruído' costuma ocultar a rentabilidade.",
+                h2: "02. Engenharia de Dados (Arquitetura Medallion)",
+                p2: "Utilizei o Microsoft Fabric para orquestrar um pipeline de dados resiliente:",
+                li1: "Camada Bronze: Ingestão híbrida via Dataflows Gen2 e PySpark.",
+                li2: "Camada Silver: Limpeza e normalização de esquemas.",
+                li3: "Camada Gold: Modelagem semântica otimizada para BI.",
+                h3: "03. BI e Validação",
+                p3: "Ao cruzar o volume médio com a volatilidade, identificamos anomalias onde o preço subia sem respaldo de liquidez.",
+                h4: "04. Ciência de Dados: Predição",
+                p4: "Treinei um modelo de Regressão Linear para projetar o preço de fechamento mensal. O resultado foi um R² de 0,9863.",
+                p5: "No gráfico acima, observa-se como a regressão viaja através das dimensões de volatilidade.",
+                ctaH: "Deseja testar o simulador?",
                 ctaB: "[ EXECUTAR_SIMULAÇÃO_LIVE ]"
             }
         };
 
         function changeLang(lang) {
             document.getElementById('nav-back').innerText = content[lang].back;
-            document.getElementById('txt-sec1-title').innerText = content[lang].sec1T;
-            document.getElementById('txt-sec1-p').innerText = content[lang].sec1P;
-            document.getElementById('txt-sec2-title').innerText = content[lang].sec2T;
-            document.getElementById('txt-sec2-p').innerText = content[lang].sec2P;
-            document.getElementById('txt-bronze-t').innerText = content[lang].bronzeT;
-            document.getElementById('txt-bronze-p').innerText = content[lang].bronzeP;
-            document.getElementById('txt-gold-t').innerText = content[lang].goldT;
-            document.getElementById('txt-gold-p').innerText = content[lang].goldP;
-            document.getElementById('txt-sec3-title').innerText = content[lang].sec3T;
-            document.getElementById('txt-sec3-p').innerText = content[lang].sec3P;
-            document.getElementById('txt-cta-title').innerText = content[lang].ctaT;
-            document.getElementById('txt-cta-btn').innerText = content[lang].ctaB;
+            document.getElementById('txt-h1').innerText = content[lang].h1;
+            document.getElementById('txt-p1').innerText = content[lang].p1;
+            document.getElementById('txt-h2').innerText = content[lang].h2;
+            document.getElementById('txt-p2').innerText = content[lang].p2;
+            document.getElementById('li1').innerText = content[lang].li1;
+            document.getElementById('li2').innerText = content[lang].li2;
+            document.getElementById('li3').innerText = content[lang].li3;
+            document.getElementById('txt-h3').innerText = content[lang].h3;
+            document.getElementById('txt-p3').innerText = content[lang].p3;
+            document.getElementById('txt-h4').innerText = content[lang].h4;
+            document.getElementById('txt-p4').innerText = content[lang].p4;
+            document.getElementById('txt-p5').innerText = content[lang].p5;
+            document.getElementById('txt-cta-h').innerText = content[lang].ctaH;
+            document.getElementById('txt-cta-b').innerText = content[lang].ctaB;
             
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
