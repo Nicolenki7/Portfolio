@@ -22,7 +22,7 @@
             line-height: 1.8;
         }
 
-        /* Estética de fondo Cyber-Industrial */
+        /* Estética de fondo */
         body::before {
             content: "";
             position: fixed;
@@ -32,10 +32,6 @@
             background-size: 50px 50px;
             z-index: -1;
         }
-
-        .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(22, 22, 26, 0.9); padding: 10px; border: var(--border-tech); border-radius: 4px; display: flex; gap: 10px; }
-        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; }
-        .lang-btn.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
         nav {
             padding: 20px 10%;
@@ -59,170 +55,196 @@
             padding: 60px 20px;
         }
 
-        header { margin-bottom: 60px; text-align: left; }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; color: #fff; margin-bottom: 10px; text-transform: uppercase; }
-        .tagline { color: var(--accent-color); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+        }
 
-        .hero-image { width: 100%; border: var(--border-tech); border-radius: 8px; margin-bottom: 40px; box-shadow: 0 0 40px rgba(0, 242, 255, 0.1); }
-        .content-section { margin-bottom: 80px; }
-        h2 { font-family: 'JetBrains Mono', monospace; color: var(--accent-color); font-size: 1.4rem; border-bottom: 1px solid rgba(0, 242, 255, 0.3); padding-bottom: 10px; margin-bottom: 30px; }
-        
-        .step-img { width: 100%; border: var(--border-tech); margin: 20px 0; border-radius: 4px; }
-        .cta-box { background: rgba(0, 242, 255, 0.05); border: 1px dashed var(--accent-color); padding: 40px; text-align: center; margin-top: 60px; }
-        .btn-live { display: inline-block; padding: 15px 35px; background: var(--accent-color); color: var(--bg-color); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        .btn-live:hover { box-shadow: 0 0 25px var(--accent-color); transform: scale(1.05); }
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
 
-        footer { text-align: center; padding: 60px; opacity: 0.4; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+        .tagline {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            width: 100%;
+            border: var(--border-tech);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border: var(--border-tech);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        img.step-img {
+            width: 100%;
+            border: var(--border-tech);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .cta-box {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px dashed var(--accent-color);
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-live {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-live:hover {
+            box-shadow: 0 0 25px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.4;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="changeLang('es')">ES</button>
-        <button class="lang-btn" onclick="changeLang('en')">EN</button>
-        <button class="lang-btn" onclick="changeLang('pt')">PT</button>
-    </div>
-
     <nav>
-        <a href="../index.html" id="nav-back">< [ VOLVER_AL_SISTEMA ]</a>
+        <a href="../index.html">< [ VOLVER_AL_SISTEMA ]</a>
     </nav>
 
     <div class="container">
         <header>
-            <h1 id="txt-title">Crypto Analytics 2025</h1>
+            <h1>Crypto Analytics 2025</h1>
             <div class="tagline">DATA_ENGINEERING + MACHINE_LEARNING + BI</div>
         </header>
 
         <img src="../img/projects/crypto_cover.png" alt="Hero Image" class="hero-image">
 
         <section class="content-section">
-            <h2 id="txt-sec1-h">01. El Problema: Ruido vs. Señal</h2>
-            <div id="txt-sec1-p">
-                <p>¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición? En los mercados financieros, el "ruido" suele ocultar la rentabilidad. Diseñé un ecosistema para procesar datos masivos y proyectar resultados basados en evidencia estadística.</p>
-            </div>
+            <h2>01. El Problema: Ruido vs. Señal</h2>
+            <p>
+                En los mercados financieros, el exceso de información suele ser el mayor enemigo de la rentabilidad. Este proyecto nació para responder una pregunta estratégica: <strong>¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición?</strong>
+            </p>
+            <p>
+                Diseñé un ecosistema capaz de procesar datos históricos masivos, limpiarlos mediante ingeniería de precisión y proyectar resultados basados en evidencia estadística.
+            </p>
         </section>
 
         <section class="content-section">
-            <h2 id="txt-sec2-h">02. Ingeniería de Datos (Arquitectura Medallion)</h2>
-            <p id="txt-sec2-p1">Utilicé <strong>Microsoft Fabric</strong> para orquestar un pipeline de datos resiliente, refinando la información progresivamente:</p>
-            <ul>
-                <li id="li-bronze"><strong>Capa Bronze:</strong> Ingesta híbrida mediante Dataflows Gen2 y PySpark. Captura de datos crudos.</li>
-                <li id="li-silver"><strong>Capa Silver:</strong> Limpieza y normalización de esquemas.</li>
-                <li id="li-gold"><strong>Capa Gold:</strong> Modelado semántico optimizado para BI y consumo de ML.</li>
-            </ul>
+            <h2>02. Ingeniería de Datos (Arquitectura Medallion)</h2>
+            <p>Utilicé <strong>Microsoft Fabric</strong> para orquestar un pipeline de datos resiliente, asegurando que la información fuera refinada progresivamente.</p>
             
             <img src="../img/projects/pipeline.png" alt="Data Pipeline" class="step-img">
-            <img src="../img/projects/modelosemantico_gold.png" alt="Semantic Model Gold" class="step-img">
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>CAPA_BRONZE</h3>
+                    <p style="font-size: 0.9rem;">Ingesta híbrida mediante Dataflows Gen2 y PySpark. Captura de datos crudos sin alteración de integridad.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>CAPA_GOLD</h3>
+                    <p style="font-size: 0.9rem;">Modelado semántico optimizado para BI y consumo de ML. Aquí el dato se convierte en valor de negocio.</p>
+                </div>
+            </div>
+
+            <img src="../img/projects/modelosemantico_gold.png" alt="Modelo Semántico" class="step-img">
         </section>
 
         <section class="content-section">
-            <h2 id="txt-sec3-h">03. BI y Validación</h2>
-            <img src="../img/projects/crypto_dashboard_1.png" alt="Dashboard" class="step-img">
-            <p id="txt-sec3-p">Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar "trampas" de mercado.</p>
+            <h2>03. Inteligencia de Negocio y Validación</h2>
+            <p>El análisis visual se estructuró en tres capas críticas: Estado del Mercado, Validación de Tendencias (Volumen vs. Precio) y Performance Histórico.</p>
+            
+            <img src="../img/projects/crypto_dashboard_1.png" alt="Dashboard Page 1" class="step-img">
+            <img src="../img/projects/dashboard_final2.png" alt="Dashboard Page 2" class="step-img">
+            <img src="../img/projects/dashboard_final3.png" alt="Dashboard Page 3" class="step-img">
+            
+            <p>
+                <strong>Insight Clave:</strong> Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar "trampas" de mercado.
+            </p>
         </section>
 
         <section class="content-section">
-            <h2 id="txt-sec4-h">04. Ciencia de Datos: Predicción</h2>
-            <p id="txt-sec4-p1">Entrené un modelo de <strong>Regresión Lineal</strong> para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un $R^2$ de 0.9863.</p>
+            <h2>04. Ciencia de Datos: Predicción</h2>
+            <p>Entrené un modelo de <strong>Regresión Lineal</strong> para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un $R^2$ de 0.9863.</p>
             
             <img src="../img/projects/machine_learning.png" alt="ML Analysis" class="step-img">
 
-            <p id="txt-sec4-p2">En el gráfico superior (Caso Bitcoin), se observa cómo la regresión "viaja" a través de las dimensiones de volatilidad y precio inicial para encontrar el punto de equilibrio. Esta herramienta transforma la especulación en un cálculo de probabilidades fundamentado.</p>
+            <p>
+                En el gráfico superior (Caso Bitcoin), se observa cómo la regresión "viaja" a través de las dimensiones de volatilidad y precio inicial para encontrar el punto de equilibrio. Esta herramienta transforma la especulación en un cálculo de probabilidades fundamentado.
+            </p>
         </section>
 
         <div class="cta-box">
-            <h2 id="txt-cta-h" style="border:none; margin-bottom: 20px;">¿Desea probar el simulador?</h2>
-            <p id="txt-cta-p">He desplegado una versión interactiva del modelo en Streamlit para experimentación en tiempo real.</p>
+            <h2 style="border:none; margin-bottom: 20px;">¿Desea probar el simulador?</h2>
+            <p>He desplegado una versión interactiva del modelo en Streamlit para experimentación en tiempo real.</p>
             <br>
-            <a href="https://crypto-medallion-ml-app-mq3eccyg95sxpc7ytwgoiv.streamlit.app/" target="_blank" class="btn-live" id="txt-cta-btn">
+            <a href="https://crypto-medallion-ml-app-mq3eccyg95sxpc7ytwgoiv.streamlit.app/" target="_blank" class="btn-live">
                 [ EJECUTAR_SIMULACIÓN_LIVE ]
             </a>
         </div>
+
     </div>
 
     <footer>
         NICOLAS ZALAZAR // PROJECT_ID: CRYPTO_2025 // 2025
     </footer>
 
-    <script>
-        const content = {
-            es: {
-                back: "< [ VOLVER_AL_SISTEMA ]",
-                sec1h: "01. El Problema: Ruido vs. Señal",
-                sec1p: "¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición? En los mercados financieros, el 'ruido' suele ocultar la rentabilidad. Diseñé un ecosistema para procesar datos masivos y proyectar resultados basados en evidencia estadística.",
-                sec2h: "02. Ingeniería de Datos (Arquitectura Medallion)",
-                sec2p1: "Utilicé Microsoft Fabric para orquestar un pipeline de datos resiliente, refinando la información progresivamente:",
-                liB: "Capa Bronze: Ingesta híbrida mediante Dataflows Gen2 y PySpark. Captura de datos crudos.",
-                liS: "Capa Silver: Limpieza y normalización de esquemas.",
-                liG: "Capa Gold: Modelado semántico optimizado para BI y consumo de ML.",
-                sec3h: "03. BI y Validación",
-                sec3p: "Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar 'trampas' de mercado.",
-                sec4h: "04. Ciencia de Datos: Predicción",
-                sec4p1: "Entrené un modelo de Regresión Lineal para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un R² de 0.9863.",
-                sec4p2: "En el gráfico superior (Caso Bitcoin), se observa cómo la regresión 'viaja' a través de las dimensiones de volatilidad y precio inicial para encontrar el punto de equilibrio.",
-                ctaH: "¿Desea probar el simulador?",
-                ctaP: "He desplegado una versión interactiva del modelo en Streamlit para experimentación en tiempo real.",
-                ctaB: "[ EJECUTAR_SIMULACIÓN_LIVE ]"
-            },
-            en: {
-                back: "< [ BACK_TO_SYSTEM ]",
-                sec1h: "01. The Problem: Noise vs. Signal",
-                sec1p: "Is it possible to validate the authenticity of a market movement before executing a position? In financial markets, 'noise' often hides profitability. I designed an ecosystem to process massive data and project results based on statistical evidence.",
-                sec2h: "02. Data Engineering (Medallion Architecture)",
-                sec2p1: "I used Microsoft Fabric to orchestrate a resilient data pipeline, progressively refining the information:",
-                liB: "Bronze Layer: Hybrid ingestion via Dataflows Gen2 and PySpark. Raw data capture.",
-                liS: "Silver Layer: Schema cleaning and normalization.",
-                liG: "Gold Layer: Semantic modeling optimized for BI and ML consumption.",
-                sec3h: "03. BI & Validation",
-                sec3p: "By cross-referencing average volume with volatility, we identified anomalies where prices rose without liquidity support, allowing the investor to avoid market 'traps'.",
-                sec4h: "04. Data Science: Prediction",
-                sec4p1: "I trained a Linear Regression model to project the monthly closing price. The result was statistical convergence with an R² of 0.9863.",
-                sec4p2: "In the graph above (Bitcoin Case), we can see how the regression 'travels' through volatility and initial price dimensions to find the equilibrium point.",
-                ctaH: "Want to try the simulator?",
-                ctaP: "I have deployed an interactive version of the model on Streamlit for real-time experimentation.",
-                ctaB: "[ EXECUTE_LIVE_SIMULATION ]"
-            },
-            pt: {
-                back: "< [ VOLTAR AO SISTEMA ]",
-                sec1h: "01. O Problema: Ruído vs. Sinal",
-                sec1p: "É possível validar a autenticidade de um movimento de mercado antes de executar uma posição? Nos mercados financeiros, o 'ruído' costuma ocultar a rentabilidade. Desenvolvi um ecossistema para processar dados massivos.",
-                sec2h: "02. Engenharia de Dados (Arquitetura Medallion)",
-                sec2p1: "Utilizei o Microsoft Fabric para orquestrar um pipeline de dados resiliente, refinando as informações progressivamente:",
-                liB: "Camada Bronze: Ingestão híbrida via Dataflows Gen2 e PySpark. Captura de dados brutos.",
-                liS: "Camada Silver: Limpeza e normalização de esquemas.",
-                liG: "Camada Gold: Modelagem semântica otimizada para BI e consumo de ML.",
-                sec3h: "03. BI e Validação",
-                sec3p: "Ao cruzar o volume médio com a volatilidade, conseguimos identificar anomalias onde o preço subia sem respaldo de liquidez.",
-                sec4h: "04. Ciência de Dados: Predição",
-                sec4p1: "Treinei um modelo de Regressão Linear para projetar o preço de fechamento mensal. O resultado foi uma convergência estatística com um R² de 0,9863.",
-                sec4p2: "No gráfico acima (Caso Bitcoin), observa-se como a regressão 'viaja' através das dimensões de volatilidade e preço inicial.",
-                ctaH: "Deseja testar o simulador?",
-                ctaP: "Implantei uma versão interativa do modelo no Streamlit para experimentação em tempo real.",
-                ctaB: "[ EXECUTAR_SIMULAÇÃO_LIVE ]"
-            }
-        };
-
-        function changeLang(lang) {
-            document.getElementById('nav-back').innerText = content[lang].back;
-            document.getElementById('txt-sec1-h').innerText = content[lang].sec1h;
-            document.getElementById('txt-sec1-p').innerHTML = `<p>${content[lang].sec1p}</p>`;
-            document.getElementById('txt-sec2-h').innerText = content[lang].sec2h;
-            document.getElementById('txt-sec2-p1').innerHTML = content[lang].sec2p1;
-            document.getElementById('li-bronze').innerHTML = content[lang].liB;
-            document.getElementById('li-silver').innerHTML = content[lang].liS;
-            document.getElementById('li-gold').innerHTML = content[lang].liG;
-            document.getElementById('txt-sec3-h').innerText = content[lang].sec3h;
-            document.getElementById('txt-sec3-p').innerText = content[lang].sec3p;
-            document.getElementById('txt-sec4-h').innerText = content[lang].sec4h;
-            document.getElementById('txt-sec4-p1').innerHTML = content[lang].sec4p1;
-            document.getElementById('txt-sec4-p2').innerText = content[lang].sec4p2;
-            document.getElementById('txt-cta-h').innerText = content[lang].ctaH;
-            document.getElementById('txt-cta-p').innerText = content[lang].ctaP;
-            document.getElementById('txt-cta-btn').innerText = content[lang].ctaB;
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
-    </script>
 </body>
 </html>
