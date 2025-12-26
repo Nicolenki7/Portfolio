@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Analytics 2025 | Nicolas Zalazar</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --accent-color: #00f2ff;
+            --text-color: #e0e0e0;
+            --card-bg: #16161a;
+            --border-tech: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* Estética de fondo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 242, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 242, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        nav {
+            padding: 20px 10%;
+            border-bottom: var(--border-tech);
+            background: rgba(10, 10, 12, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            width: 100%;
+            border: var(--border-tech);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border: var(--border-tech);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        img.step-img {
+            width: 100%;
+            border: var(--border-tech);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .cta-box {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px dashed var(--accent-color);
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-live {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-live:hover {
+            box-shadow: 0 0 25px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.4;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html">< [ VOLVER_AL_SISTEMA ]</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Crypto Analytics 2025</h1>
+            <div class="tagline">DATA_ENGINEERING + MACHINE_LEARNING + BI</div>
+        </header>
+
+        <img src="../img/projects/crypto_cover.png" alt="Hero Image" class="hero-image">
+
+        <section class="content-section">
+            <h2>01. El Problema: Ruido vs. Señal</h2>
+            <p>
+                En los mercados financieros, el exceso de información suele ser el mayor enemigo de la rentabilidad. Este proyecto nació para responder una pregunta estratégica: <strong>¿Es posible validar la autenticidad de un movimiento de mercado antes de ejecutar una posición?</strong>
+            </p>
+            <p>
+                Diseñé un ecosistema capaz de procesar datos históricos masivos, limpiarlos mediante ingeniería de precisión y proyectar resultados basados en evidencia estadística.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Ingeniería de Datos (Arquitectura Medallion)</h2>
+            <p>Utilicé <strong>Microsoft Fabric</strong> para orquestar un pipeline de datos resiliente, asegurando que la información fuera refinada progresivamente.</p>
+            
+            <img src="../img/projects/pipeline.png" alt="Data Pipeline" class="step-img">
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>CAPA_BRONZE</h3>
+                    <p style="font-size: 0.9rem;">Ingesta híbrida mediante Dataflows Gen2 y PySpark. Captura de datos crudos sin alteración de integridad.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>CAPA_GOLD</h3>
+                    <p style="font-size: 0.9rem;">Modelado semántico optimizado para BI y consumo de ML. Aquí el dato se convierte en valor de negocio.</p>
+                </div>
+            </div>
+
+            <img src="../img/projects/modelosemantico_gold.png" alt="Modelo Semántico" class="step-img">
+        </section>
+
+        <section class="content-section">
+            <h2>03. Inteligencia de Negocio y Validación</h2>
+            <p>El análisis visual se estructuró en tres capas críticas: Estado del Mercado, Validación de Tendencias (Volumen vs. Precio) y Performance Histórico.</p>
+            
+            <img src="../img/projects/crypto_dashboard_1.png" alt="Dashboard Page 1" class="step-img">
+            <img src="../img/projects/dashboard_final2.png" alt="Dashboard Page 2" class="step-img">
+            <img src="../img/projects/dashboard_final3.png" alt="Dashboard Page 3" class="step-img">
+            
+            <p>
+                <strong>Insight Clave:</strong> Al cruzar el volumen promedio con la volatilidad, logramos identificar anomalías donde el precio subía sin respaldo de liquidez, permitiendo al inversor evitar "trampas" de mercado.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>04. Ciencia de Datos: Predicción</h2>
+            <p>Entrené un modelo de <strong>Regresión Lineal</strong> para proyectar el precio de cierre mensual. El resultado fue una convergencia estadística con un $R^2$ de 0.9863.</p>
+            
+            <img src="../img/projects/machine_learning.png" alt="ML Analysis" class="step-img">
+
+            <p>
+                En el gráfico superior (Caso Bitcoin), se observa cómo la regresión "viaja" a través de las dimensiones de volatilidad y precio inicial para encontrar el punto de equilibrio. Esta herramienta transforma la especulación en un cálculo de probabilidades fundamentado.
+            </p>
+        </section>
+
+        <div class="cta-box">
+            <h2 style="border:none; margin-bottom: 20px;">¿Desea probar el simulador?</h2>
+            <p>He desplegado una versión interactiva del modelo en Streamlit para experimentación en tiempo real.</p>
+            <br>
+            <a href="https://crypto-medallion-ml-app-mq3eccyg95sxpc7ytwgoiv.streamlit.app/" target="_blank" class="btn-live">
+                [ EJECUTAR_SIMULACIÓN_LIVE ]
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        NICOLAS ZALAZAR // PROJECT_ID: CRYPTO_2025 // 2025
+    </footer>
+
+</body>
+</html>
