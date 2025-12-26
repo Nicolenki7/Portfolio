@@ -18,29 +18,49 @@
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; overflow-x: hidden; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0); background-size: 40px 40px; z-index: -1; }
 
-        /* Idiomas */
         .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(22, 22, 26, 0.9); padding: 10px; border: var(--border-tech); border-radius: 4px; display: flex; gap: 10px; }
         .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; padding: 5px 10px; }
         .lang-btn.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
-        header { padding: 120px 20px 80px; text-align: center; border-bottom: var(--border-tech); }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; margin: 0; text-transform: uppercase; color: #fff; letter-spacing: -2px; }
+        header { padding: 100px 20px 60px; text-align: center; border-bottom: var(--border-tech); }
+        h1 { font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; margin: 0; text-transform: uppercase; color: #fff; letter-spacing: -2px; position: relative; }
         
+        /* Efecto Glitch para enlaces */
+        .contact-bar { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .glitch-link { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.85rem; 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            padding: 5px 10px; 
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .glitch-link:hover {
+            border: 1px solid var(--accent-color);
+            text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
+            background: rgba(0, 242, 255, 0.05);
+        }
+
         section { padding: 80px 10%; }
         h2 { font-family: 'JetBrains Mono', monospace; border-left: 4px solid var(--accent-color); padding-left: 15px; text-transform: uppercase; font-size: 1.6rem; margin-bottom: 40px; color: #fff; }
 
         .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
-        .tech-tag { display: inline-block; background: rgba(0, 242, 255, 0.1); color: var(--accent-color); padding: 4px 10px; font-size: 0.75rem; border: 1px solid rgba(0, 242, 255, 0.3); border-radius: 3px; margin: 4px; font-family: 'JetBrains Mono'; }
+        
+        /* Tags Interactivos */
+        .tech-tag { 
+            display: inline-block; background: rgba(0, 242, 255, 0.1); color: var(--accent-color); 
+            padding: 4px 10px; font-size: 0.75rem; border: 1px solid rgba(0, 242, 255, 0.3); 
+            border-radius: 3px; margin: 4px; font-family: 'JetBrains Mono'; cursor: help; transition: 0.3s;
+        }
+        .tech-tag:hover { background: var(--accent-color); color: var(--bg-color); }
+        #stack-info { margin-top: 15px; font-size: 0.85rem; min-height: 40px; color: var(--accent-color); font-family: 'JetBrains Mono'; border-top: 1px dashed rgba(0, 242, 255, 0.3); padding-top: 10px; }
 
         /* Modal Zoom */
         #certModal { display: none; position: fixed; z-index: 2000; padding: 50px; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; }
-        #modalImg { max-width: 90%; max-height: 90%; border: 1px solid var(--accent-color); box-shadow: 0 0 50px rgba(0, 242, 255, 0.2); }
+        #modalImg { max-width: 90%; max-height: 90%; border: 1px solid var(--accent-color); }
 
-        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .cv-link { display: block; padding: 15px; color: var(--accent-color); text-decoration: none; font-family: 'JetBrains Mono', monospace; border: 1px solid var(--accent-color); text-align: center; transition: 0.3s; font-weight: bold; }
-        .cv-link:hover { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 20px var(--accent-color); }
-
-        .swiper-slide img { cursor: zoom-in; width: 100%; border-radius: 4px; }
+        .swiper-button-next, .swiper-button-prev { color: var(--accent-color); transform: scale(0.7); }
         footer { text-align: center; padding: 40px; opacity: 0.4; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-top: var(--border-tech); }
 
         @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
@@ -56,8 +76,15 @@
 
     <header>
         <h1>Nicolas Zalazar</h1>
-        <div id="hero-subtitle" class="subtitle" style="color: var(--accent-color); font-family: 'JetBrains Mono'; font-size: 1.2rem; margin-top: 15px;">
+        <div id="hero-subtitle" class="subtitle" style="color: var(--accent-color); font-family: 'JetBrains Mono'; font-size: 1.1rem; margin-top: 10px;">
             Data Analyst & Solution Architect | Specialized in ML & Engineering
+        </div>
+        <div class="contact-bar">
+            <a href="https://linkedin.com/in/nicolas-zalazar-63340923a/" target="_blank" class="glitch-link">[ LINKEDIN ]</a>
+            <a href="https://github.com/Nicolenki7" target="_blank" class="glitch-link">[ GITHUB ]</a>
+            <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="glitch-link">[ KAGGLE ]</a>
+            <a href="https://wa.me/34614594035" target="_blank" class="glitch-link">[ WHATSAPP ]</a>
+            <a href="mailto:zalazarn046@gmail.com" class="glitch-link">[ EMAIL ]</a>
         </div>
     </header>
 
@@ -66,18 +93,19 @@
         <div class="about-grid">
             <div class="about-text" id="txt-about-content">
                 <p>Analista e Ingeniero de Datos con perfil híbrido orientado a la resolución de problemas de negocio complejos. Mi enfoque integra el rigor de la ingeniería con una visión estratégica forjada en los sectores de <strong>Turismo, Consumo Masivo y Telecomunicaciones</strong>.</p>
-                <p>Especialista en el diseño de arquitecturas <strong>Data Mesh</strong> y ecosistemas modernos en <strong>Microsoft Fabric</strong>. Experto en orquestar el ciclo completo del dato: desde la ingesta híbrida en Capa Bronze hasta la entrega de valor en Capa Gold, asegurando siempre la integridad mediante rigurosos controles de <strong>QA/QC y Gobernanza</strong>.</p>
-                <p>Domino la analítica predictiva mediante Machine Learning y la visualización avanzada, transformando grandes volúmenes de información en decisiones ejecutivas claras.</p>
+                <p>Especialista en el diseño de arquitecturas <strong>Data Mesh</strong> y ecosistemas modernos en <strong>Microsoft Fabric</strong>. Experto en orquestar el ciclo completo del dato: desde la ingesta híbrida en Capa Bronze hasta la entrega de valor en Capa Gold.</p>
             </div>
             <div class="highlight-box" style="background: rgba(22, 22, 26, 0.6); border: var(--border-tech); padding: 25px;">
-                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 1rem;">FULL_DATA_STACK</h3>
+                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">CORE_STACK (Click para info)</h3>
                 <div id="stack-container">
-                    <span class="tech-tag">Microsoft Fabric</span> <span class="tech-tag">Snowflake</span> <span class="tech-tag">Databricks</span>
-                    <span class="tech-tag">Azure AI</span> <span class="tech-tag">SQL Server</span> <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Python (PySpark)</span> <span class="tech-tag">Power BI (DAX)</span> <span class="tech-tag">Tableau</span>
-                    <span class="tech-tag">Looker Studio</span> <span class="tech-tag">MLflow</span> <span class="tech-tag">ETL/ELT</span>
-                    <span class="tech-tag">Star Schema</span> <span class="tech-tag">Data Mesh</span> <span class="tech-tag">QA/QC</span>
+                    <span class="tech-tag" data-info="Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
+                    <span class="tech-tag" data-info="Data Warehouse en la nube para almacenamiento y procesamiento masivo.">Snowflake</span>
+                    <span class="tech-tag" data-info="Plataforma de análisis de datos con Apache Spark de alto rendimiento.">Databricks</span>
+                    <span class="tech-tag" data-info="Ingeniería de datos a gran escala y procesamiento distribuido.">PySpark</span>
+                    <span class="tech-tag" data-info="Visualización avanzada y modelado de datos con DAX.">Power BI</span>
+                    <span class="tech-tag" data-info="Análisis predictivo y despliegue de modelos estadísticos.">Machine Learning</span>
                 </div>
+                <div id="stack-info">> Selecciona una tecnología...</div>
             </div>
         </div>
     </section>
@@ -87,10 +115,10 @@
         <div class="swiper projectSwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" onclick="location.href='proyectos/crypto-medallion.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer;">
-                    <img src="img/projects/crypto_cover.png" alt="Crypto Cover" style="height: 200px; object-fit: cover;">
+                    <img src="img/projects/crypto_cover.png" alt="Crypto" style="height: 200px; width:100%; object-fit: cover;">
                     <div style="padding:20px;">
                         <h3 style="color:var(--accent-color); margin:0;">Crypto Analytics 2025</h3>
-                        <p id="txt-crypto-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Medallion en Fabric con predicción de precios mediante ML.</p>
+                        <p id="txt-crypto-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Medallion en Fabric con predicción ML.</p>
                     </div>
                 </div>
             </div>
@@ -99,8 +127,12 @@
 
     <section id="certs">
         <h2 id="txt-certs-title">03. Validaciones Técnicas</h2>
-        <div class="swiper certSwiper">
-            <div class="swiper-wrapper" id="cert-wrapper"></div>
+        <div style="position: relative;">
+            <div class="swiper certSwiper">
+                <div class="swiper-wrapper" id="cert-wrapper"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
@@ -118,63 +150,37 @@
     </div>
 
     <footer>
-        NICOLAS ZALAZAR // SYSTEM_V2.0 // 2025 // ALL_SYSTEMS_GO
+        NICOLAS ZALAZAR // SYSTEM_V3.0 // 2025
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Lógica de Stack Interactivo
+        document.querySelectorAll('.tech-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.getElementById('stack-info').innerText = `> ${this.getAttribute('data-info')}`;
+            });
+        });
+
         const content = {
-            es: {
-                subtitle: "Data Analyst & Solution Architect | Specialized in ML & Engineering",
-                titleAbout: "01. Perfil de Misión",
-                about: `<p>Analista e Ingeniero de Datos con perfil híbrido orientado a la resolución de problemas de negocio complejos. Mi enfoque integra el rigor de la ingeniería con una visión estratégica forjada en los sectores de <strong>Turismo, Consumo Masivo y Telecomunicaciones</strong>.</p>
-                        <p>Especialista en el diseño de arquitecturas <strong>Data Mesh</strong> y ecosistemas modernos en <strong>Microsoft Fabric</strong>. Experto en orquestar el ciclo completo del dato: desde la ingesta híbrida en Capa Bronze hasta la entrega de valor en Capa Gold, asegurando siempre la integridad mediante rigurosos controles de <strong>QA/QC y Gobernanza</strong>.</p>
-                        <p>Domino la analítica predictiva mediante Machine Learning y la visualización avanzada, transformando grandes volúmenes de información en decisiones ejecutivas claras.</p>`,
-                titleProj: "02. Ecosistemas de Análisis",
-                crypto: "Arquitectura Medallion en Fabric con predicción de precios mediante ML.",
-                titleCert: "03. Validaciones Técnicas",
-                titleCv: "04. Documentación Técnica"
-            },
-            en: {
-                subtitle: "Data Analyst & Solutions Architect | Data Engineering & AI",
-                titleAbout: "01. Mission Profile",
-                about: `<p>Hybrid Data Professional focused on solving complex business problems. My approach merges engineering rigor with a strategic mindset developed across <strong>Tourism, Retail, and Telecom</strong> sectors.</p>
-                        <p>Specialist in <strong>Data Mesh</strong> architectures and <strong>Microsoft Fabric</strong> ecosystems. Expert in orchestrating the full data lifecycle: from hybrid ingestion in the Bronze Layer to value delivery in the Gold Layer, ensuring data integrity through advanced <strong>QA/QC and Governance</strong>.</p>
-                        <p>I excel in predictive analytics using Machine Learning and advanced visualization, turning massive data into clear executive insights.</p>`,
-                titleProj: "02. Analysis Ecosystems",
-                crypto: "Medallion architecture on Fabric with price prediction using ML.",
-                titleCert: "03. Technical Validations",
-                titleCv: "04. Technical Documentation"
-            },
-            pt: {
-                subtitle: "Analista de Dados & Arquiteto de Soluções | Foco em ML e Engenharia",
-                titleAbout: "01. Perfil de Missão",
-                about: `<p>Profissional híbrido de dados focado na resolução de problemas de negócio complexos. Minha abordagem une o rigor da engenharia com uma visão estratégica desenvolvida nos setores de <strong>Turismo, Varejo e Telecomunicações</strong>.</p>
-                        <p>Especialista em arquiteturas <strong>Data Mesh</strong> e ecossistemas <strong>Microsoft Fabric</strong>. Especialista em orquestrar o ciclo de vida completo dos dados: desde a ingestão híbrida na Camada Bronze até a entrega de valor na Camada Gold, garantindo a integridade por meio de <strong>QA/QC e Governança</strong> avançados.</p>
-                        <p>Domino a análise preditiva por meio de Machine Learning e visualização avançada, transformando dados massivos em insights executivos claros.</p>`,
-                titleProj: "02. Ecossistemas de Análise",
-                crypto: "Arquitetura Medallion no Fabric com previsão de preços usando ML.",
-                titleCert: "03. Validações Técnicas",
-                titleCv: "04. Documentação Técnica"
-            }
+            es: { subtitle: "Data Analyst & Solution Architect | Specialized in ML & Engineering", titleAbout: "01. Perfil de Misión", titleProj: "02. Ecosistemas", titleCert: "03. Validaciones", titleCv: "04. Documentación" },
+            en: { subtitle: "Data Analyst & Solutions Architect | Data Engineering & AI", titleAbout: "01. Mission Profile", titleProj: "02. Ecosystems", titleCert: "03. Technical Validations", titleCv: "04. Documentation" },
+            pt: { subtitle: "Analista de Dados & Arquiteto de Soluções | Foco em ML e Engenharia", titleAbout: "01. Perfil de Missão", titleProj: "02. Ecossistemas", titleCert: "03. Validações", titleCv: "04. Documentação" }
         };
 
         function changeLang(lang) {
             document.getElementById('hero-subtitle').innerText = content[lang].subtitle;
             document.getElementById('txt-about-title').innerText = content[lang].titleAbout;
-            document.getElementById('txt-about-content').innerHTML = content[lang].about;
             document.getElementById('txt-projects-title').innerText = content[lang].titleProj;
-            document.getElementById('txt-crypto-desc').innerText = content[lang].crypto;
             document.getElementById('txt-certs-title').innerText = content[lang].titleCert;
             document.getElementById('txt-cv-title').innerText = content[lang].titleCv;
-            
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }
 
         const wrapper = document.getElementById('cert-wrapper');
         for (let i = 1; i <= 15; i++) {
-            wrapper.innerHTML += `<div class="swiper-slide"><img src="img/certs/cert_${i}.png" onclick="openCert(this.src)"></div>`;
+            wrapper.innerHTML += `<div class="swiper-slide"><img src="img/certs/cert_${i}.png" onclick="openCert(this.src)" style="cursor:zoom-in;"></div>`;
         }
 
         function openCert(src) {
@@ -184,7 +190,12 @@
         }
 
         new Swiper(".projectSwiper", { slidesPerView: 1, spaceBetween: 30, breakpoints: { 768: { slidesPerView: 2 } } });
-        new Swiper(".certSwiper", { slidesPerView: 2, spaceBetween: 20, loop: true, autoplay: { delay: 3000 }, breakpoints: { 1024: { slidesPerView: 5 } } });
+        new Swiper(".certSwiper", { 
+            slidesPerView: 2, spaceBetween: 20, loop: true, 
+            autoplay: { delay: 3000 }, 
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            breakpoints: { 1024: { slidesPerView: 5 } } 
+        });
     </script>
 </body>
 </html>
