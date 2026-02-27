@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Zalazar | Portfolio</title>
+    <meta name="description" content="Nicolas Zalazar - Data Analyst & Solution Architect specialized in ML, Data Engineering, Microsoft Fabric, Snowflake, and Business Intelligence.">
+    <meta name="keywords" content="Data Analyst, Data Engineer, Microsoft Fabric, Snowflake, Power BI, Machine Learning, SQL, Python, Business Intelligence">
+    <meta name="author" content="Nicolas Zalazar">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nicolas Zalazar | Data Analyst & Solution Architect">
+    <meta property="og:description" content="Specialized in ML, Data Engineering, and Business Intelligence with Microsoft Fabric and Snowflake.">
+    <meta property="og:url" content="https://nicolenki7.github.io/Portfolio/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <title>Nicolas Zalazar | Data Analyst & Solution Architect - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -72,12 +86,16 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#about" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" onfocus="this.style.position='fixed';this.style.left='20px';this.style.top='20px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible';this.style.zIndex='9999';this.style.background='#00f2ff';this.style.color='#0a0a0c';this.style.padding='10px 20px';this.style.textDecoration='none';this.style.fontWeight='bold';">
+        Skip to main content
+    </a>
 
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="changeLang('es')">ES</button>
-        <button class="lang-btn" onclick="changeLang('en')">EN</button>
-        <button class="lang-btn" onclick="changeLang('pt')">PT</button>
-    </div>
+    <nav class="lang-switcher" role="navigation" aria-label="Language selection">
+        <button class="lang-btn active" onclick="changeLang('es')" aria-label="Switch to Spanish" aria-pressed="true">ES</button>
+        <button class="lang-btn" onclick="changeLang('en')" aria-label="Switch to English" aria-pressed="false">EN</button>
+        <button class="lang-btn" onclick="changeLang('pt')" aria-label="Switch to Portuguese" aria-pressed="false">PT</button>
+    </nav>
 
     <header>
         <h1>Nicolas Zalazar</h1>
@@ -183,9 +201,31 @@
             document.getElementById('txt-projects-title').innerText = content[lang].titleProj;
             document.getElementById('txt-certs-title').innerText = content[lang].titleCert;
             document.getElementById('txt-cv-title').innerText = content[lang].titleCv;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            // Update active state and aria-pressed
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            const activeBtn = event.target;
+            activeBtn.classList.add('active');
+            activeBtn.setAttribute('aria-pressed', 'true');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference
+            localStorage.setItem('preferred-lang', lang);
         }
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'es';
+            const btn = document.querySelector(`.lang-btn[onclick="changeLang('${savedLang}')"]`);
+            if (btn) {
+                btn.click();
+            }
+        });
 
         // Generar Certificados
         const wrapper = document.getElementById('cert-wrapper');
