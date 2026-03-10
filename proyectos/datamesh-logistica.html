@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataMesh Logística | Nicolas Zalazar</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --accent-color: #00f2ff;
+            --text-color: #e0e0e0;
+            --card-bg: #16161a;
+            --border-tech: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 242, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 242, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        nav {
+            padding: 20px 10%;
+            border-bottom: var(--border-tech);
+            background: rgba(10, 10, 12, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            width: 100%;
+            border: var(--border-tech);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border: var(--border-tech);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .tech-card p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .architecture-diagram {
+            background: var(--card-bg);
+            border: var(--border-tech);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--accent-color);
+        }
+
+        .domain-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .domain-table th, .domain-table td {
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .domain-table th {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .domain-table tr:hover {
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: var(--border-tech);
+            padding: 25px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px dashed rgba(0, 242, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-list li:before {
+            content: "▶";
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .code-block {
+            background: #0d0d10;
+            border: var(--border-tech);
+            padding: 20px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin: 20px 0;
+        }
+
+        .code-block .keyword { color: #ff79c6; }
+        .code-block .string { color: #f1fa8c; }
+        .code-block .comment { color: #6272a4; }
+        .code-block .function { color: #8be9fd; }
+
+        img.step-img {
+            width: 100%;
+            border: var(--border-tech);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .cta-box {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px dashed var(--accent-color);
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-live {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-live:hover {
+            box-shadow: 0 0 25px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.4;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .tech-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html">< [ VOLVER_AL_SISTEMA ]</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>DataMesh Logística</h1>
+            <div class="tagline">MICROSOFT FABRIC | DATA MESH | REAL-TIME ANALYTICS</div>
+        </header>
+
+        <img src="../img/projects/datamesh_dashboard.png" alt="DataMesh Dashboard" class="hero-image">
+
+        <section class="content-section">
+            <h2>01. El Desafío: Fragmentación de Datos</h2>
+            <p>
+                Una compañía logística con múltiples operadores (DHL, FedEx, UPS, LocalPost) enfrentaba un problema crítico: <strong>datos fragmentados en silos incompatibles</strong>. Cada dominio (Transacciones, Logística, Gobernanza) operaba de forma aislada, imposibilitando una visión unificada del rendimiento.
+            </p>
+            <p>
+                La pregunta estratégica era clara: <strong>¿Cómo unificar tres dominios de datos con diferentes latencias (batch + near real-time) sin duplicar almacenamiento?</strong>
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Arquitectura Data Mesh en Microsoft Fabric</h2>
+            <p>
+                Diseñé una arquitectura <strong>zero-copy</strong> utilizando OneLake Shortcuts para acceder a datos en tiempo real sin replicación. El resultado: un único Modelo Semántico que combina datos de lote y streaming.
+            </p>
+
+            <div class="architecture-diagram">
+┌─────────────────────────────────────────────────────────────┐
+│              DATA MESH ARCHITECTURE                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  DOMAIN 1: TRANSACTIONS (D1)                                │
+│  └─→ Lakehouse (Delta Lake)                                 │
+│      Sales records, revenue data (Batch)                    │
+│                                                             │
+│  DOMAIN 2: LOGISTICS (D2)                                   │
+│  └─→ KQL Database (Eventhouse)                              │
+│      Carrier status, delivery times (Near Real-Time)        │
+│                                                             │
+│  DOMAIN 3: GOVERNANCE (D3)                                  │
+│  └─→ KQL Database (Eventhouse)                              │
+│      System logs, SLA compliance (Near Real-Time)           │
+│                                                             │
+│  CONSUMPTION LAYER (D4)                                     │
+│  └─→ Lakehouse with OneLake Shortcuts → D2, D3              │
+│      Zero-copy data access, unified semantic model          │
+│                                                             │
+│  SEMANTIC MODEL                                             │
+│  └─→ Power BI Dataset with DAX measures                     │
+│      Cross-domain relationships, KPIs                       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>ONE_LAKE_SHORTCUTS</h3>
+                    <p>Acceso zero-copy a datos en KQL Database. Los analytics reflejan siempre el dato operacional más reciente sin duplicación de almacenamiento.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>KQL_DATABASE</h3>
+                    <p>Eventhouse para ingesta de alta velocidad. Maneja datos near real-time de logística y gobernanza con latencia sub-segundo.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>DELTA_LAKE</h3>
+                    <p>Almacenamiento transaccional en Lakehouse. Datos de ventas y revenue en formato Delta para ACID compliance.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>DAX_MEASURES</h3>
+                    <p>Medidas calculadas para KPIs de negocio: [Tiempo Promedio Entrega], [Tasa Incumbimiento SLA], [Total Envíos].</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>03. Integración Multi-Dominio</h2>
+            <p>
+                Tres dominios de negocio unificados en un único modelo semántico, cada uno con su propia latencia y tecnología óptima:
+            </p>
+
+            <table class="domain-table">
+                <thead>
+                    <tr>
+                        <th>DOMINIO</th>
+                        <th>CONTENIDO</th>
+                        <th>LATENCIA</th>
+                        <th>TECNOLOGÍA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>D1: Transactions</strong></td>
+                        <td>Sales & Revenue Records</td>
+                        <td>Batch</td>
+                        <td>Lakehouse (Delta Lake)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D2: Logistics</strong></td>
+                        <td>Carrier Status, Delivery Times</td>
+                        <td>Near Real-Time</td>
+                        <td>KQL Database</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D3: Governance</strong></td>
+                        <td>System Logs, SLA Compliance</td>
+                        <td>Near Real-Time</td>
+                        <td>KQL Database</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top: 40px;">Código de Ingesta KQL (Ejemplo)</h3>
+            <div class="code-block">
+<span class="comment">// Ingesta de datos de logística en KQL Database</span>
+<span class="keyword">.create</span> table LogisticaRaw (
+    EnvioID: <span class="keyword">string</span>,
+    Carrier: <span class="keyword">string</span>,
+    FechaSalida: <span class="keyword">datetime</span>,
+    FechaEntrega: <span class="keyword">datetime</span>,
+    Estado: <span class="keyword">string</span>,
+    SLA_Cumplido: <span class="keyword">bool</span>
+)
+
+<span class="comment">// Consulta de rendimiento por carrier</span>
+<span class="keyword">LogisticaRaw</span>
+| <span class="function">where</span> FechaSalida >= ago(30d)
+| <span class="function">summarize</span> 
+    TotalEnvios = count(),
+    PromedioDias = avg(toint(FechaEntrega - FechaSalida)),
+    TasaSLA = <span class="function">sumif</span>(1, SLA_Cumplido) * 100.0 / count()
+| <span class="function">group by</span> Carrier
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>04. Dashboard Interactivo</h2>
+            <p>
+                El dashboard final permite análisis cruzado entre dominios con filtros interactivos por carrier, rango de fechas y región de entrega.
+            </p>
+
+            <h3 style="color: #fff; font-family: 'JetBrains Mono'; font-size: 1.1rem; margin-top: 30px;">Visualizaciones Principales:</h3>
+            <ul class="feature-list">
+                <li>
+                    <div>
+                        <strong>Mapa de Ventas (D1 + D2):</strong> Estrategia de inventario por región de entrega, correlacionando ventas con tiempos de entrega.
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Auditoría SLA (D1 + D3):</strong> Riesgo tecnológico: fallos de sistema vs métodos de pago. Identifica patrones de incumplimiento.
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Rendimiento de Carriers (D2):</strong> Auditoría costo/eficiencia. Ranking de operadores logísticos por velocidad y cumplimiento.
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Tendencia Histórica (D2):</strong> Eficiencia de entrega en el tiempo. Planning y forecast de capacidad logística.
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="color: #fff; font-family: 'JetBrains Mono'; font-size: 1.1rem; margin-top: 30px;">Filtros Interactivos:</h3>
+            <ul class="feature-list">
+                <li><strong>Carrier Selector:</strong> Filtra todo el análisis por operador logístico (DHL, FedEx, UPS, LocalPost)</li>
+                <li><strong>Date Range:</strong> Ajusta ventana temporal para análisis de tendencias</li>
+                <li><strong>Region Filter:</strong> Enfoca en zonas de entrega específicas</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>05. Medidas DAX Implementadas</h2>
+            <p>
+                El modelo semántico incluye medidas DAX optimizadas para el cálculo de KPIs críticos de negocio:
+            </p>
+
+            <div class="code-block">
+<span class="comment">// Tiempo Promedio de Entrega (días)</span>
+Tiempo Promedio Entrega = 
+<span class="keyword">AVERAGE</span>(Logistica[FechaEntrega] - Logistica[FechaSalida])
+
+<span class="comment">// Tasa de Incumplimiento SLA (%)</span>
+Tasa Incumbimiento SLA = 
+<span class="keyword">DIVIDE</span>(
+    <span class="function">CALCULATE</span>(
+        <span class="function">COUNTROWS</span>(Logistica),
+        Logistica[SLA_Cumplido] = FALSE()
+    ),
+    <span class="function">COUNTROWS</span>(Logistica),
+    0
+) * 100
+
+<span class="comment">// Total de Envíos</span>
+Total Envíos = <span class="function">COUNTROWS</span>(Logistica)
+
+<span class="comment">// Revenue Total (cross-domain)</span>
+Revenue Total = 
+<span class="function">SUM</span>(Transacciones[Revenue])
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>06. Resultados & Métricas</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">DOMINIOS UNIFICADOS</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">COPIAS DE DATOS (Zero-Copy)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">SYNC EN TIEMPO REAL</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">PÁGINAS DE DASHBOARD</div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-family: 'JetBrains Mono'; margin-top: 40px;">Impacto de Negocio:</h3>
+            <ul class="feature-list">
+                <li><strong>Unified Analytics:</strong> Modelo semántico único combinando batch + real-time</li>
+                <li><strong>Zero-Copy Architecture:</strong> OneLake Shortcuts eliminan duplicación de datos</li>
+                <li><strong>SLA Compliance Tracking:</strong> Monitoreo en tiempo real de rendimiento de entrega</li>
+                <li><strong>Cross-Domain Insights:</strong> Correlación de fallos de sistema (Gobernanza) con impacto en ventas (Transacciones)</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>07. Stack Técnico</h2>
+            
+            <table class="domain-table">
+                <thead>
+                    <tr>
+                        <th>CATEGORÍA</th>
+                        <th>TECNOLOGÍAS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Platform</strong></td>
+                        <td>Microsoft Fabric</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Engineering</strong></td>
+                        <td>PySpark, Dataflows Gen2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Real-Time Ingestion</strong></td>
+                        <td>KQL Database (Eventhouse)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Storage</strong></td>
+                        <td>OneLake, Delta Lake</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Virtualization</strong></td>
+                        <td>OneLake Shortcuts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BI & Analytics</strong></td>
+                        <td>Power BI, DAX</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Query Language</strong></td>
+                        <td>KQL, SQL, DAX</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h2>08. Key Learnings</h2>
+            <ul class="feature-list">
+                <li><strong>OneLake Shortcuts</strong> habilitan analytics en tiempo real zero-copy, eliminando la necesidad de ETL tradicional para consolidación.</li>
+                <li><strong>KQL Database</strong> maneja ingesta de alta velocidad de forma eficiente, ideal para datos operacionales de logística.</li>
+                <li><strong>Relaciones cross-domain</strong> desbloquean insights imposibles en arquitecturas siloed (ej: correlacionar fallos de sistema con pérdida de ventas).</li>
+                <li><strong>DAX optimization</strong> es crítico en modelos híbridos batch/real-time para mantener performance de queries.</li>
+            </ul>
+        </section>
+
+        <div class="cta-box">
+            <h2 style="border:none; margin-bottom: 20px;">¿Interesado en la arquitectura completa?</h2>
+            <p>El repositorio incluye documentación detallada, scripts de ingesta y el archivo PBIX del dashboard.</p>
+            <br>
+            <a href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics" target="_blank" class="btn-live">
+                [ VER_REPOSITORIO_GITHUB ]
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        NICOLAS ZALAZAR // PROJECT_ID: DATAMESH_LOGISTICA // 2026
+    </footer>
+
+</body>
+</html>
