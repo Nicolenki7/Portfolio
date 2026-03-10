@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFM Customer Segmentation | Nicolas Zalazar</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --accent-color: #00f2ff;
+            --text-color: #e0e0e0;
+            --card-bg: #16161a;
+            --border-tech: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 242, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 242, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        nav {
+            padding: 20px 10%;
+            border-bottom: var(--border-tech);
+            background: rgba(10, 10, 12, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            width: 100%;
+            border: var(--border-tech);
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border: var(--border-tech);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .code-block {
+            background: #0d0d0f;
+            border: var(--border-tech);
+            padding: 20px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .code-block code {
+            color: #a5b3ce;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+        }
+
+        .segment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .segment-table th,
+        .segment-table td {
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .segment-table th {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .segment-table tr:hover {
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: var(--border-tech);
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .cta-box {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px dashed var(--accent-color);
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-live {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-live:hover {
+            box-shadow: 0 0 25px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.4;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html">< [ VOLVER_AL_SISTEMA ]</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>RFM Customer Segmentation</h1>
+            <div class="tagline">DATA_ANALYTICS + CUSTOMER_INTELLIGENCE + PYTHON</div>
+        </header>
+
+        <div class="hero-image" style="background: linear-gradient(135deg, rgba(0,242,255,0.1) 0%, rgba(10,10,12,0.8) 100%); padding: 60px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono'; font-size: 3rem; color: var(--accent-color);">📊 RFM</div>
+            <div style="margin-top: 20px; opacity: 0.8;">Recency • Frequency • Monetary</div>
+        </div>
+
+        <section class="content-section">
+            <h2>01. El Desafío: Entender al Cliente</h2>
+            <p>
+                En el comercio electrónico, no todos los clientes tienen el mismo valor. Este proyecto aborda una pregunta fundamental de negocio: <strong>¿Cómo identificar qué clientes generan más valor y cuáles están en riesgo de abandono?</strong>
+            </p>
+            <p>
+                Desarrollé un sistema completo de segmentación RFM (Recency, Frequency, Monetary) que transforma datos transaccionales brutos en segmentos de clientes accionables para estrategias de marketing y retención.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>02. Pipeline de Datos</h2>
+            <p>El proceso completo se ejecuta en dos fases principales usando <strong>Python/Pandas</strong> y <strong>SQLite</strong> para procesamiento híbrido:</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>FASE_1: LIMPIEZA</h3>
+                    <p style="font-size: 0.9rem;">Filtrado de transacciones inválidas, manejo de nulos, cálculo de ingresos totales y preparación de fechas.</p>
+                </div>
+                <div class="tech-card">
+                    <h3>FASE_2: CÁLCULO RFM</h3>
+                    <p style="font-size: 0.9rem;">Cálculo de Recencia (Python), Frecuencia y Monetario (SQL), scoring y segmentación de negocio.</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <code>
+<span class="highlight"># Carga y Limpieza</span><br>
+df = pd.read_csv('online_retail.csv', encoding='ISO-8859-1')<br>
+df['Sales_Total'] = df['Quantity'] * df['UnitPrice']<br>
+df_cleaned = df[(df['UnitPrice'] > 0) & (df['Quantity'] > 0)]<br>
+df_cleaned.dropna(subset=['CustomerID'], inplace=True)<br>
+<br>
+<span class="highlight"># Cálculo de Recencia</span><br>
+snapshot_date = df_cleaned['InvoiceDate_dt'].max() + pd.Timedelta(days=1)<br>
+df_recency = df_cleaned.groupby('CustomerID')['InvoiceDate_dt'].max().reset_index()<br>
+df_recency['Recency'] = (snapshot_date - df_recency['Last_Purchase_Date']).dt.days<br>
+<br>
+<span class="highlight"># Frecuencia y Monetario (SQL)</span><br>
+sql_query = """<br>
+SELECT CustomerID,<br>
+    COUNT(DISTINCT InvoiceNo) AS Frequency,<br>
+    ROUND(SUM(Sales_Total), 2) AS Monetary<br>
+FROM RetailCleaned<br>
+GROUP BY CustomerID<br>
+"""<br>
+                </code>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>03. Scoring y Segmentación</h2>
+            <p>Cada cliente recibe una puntuación del 1 al 4 en cada dimensión RFM, generando segmentos de negocio accionables:</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">4,318</div>
+                    <div class="stat-label">Clientes Analizados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Segmentos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">R²</div>
+                    <div class="stat-label">Validación Estadística</div>
+                </div>
+            </div>
+
+            <table class="segment-table">
+                <thead>
+                    <tr>
+                        <th>Segmento</th>
+                        <th>Patrón RFM</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">🏆 Campeones</span></td>
+                        <td>[4-5][4-5][4-5]</td>
+                        <td>Compran reciente, frecuentemente y gastan mucho</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">💎 Clientes Leales</span></td>
+                        <td>[3-5][3-5][2-5]</td>
+                        <td>Base sólida del negocio, engagement consistente</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">🌱 Potencial Leal</span></td>
+                        <td>[3-4][1-3][1-3]</td>
+                        <td>Recientes pero con bajo gasto, oportunidad de upsell</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">✨ Nuevos Clientes</span></td>
+                        <td>[4-5][1-2][1-2]</td>
+                        <td>Primera compra reciente,需要 nurturing</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">⚠️ Clientes en Riesgo</span></td>
+                        <td>[1-2][3-5][3-5]</td>
+                        <td>Valiosos pero sin compras recientes, requieren reactivación</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">🔴 No se pueden perder</span></td>
+                        <td>[1-2][4-5][4-5]</td>
+                        <td>Alto valor histórico, inactivos recientemente - PRIORIDAD</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">😴 Durmiendo</span></td>
+                        <td>[1-2][1-2][1-2]</td>
+                        <td>Bajo engagement general, posible churn</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h2>04. Resultados del Análisis</h2>
+            <p>La distribución de segmentos revela insights críticos para la estrategia de negocio:</p>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>📈 DISTRIBUCIÓN</h3>
+                    <p style="font-size: 0.9rem;">
+                        <strong>Clientes Leales:</strong> 1,050 (24.3%)<br>
+                        <strong>Durmiendo:</strong> 1,015 (23.5%)<br>
+                        <strong>Potencial Leal:</strong> 1,013 (23.5%)<br>
+                        <strong>En Riesgo:</strong> 489 (11.3%)<br>
+                        <strong>No se pueden perder:</strong> 117 (2.7%)<br>
+                        <strong>Nuevos:</strong> 88 (2.0%)
+                    </p>
+                </div>
+                <div class="tech-card">
+                    <h3>🎯 ACCIONES RECOMENDADAS</h3>
+                    <p style="font-size: 0.9rem;">
+                        • <strong>Campaña VIP:</strong> Para "No se pueden perder"<br>
+                        • <strong>Email reactivación:</strong> Para "En Riesgo"<br>
+                        • <strong>Programa loyalty:</strong> Para "Potencial Leal"<br>
+                        • <strong>Onboarding:</strong> Para "Nuevos Clientes"
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <code>
+<span class="highlight"># Exportación final lista para Power BI / Looker Studio</span><br>
+df_rfm.to_csv('rfm_segmentation_final.csv', index=False)<br>
+<br>
+<span class="highlight"># Output: CustomerID, Recency, Frequency, Monetary,</span><br>
+<span class="highlight">#          R_Score, F_Score, M_Score, RFM_Score, Segment</span><br>
+                </code>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>05. Stack Tecnológico</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>🐍 PYTHON</h3>
+                    <p style="font-size: 0.9rem;">Pandas, NumPy, SQLite3 - Procesamiento y análisis de datos</p>
+                </div>
+                <div class="tech-card">
+                    <h3>💾 SQL</h3>
+                    <p style="font-size: 0.9rem;">SQLite - Cálculo de agregaciones de Frecuencia y Monetario</p>
+                </div>
+                <div class="tech-card">
+                    <h3>📊 BI TOOLS</h3>
+                    <p style="font-size: 0.9rem;">Power BI, Looker Studio - Visualización de segmentos</p>
+                </div>
+                <div class="tech-card">
+                    <h3>📈 ANALYTICS</h3>
+                    <p style="font-size: 0.9rem;">RFM Analysis, Customer Segmentation, Cohort Analysis</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-box">
+            <h2 style="border:none; margin-bottom: 20px;">¿Interesado en el código completo?</h2>
+            <p>El notebook completo con todo el pipeline de análisis está disponible en mi repositorio de GitHub.</p>
+            <br>
+            <a href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis" target="_blank" class="btn-live">
+                [ VER_EN_GITHUB ]
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        NICOLAS ZALAZAR // PROJECT_ID: RFM_RETAIL_2025 // 2025
+    </footer>
+
+</body>
+</html>
