@@ -192,6 +192,53 @@
             margin-top: 5px;
         }
 
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: var(--border-tech);
+            padding: 25px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px dashed rgba(0, 242, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .feature-list li:before {
+            content: "▶";
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         .cta-box {
             background: rgba(0, 242, 255, 0.05);
             border: 1px dashed var(--accent-color);
@@ -244,10 +291,7 @@
             <div class="tagline">DATA_ANALYTICS + CUSTOMER_INTELLIGENCE + PYTHON</div>
         </header>
 
-        <div class="hero-image" style="background: linear-gradient(135deg, rgba(0,242,255,0.1) 0%, rgba(10,10,12,0.8) 100%); padding: 60px; text-align: center;">
-            <div style="font-family: 'JetBrains Mono'; font-size: 3rem; color: var(--accent-color);">📊 RFM</div>
-            <div style="margin-top: 20px; opacity: 0.8;">Recency • Frequency • Monetary</div>
-        </div>
+        <img src="../img/projects/rfm_dashboard.png" alt="RFM Dashboard" class="hero-image">
 
         <section class="content-section">
             <h2>01. El Desafío: Entender al Cliente</h2>
@@ -402,6 +446,73 @@ df_rfm.to_csv('rfm_segmentation_final.csv', index=False)<br>
 <span class="highlight">#          R_Score, F_Score, M_Score, RFM_Score, Segment</span><br>
                 </code>
             </div>
+        </section>
+
+        <section class="content-section">
+            <h2>04b. Métricas de Impacto</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">4,318</div>
+                    <div class="metric-label">CLIENTES SEGMENTADOS</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">7</div>
+                    <div class="metric-label">SEGMENTOS ACCIONABLES</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">24.3%</div>
+                    <div class="metric-label">CLIENTES LEALES</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.7%</div>
+                    <div class="metric-label">ALTO VALOR EN RIESGO</div>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; font-family: 'JetBrains Mono'; margin-top: 40px;">Distribución de Segmentos:</h3>
+            <ul class="feature-list">
+                <li>
+                    <div>
+                        <strong>Clientes Leales (24.3%):</strong> 1,050 clientes - Base sólida del negocio con engagement consistente
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Durmiendo (23.5%):</strong> 1,015 clientes - Bajo engagement general, posible churn
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Potencial Leal (23.5%):</strong> 1,013 clientes - Recientes con bajo gasto, oportunidad de upsell
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>En Riesgo (11.3%):</strong> 489 clientes - Valiosos pero sin compras recientes
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>No se pueden perder (2.7%):</strong> 117 clientes - PRIORIDAD MÁXIMA, alto valor histórico inactivo
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Nuevos Clientes (2.0%):</strong> 88 clientes - Primera compra reciente, necesitan nurturing
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>04c. Key Learnings</h2>
+            <ul class="feature-list">
+                <li><strong>El valor no es lineal:</strong> Un pequeño porcentaje de clientes (2.7% "No se pueden perder") puede representar una porción desproporcionada del revenue histórico.</li>
+                <li><strong>La recencia es el predictor más fuerte:</strong> Un cliente que no compra hace 90+ días tiene probabilidad drásticamente menor de volver, independientemente de su valor histórico.</li>
+                <li><strong>Segmentación accionable > Segmentación perfecta:</strong> 7 segmentos bien definidos son más útiles que 20 clusters estadísticamente perfectos pero incomprensibles para marketing.</li>
+                <li><strong>Python + SQL es un combo poderoso:</strong> Python para limpieza y recencia, SQL para agregaciones masivas de frecuencia y monetario.</li>
+            </ul>
         </section>
 
         <section class="content-section">
