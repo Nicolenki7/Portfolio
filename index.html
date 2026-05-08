@@ -1,113 +1,296 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nicolas Zalazar - Data Analyst & Solution Architect specialized in ML, Data Engineering, Microsoft Fabric, Snowflake, and Business Intelligence.">
-    <meta name="keywords" content="Data Analyst, Data Engineer, Microsoft Fabric, Snowflake, Power BI, Machine Learning, SQL, Python, Business Intelligence">
+    <meta name="description" content="Nicolas Zalazar - Data & Hospitality Specialist | BI Engineer · Analytics · Revenue. Specialized in Microsoft Fabric, Medallion Architecture, and Delta Lake.">
+    <meta name="keywords" content="Data Engineer, BI Engineer, Microsoft Fabric, Snowflake, Medallion Architecture, Delta Lake, Power BI, Hospitality Data, Revenue Management, Python, SQL">
     <meta name="author" content="Nicolas Zalazar">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Nicolas Zalazar | Data Analyst & Solution Architect">
-    <meta property="og:description" content="Specialized in ML, Data Engineering, and Business Intelligence with Microsoft Fabric and Snowflake.">
+    <meta property="og:title" content="Nicolas Zalazar | Data & Hospitality Specialist">
+    <meta property="og:description" content="BI Engineer specializing in Analytics & Revenue. Merging Data Engineering with Hospitality Expertise.">
     <meta property="og:url" content="https://nicolenki7.github.io/Portfolio/">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     
-    <title>Nicolas Zalazar | Data Analyst & Solution Architect - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Nicolas Zalazar | Data & Hospitality Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root {
             --bg-color: #0a0a0c;
             --accent-color: #00f2ff;
+            --secondary-accent: #00ff9d;
             --text-color: #e0e0e0;
             --card-bg: #16161a;
             --border-tech: 1px solid rgba(0, 242, 255, 0.2);
+            --transition: all 0.3s ease;
         }
 
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; overflow-x: hidden; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0); background-size: 40px 40px; z-index: -1; }
-
-        /* Idiomas */
-        .lang-switcher { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(22, 22, 26, 0.9); padding: 10px; border: var(--border-tech); border-radius: 4px; display: flex; gap: 10px; }
-        .lang-btn { background: none; border: 1px solid transparent; color: var(--text-color); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.3s; }
-        .lang-btn.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
-
-        header { padding: 100px 20px 60px; text-align: center; border-bottom: var(--border-tech); }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 3.5rem; margin: 0; text-transform: uppercase; color: #fff; letter-spacing: -2px; }
-
-        /* Contact Bar Glitch */
-        .contact-bar { margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .glitch-link { 
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-color); 
-            text-decoration: none; padding: 5px 10px; border: 1px solid transparent; transition: 0.2s;
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            line-height: 1.6; 
+            overflow-x: hidden; 
         }
-        .glitch-link:hover { border: 1px solid var(--accent-color); background: rgba(0, 242, 255, 0.05); text-shadow: 1px 0 #ff00c1, -1px 0 #00fff9; }
         
-        section { padding: 80px 10%; }
-        h2 { font-family: 'JetBrains Mono', monospace; border-left: 4px solid var(--accent-color); padding-left: 15px; text-transform: uppercase; font-size: 1.6rem; margin-bottom: 40px; color: #fff; }
+        body::before { 
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0); 
+            background-size: 40px 40px; 
+            z-index: -1; 
+        }
 
-        /* About & Stack - Restaurado el tamaño original */
-        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
-        .highlight-box { background: rgba(22, 22, 26, 0.6); border: var(--border-tech); padding: 25px; border-radius: 4px; }
+        /* Lang Switcher */
+        .lang-switcher { 
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            z-index: 1000; 
+            background: rgba(22, 22, 26, 0.9); 
+            padding: 5px 10px; 
+            border: var(--border-tech); 
+            border-radius: 4px; 
+            display: flex; 
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .lang-btn { 
+            background: none; 
+            border: none; 
+            color: var(--text-color); 
+            cursor: pointer; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.8rem; 
+            transition: var(--transition);
+            opacity: 0.6;
+        }
+        .lang-btn.active { 
+            color: var(--accent-color); 
+            opacity: 1;
+            border-bottom: 2px solid var(--accent-color); 
+        }
+
+        /* Header & Hero */
+        header { 
+            padding: 120px 20px 80px; 
+            text-align: center; 
+            border-bottom: var(--border-tech);
+            background: linear-gradient(to bottom, rgba(0, 242, 255, 0.03), transparent);
+        }
+        h1 { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            margin: 0; 
+            text-transform: uppercase; 
+            color: #fff; 
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+        .subtitle { 
+            color: var(--accent-color); 
+            font-family: 'JetBrains Mono'; 
+            font-size: clamp(0.9rem, 3vw, 1.2rem); 
+            margin-top: 15px;
+            min-height: 1.5em;
+        }
+        .location {
+            font-family: 'JetBrains Mono';
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-top: 10px;
+        }
+
+        .contact-bar { 
+            margin-top: 35px; 
+            display: flex; 
+            justify-content: center; 
+            gap: clamp(10px, 3vw, 20px); 
+            flex-wrap: wrap; 
+        }
+        .glitch-link { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.75rem; 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            padding: 8px 15px; 
+            border: 1px solid rgba(0, 242, 255, 0.3); 
+            transition: var(--transition);
+            background: rgba(0, 242, 255, 0.02);
+        }
+        .glitch-link:hover { 
+            border-color: var(--accent-color); 
+            background: rgba(0, 242, 255, 0.1); 
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Sections */
+        section { 
+            padding: 100px 10%; 
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 { 
+            font-family: 'JetBrains Mono', monospace; 
+            border-left: 4px solid var(--accent-color); 
+            padding-left: 15px; 
+            text-transform: uppercase; 
+            font-size: clamp(1.2rem, 4vw, 1.8rem); 
+            margin-bottom: 50px; 
+            color: #fff; 
+        }
+
+        /* About & Stack */
+        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
+        .about-text p { margin-bottom: 20px; font-size: 1.05rem; }
+        .highlight-box { 
+            background: rgba(22, 22, 26, 0.6); 
+            border: var(--border-tech); 
+            padding: 30px; 
+            border-radius: 4px;
+            height: fit-content;
+        }
         .tech-tag { 
-            display: inline-block; background: rgba(0, 242, 255, 0.1); color: var(--accent-color); 
-            padding: 4px 10px; font-size: 0.75rem; border: 1px solid rgba(0, 242, 255, 0.3); 
-            border-radius: 3px; margin: 4px; font-family: 'JetBrains Mono'; cursor: pointer; 
+            display: inline-block; 
+            background: rgba(0, 242, 255, 0.05); 
+            color: var(--accent-color); 
+            padding: 5px 12px; 
+            font-size: 0.8rem; 
+            border: 1px solid rgba(0, 242, 255, 0.2); 
+            border-radius: 3px; 
+            margin: 5px; 
+            font-family: 'JetBrains Mono'; 
+            cursor: pointer; 
+            transition: var(--transition);
         }
-        #stack-info { margin-top: 20px; font-size: 0.85rem; color: var(--accent-color); font-family: 'JetBrains Mono'; border-top: 1px dashed rgba(0, 242, 255, 0.2); padding-top: 15px; min-height: 50px; }
+        .tech-tag:hover {
+            background: rgba(0, 242, 255, 0.15);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+        #stack-info { 
+            margin-top: 25px; 
+            font-size: 0.85rem; 
+            color: var(--secondary-accent); 
+            font-family: 'JetBrains Mono'; 
+            border-top: 1px dashed rgba(0, 242, 255, 0.2); 
+            padding-top: 20px; 
+            min-height: 60px; 
+        }
 
-        /* Swiper Certificados - Corregido */
-        .certSwiper { width: 100%; height: auto; padding: 20px 0; }
-        .cert-slide { display: flex; align-items: center; justify-content: center; background: none !important; border: none !important; }
+        /* Hospitality Section */
+        .hosp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .hosp-card { 
+            background: var(--card-bg); 
+            border: var(--border-tech); 
+            padding: 25px; 
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hosp-card:hover { border-color: var(--secondary-accent); transform: translateY(-5px); }
+        .hosp-card h3 { color: var(--secondary-accent); margin-top: 0; font-family: 'JetBrains Mono'; }
+        .hosp-card .role { font-size: 0.8rem; color: var(--accent-color); text-transform: uppercase; margin-bottom: 15px; display: block; }
+
+        /* Projects Swiper */
+        .projectSwiper { padding-bottom: 50px; }
+        .project-card {
+            background: var(--card-bg); 
+            border: var(--border-tech); 
+            cursor: pointer; 
+            border-radius: 4px; 
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+        }
+        .project-card:hover { border-color: var(--accent-color); transform: scale(1.02); }
+        .project-card img { height: 200px; width:100%; object-fit: cover; border-bottom: var(--border-tech); }
+        .project-content { padding: 25px; }
+
+        /* Languages */
+        .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .lang-item { 
+            text-align: center; 
+            padding: 20px; 
+            border: var(--border-tech); 
+            border-radius: 4px;
+            background: rgba(0, 242, 255, 0.02);
+        }
+        .lang-name { display: block; font-weight: bold; color: var(--accent-color); }
+        .lang-level { font-family: 'JetBrains Mono'; font-size: 0.8rem; opacity: 0.7; }
+
+        /* Certs & CV */
+        .certSwiper { padding: 20px 0 50px; }
         .cert-slide img { max-width: 100%; height: auto; border-radius: 4px; cursor: zoom-in; transition: 0.3s; border: var(--border-tech); }
-        .swiper-button-next, .swiper-button-prev { color: var(--accent-color); }
-
-        /* CV Grid - Restaurado */
-        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
         .cv-link { 
-            display: block; padding: 15px; color: var(--accent-color); text-decoration: none; 
+            display: block; padding: 18px; color: var(--accent-color); text-decoration: none; 
             font-family: 'JetBrains Mono', monospace; border: 1px solid var(--accent-color); 
-            text-align: center; transition: 0.3s; font-weight: bold; 
+            text-align: center; transition: 0.3s; font-weight: bold; font-size: 0.9rem;
         }
-        .cv-link:hover { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 20px var(--accent-color); }
+        .cv-link:hover { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 25px var(--accent-color); }
 
-        /* Modal Zoom */
-        #certModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; }
-        #modalImg { max-width: 85%; max-height: 85%; border: 1px solid var(--accent-color); box-shadow: 0 0 40px rgba(0,242,255,0.3); }
+        /* Footer */
+        footer { 
+            text-align: center; 
+            padding: 60px 20px; 
+            opacity: 0.5; 
+            font-family: 'JetBrains Mono'; 
+            font-size: 0.75rem; 
+            border-top: var(--border-tech);
+            letter-spacing: 1px;
+        }
 
-        footer { text-align: center; padding: 40px; opacity: 0.4; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-top: var(--border-tech); }
+        /* Modal */
+        #certModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        #modalImg { max-width: 90%; max-height: 90%; border: 1px solid var(--accent-color); box-shadow: 0 0 50px rgba(0,242,255,0.3); }
 
-        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; }
+            section { padding: 60px 5%; }
+        }
+        @media (max-width: 600px) {
+            header { padding: 100px 20px 40px; }
+            .contact-bar { gap: 10px; }
+            .glitch-link { flex: 1 1 140px; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#about" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" onfocus="this.style.position='fixed';this.style.left='20px';this.style.top='20px';this.style.width='auto';this.style.height='auto';this.style.overflow='visible';this.style.zIndex='9999';this.style.background='#00f2ff';this.style.color='#0a0a0c';this.style.padding='10px 20px';this.style.textDecoration='none';this.style.fontWeight='bold';">
-        Skip to main content
-    </a>
-
     <nav class="lang-switcher" role="navigation" aria-label="Language selection">
-        <button class="lang-btn active" onclick="changeLang('es')" aria-label="Switch to Spanish" aria-pressed="true">ES</button>
-        <button class="lang-btn" onclick="changeLang('en')" aria-label="Switch to English" aria-pressed="false">EN</button>
-        <button class="lang-btn" onclick="changeLang('pt')" aria-label="Switch to Portuguese" aria-pressed="false">PT</button>
+        <button class="lang-btn active" onclick="changeLang('es')" aria-label="Switch to Spanish">ES</button>
+        <button class="lang-btn" onclick="changeLang('en')" aria-label="Switch to English">EN</button>
+        <button class="lang-btn" onclick="changeLang('pt')" aria-label="Switch to Portuguese">PT</button>
     </nav>
 
     <header>
-        <h1>Nicolas Zalazar</h1>
-        <div id="hero-subtitle" class="subtitle" style="color: var(--accent-color); font-family: 'JetBrains Mono'; font-size: 1.1rem; margin-top: 10px;">
-            Data Analyst & Solution Architect | Specialized in ML & Engineering
-        </div>
+        <h1>Nicolás Zalazar</h1>
+        <div id="hero-subtitle" class="subtitle"></div>
+        <div class="location">📍 Spain (Coastal) // Available for Remote & Relocation</div>
         <div class="contact-bar">
             <a href="https://linkedin.com/in/nicolas-zalazar-63340923a/" target="_blank" class="glitch-link">[ LINKEDIN ]</a>
             <a href="https://github.com/Nicolenki7" target="_blank" class="glitch-link">[ GITHUB ]</a>
-            <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="glitch-link">[ KAGGLE ]</a>
-            <a href="https://wa.me/34614594035" target="_blank" class="glitch-link">[ WHATSAPP ]</a>
             <a href="mailto:zalazarn046@gmail.com" class="glitch-link">[ EMAIL ]</a>
+            <a href="https://wa.me/34614594035" target="_blank" class="glitch-link">[ WHATSAPP ]</a>
+            <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="glitch-link">[ KAGGLE ]</a>
         </div>
     </header>
 
@@ -115,58 +298,71 @@
         <h2 id="txt-about-title">01. Perfil de Misión</h2>
         <div class="about-grid">
             <div class="about-text" id="txt-about-content">
-                <p>Analista e Ingeniero de Datos con perfil híbrido orientado a la resolución de problemas de negocio complejos. Mi enfoque integra el rigor de la ingeniería con una visión estratégica forjada en los sectores de <strong>Turismo, Consumo Masivo y Telecomunicaciones</strong>.</p>
-                <p>Especialista en el diseño de arquitecturas <strong>Data Mesh</strong> y ecosistemas modernos en <strong>Microsoft Fabric</strong>. Experto en orquestar el ciclo completo del dato: desde la ingesta híbrida en Capa Bronze hasta la entrega de valor en Capa Gold.</p>
+                <!-- Content injected by JS -->
             </div>
             <div class="highlight-box">
-                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">CORE_STACK (Interactivos)</h3>
+                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">TECH_STACK (Interactivos)</h3>
                 <div id="stack-container">
                     <span class="tech-tag" data-info="Microsoft Fabric: Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
                     <span class="tech-tag" data-info="Snowflake: Data Warehouse en la nube para almacenamiento masivo.">Snowflake</span>
-                    <span class="tech-tag" data-info="Databricks: Plataforma de análisis de datos basada en Apache Spark.">Databricks</span>
                     <span class="tech-tag" data-info="PySpark: Procesamiento de datos distribuido a gran escala.">PySpark</span>
+                    <span class="tech-tag" data-info="Medallion Architecture: Diseño de capas Bronze, Silver y Gold para calidad de datos.">Medallion Arch</span>
+                    <span class="tech-tag" data-info="Delta Lake: Capa de almacenamiento open-source que aporta transacciones ACID a lagos de datos.">Delta Lake</span>
+                    <span class="tech-tag" data-info="n8n: Automatización de flujos de trabajo e integración de IA.">n8n / Automation</span>
+                    <span class="tech-tag" data-info="GenAI / LLMs: Implementación de soluciones basadas en modelos de lenguaje.">GenAI / LLMs</span>
                     <span class="tech-tag" data-info="Power BI: Visualización avanzada y modelado complejo con DAX.">Power BI</span>
-                    <span class="tech-tag" data-info="Tableau: Análisis visual profundo y dashboards ejecutivos.">Tableau</span>
-                    <span class="tech-tag" data-info="Looker Studio: Reportes interactivos integrados en ecosistemas cloud.">Looker Studio</span>
-                    <span class="tech-tag" data-info="Machine Learning: Modelado predictivo y despliegue de soluciones IA.">Machine Learning</span>
-                    <span class="tech-tag" data-info="Gobernanza/QA: Control de calidad (QA/QC) y gobierno de datos.">QA/QC & Governance</span>
+                    <span class="tech-tag" data-info="Python & SQL: Lenguajes core para manipulación y análisis de datos.">Python & SQL</span>
                 </div>
                 <div id="stack-info">> Haz clic en una tecnología para ver detalles...</div>
             </div>
         </div>
     </section>
 
+    <section id="hospitality">
+        <h2 id="txt-hosp-title">02. Expertise en Hospitalidad</h2>
+        <div class="hosp-grid" id="hosp-content">
+            <!-- Content injected by JS -->
+        </div>
+    </section>
+
     <section id="projects">
-        <h2 id="txt-projects-title">02. Ecosistemas de Análisis</h2>
+        <h2 id="txt-projects-title">03. Ecosistemas de Análisis</h2>
         <div class="swiper projectSwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" onclick="location.href='proyectos/crypto-medallion.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer; border-radius:4px; overflow:hidden;">
-                    <img src="img/projects/crypto_cover.png" alt="Crypto" style="height: 200px; width:100%; object-fit: cover;">
-                    <div style="padding:20px;">
-                        <h3 style="color:var(--accent-color); margin:0;">Crypto Analytics 2025</h3>
-                        <p id="txt-crypto-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Medallion en Fabric con predicción ML.</p>
+                <div class="swiper-slide">
+                    <div class="project-card" onclick="location.href='proyectos/crypto-medallion.html'">
+                        <img src="img/projects/crypto_cover.png" alt="Crypto Analytics">
+                        <div class="project-content">
+                            <h3>Crypto Analytics 2025</h3>
+                            <p id="txt-crypto-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Medallion en Fabric con predicción ML.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-slide" onclick="location.href='proyectos/online-retail-rfm.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer; border-radius:4px; overflow:hidden;">
-                    <img src="img/projects/retail_rfm_cover.svg" alt="RFM Retail" style="height: 200px; width:100%; object-fit: cover;">
-                    <div style="padding:20px;">
-                        <h3 style="color:var(--accent-color); margin:0;">RFM Customer Segmentation</h3>
-                        <p style="font-size:0.9rem; opacity: 0.8;">Segmentación de clientes con análisis RFM en Python + SQL.</p>
+                <div class="swiper-slide">
+                    <div class="project-card" onclick="location.href='proyectos/online-retail-rfm.html'">
+                        <img src="img/projects/retail_rfm_cover.svg" alt="RFM Retail">
+                        <div class="project-content">
+                            <h3>RFM Customer Segmentation</h3>
+                            <p id="txt-rfm-desc" style="font-size:0.9rem; opacity: 0.8;">Segmentación de clientes con análisis RFM en Python + SQL.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-slide" onclick="location.href='proyectos/datamesh-logistica.html'" style="background: var(--card-bg); border: var(--border-tech); cursor: pointer; border-radius:4px; overflow:hidden;">
-                    <img src="img/projects/datamesh_dashboard.png" alt="DataMesh Logística" style="height: 200px; width:100%; object-fit: cover;">
-                    <div style="padding:20px;">
-                        <h3 style="color:var(--accent-color); margin:0;">DataMesh Logística</h3>
-                        <p style="font-size:0.9rem; opacity: 0.8;">Arquitectura Data Mesh en Microsoft Fabric con OneLake Shortcuts y KQL.</p>
+                <div class="swiper-slide">
+                    <div class="project-card" onclick="location.href='proyectos/datamesh-logistica.html'">
+                        <img src="img/projects/datamesh_dashboard.png" alt="DataMesh Logística">
+                        <div class="project-content">
+                            <h3>DataMesh Logística</h3>
+                            <p id="txt-dm-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Data Mesh en Microsoft Fabric con OneLake Shortcuts.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
     <section id="certs">
-        <h2 id="txt-certs-title">03. Validaciones Técnicas</h2>
+        <h2 id="txt-certs-title">04. Validaciones Técnicas</h2>
         <div style="position: relative;">
             <div class="swiper certSwiper">
                 <div class="swiper-wrapper" id="cert-wrapper"></div>
@@ -176,8 +372,15 @@
         </div>
     </section>
 
+    <section id="languages">
+        <h2 id="txt-lang-title">05. Idiomas</h2>
+        <div class="lang-grid" id="lang-content">
+            <!-- Content injected by JS -->
+        </div>
+    </section>
+
     <section id="cv">
-        <h2 id="txt-cv-title">04. Documentación Técnica</h2>
+        <h2 id="txt-cv-title">06. Documentación Técnica</h2>
         <div class="cv-grid">
             <a href="docs/cv_Es_Ult.pdf" download class="cv-link">[ ESPAÑOL_ES ]</a>
             <a href="docs/cv_ENG_Ult.pdf" download class="cv-link">[ ENGLISH_EN ]</a>
@@ -190,63 +393,175 @@
     </div>
 
     <footer>
-        NICOLAS ZALAZAR // PORTFOLIO_V3.1 // 2025 // SYSTEM_OPERATIONAL
+        NICOLÁS ZALAZAR // DATA & HOSPITALITY SPECIALIST // 2026 // SYSTEM_OPERATIONAL
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Lógica de Stack
+        // Language Content
+        const translations = {
+            es: {
+                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                aboutTitle: "01. Perfil de Misión",
+                aboutContent: `<p>Ingeniero de Datos con una trayectoria única que fusiona la precisión técnica con la visión estratégica del sector hospitality. Especialista en arquitecturas <strong>Medallion, Delta Lake y Microsoft Fabric</strong>, transformando datos complejos en decisiones accionables.</p>
+                               <p>Mi experiencia en operaciones hoteleras de lujo me permite entender el dato no solo como un registro, sino como una herramienta para la excelencia operativa y la maximización de ingresos. Enfoque en <strong>AI & Automation</strong> para optimizar procesos críticos.</p>`,
+                hospTitle: "02. Expertise en Hospitalidad",
+                hospContent: `
+                    <div class="hosp-card">
+                        <span class="role">Night Audit Specialist</span>
+                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <p>Experiencia en hoteles de alta gama en Argentina (Accor) y Portugal (Monchique Resort & Spa). Especializado en auditoría nocturna y control financiero operativo.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Hotel Operations</span>
+                        <h3>Boutique & Urban Hotels</h3>
+                        <p>Gestión integral en hoteles boutique en España y Portugal. Visión 360° del Front Office y Guest Experience.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Data-Driven Domain</span>
+                        <h3>Smart Data Solutions</h3>
+                        <p>Uso el conocimiento del terreno para diseñar soluciones BI que resuelven problemas reales de Revenue y Operaciones.</p>
+                    </div>`,
+                projectsTitle: "03. Ecosistemas de Análisis",
+                cryptoDesc: "Arquitectura Medallion en Fabric con predicción ML.",
+                rfmDesc: "Segmentación de clientes con análisis RFM en Python + SQL.",
+                dmDesc: "Arquitectura Data Mesh en Microsoft Fabric con OneLake Shortcuts.",
+                certsTitle: "04. Validaciones Técnicas",
+                langTitle: "05. Idiomas",
+                langContent: `
+                    <div class="lang-item"><span class="lang-name">Español</span><span class="lang-level">Nativo</span></div>
+                    <div class="lang-item"><span class="lang-name">Portugués</span><span class="lang-level">C1 - Avanzado</span></div>
+                    <div class="lang-item"><span class="lang-name">Inglés</span><span class="lang-level">B2 - Profesional</span></div>
+                    <div class="lang-item"><span class="lang-name">Francés</span><span class="lang-level">B1 - Intermedio</span></div>`,
+                cvTitle: "06. Documentación Técnica"
+            },
+            en: {
+                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                aboutTitle: "01. Mission Profile",
+                aboutContent: `<p>Data Engineer with a unique background merging technical precision with strategic hospitality insights. Specialist in <strong>Medallion architectures, Delta Lake, and Microsoft Fabric</strong>, transforming complex data into actionable decisions.</p>
+                               <p>My experience in luxury hotel operations allows me to understand data not just as a record, but as a tool for operational excellence and revenue maximization. Focused on <strong>AI & Automation</strong> to optimize critical processes.</p>`,
+                hospTitle: "02. Hospitality Expertise",
+                hospContent: `
+                    <div class="hosp-card">
+                        <span class="role">Night Audit Specialist</span>
+                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <p>Experience in high-end hotels in Argentina (Accor) and Portugal (Monchique Resort & Spa). Specialized in night audit and financial operational control.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Hotel Operations</span>
+                        <h3>Boutique & Urban Hotels</h3>
+                        <p>Full management in boutique hotels across Spain and Portugal. 360° vision of Front Office and Guest Experience.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Data-Driven Domain</span>
+                        <h3>Smart Data Solutions</h3>
+                        <p>I use on-the-ground knowledge to design BI solutions that solve real Revenue and Operations challenges.</p>
+                    </div>`,
+                projectsTitle: "03. Analysis Ecosystems",
+                cryptoDesc: "Medallion architecture in Fabric with ML prediction.",
+                rfmDesc: "Customer segmentation with RFM analysis in Python + SQL.",
+                dmDesc: "Data Mesh architecture in Microsoft Fabric with OneLake Shortcuts.",
+                certsTitle: "04. Technical Validations",
+                langTitle: "05. Languages",
+                langContent: `
+                    <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
+                    <div class="lang-item"><span class="lang-name">Portuguese</span><span class="lang-level">C1 - Advanced</span></div>
+                    <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">B2 - Professional</span></div>
+                    <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">B1 - Intermediate</span></div>`,
+                cvTitle: "06. Technical Documentation"
+            },
+            pt: {
+                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                aboutTitle: "01. Perfil de Missão",
+                aboutContent: `<p>Engenheiro de Dados com uma trajetória única que funde a precisão técnica com a visão estratégica do setor de hospitalidade. Especialista em arquiteturas <strong>Medallion, Delta Lake e Microsoft Fabric</strong>, transformando dados complexos em decisões acionáveis.</p>
+                               <p>Minha experiência em operações hoteleiras de luxo permite-me entender o dado não apenas como um registro, mas como uma ferramenta para a excelência operacional e a maximização de receitas. Foco em <strong>AI & Automação</strong> para otimizar processos críticos.</p>`,
+                hospTitle: "02. Expertise em Hospitalidade",
+                hospContent: `
+                    <div class="hosp-card">
+                        <span class="role">Night Audit Specialist</span>
+                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <p>Experiência em hotéis de luxo na Argentina (Accor) e Portugal (Monchique Resort & Spa). Especializado em auditoria noturna e controle financeiro operacional.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Hotel Operations</span>
+                        <h3>Boutique & Urban Hotels</h3>
+                        <p>Gestão integral em hotéis boutique na Espanha e Portugal. Visão 360° de Front Office e Guest Experience.</p>
+                    </div>
+                    <div class="hosp-card">
+                        <span class="role">Data-Driven Domain</span>
+                        <h3>Smart Data Solutions</h3>
+                        <p>Utilizo o conhecimento de campo para projetar soluções de BI que resolvem problemas reais de Revenue e Operações.</p>
+                    </div>`,
+                projectsTitle: "03. Ecossistemas de Análise",
+                cryptoDesc: "Arquitetura Medallion em Fabric com predição ML.",
+                rfmDesc: "Segmentação de clientes com análise RFM em Python + SQL.",
+                dmDesc: "Arquitetura Data Mesh em Microsoft Fabric com OneLake Shortcuts.",
+                certsTitle: "04. Validações Técnicas",
+                langTitle: "05. Idiomas",
+                langContent: `
+                    <div class="lang-item"><span class="lang-name">Espanhol</span><span class="lang-level">Nativo</span></div>
+                    <div class="lang-item"><span class="lang-name">Português</span><span class="lang-level">C1 - Avançado</span></div>
+                    <div class="lang-item"><span class="lang-name">Inglês</span><span class="lang-level">B2 - Profissional</span></div>
+                    <div class="lang-item"><span class="lang-name">Francês</span><span class="lang-level">B1 - Intermediário</span></div>`,
+                cvTitle: "06. Documentação Técnica"
+            }
+        };
+
+        // Typing Effect
+        let i = 0;
+        let txt = "";
+        let speed = 50;
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("hero-subtitle").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        function changeLang(lang) {
+            const t = translations[lang];
+            
+            // Subtitle typing reset
+            document.getElementById('hero-subtitle').innerHTML = "";
+            i = 0;
+            txt = t.subtitle;
+            typeWriter();
+
+            document.getElementById('txt-about-title').innerText = t.aboutTitle;
+            document.getElementById('txt-about-content').innerHTML = t.aboutContent;
+            document.getElementById('txt-hosp-title').innerText = t.hospTitle;
+            document.getElementById('hosp-content').innerHTML = t.hospContent;
+            document.getElementById('txt-projects-title').innerText = t.projectsTitle;
+            document.getElementById('txt-crypto-desc').innerText = t.cryptoDesc;
+            document.getElementById('txt-rfm-desc').innerText = t.rfmDesc;
+            document.getElementById('txt-dm-desc').innerText = t.dmDesc;
+            document.getElementById('txt-certs-title').innerText = t.certsTitle;
+            document.getElementById('txt-lang-title').innerText = t.langTitle;
+            document.getElementById('lang-content').innerHTML = t.langContent;
+            document.getElementById('txt-cv-title').innerText = t.cvTitle;
+            
+            // Active state
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event?.target?.classList?.add('active') || document.querySelector(`.lang-btn[onclick="changeLang('${lang}')"]`).classList.add('active');
+            
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Tech Stack Logic
         document.querySelectorAll('.tech-tag').forEach(tag => {
             tag.addEventListener('click', function() {
                 document.getElementById('stack-info').innerText = `> ${this.getAttribute('data-info')}`;
             });
         });
 
-        // Idiomas
-        const content = {
-            es: { subtitle: "Data Analyst & Solution Architect | Specialized in ML & Engineering", titleAbout: "01. Perfil de Misión", titleProj: "02. Ecosistemas", titleCert: "03. Validaciones", titleCv: "04. Documentación" },
-            en: { subtitle: "Data Analyst & Solutions Architect | Data Engineering & AI", titleAbout: "01. Mission Profile", titleProj: "02. Ecosystems", titleCert: "03. Technical Validations", titleCv: "04. Documentation" },
-            pt: { subtitle: "Analista de Dados & Arquiteto de Soluções | Foco em ML e Engenharia", titleAbout: "01. Perfil de Missão", titleProj: "02. Ecossistemas", titleCert: "03. Validações", titleCv: "04. Documentação" }
-        };
-
-        function changeLang(lang) {
-            document.getElementById('hero-subtitle').innerText = content[lang].subtitle;
-            document.getElementById('txt-about-title').innerText = content[lang].titleAbout;
-            document.getElementById('txt-projects-title').innerText = content[lang].titleProj;
-            document.getElementById('txt-certs-title').innerText = content[lang].titleCert;
-            document.getElementById('txt-cv-title').innerText = content[lang].titleCv;
-            
-            // Update active state and aria-pressed
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            });
-            const activeBtn = event.target;
-            activeBtn.classList.add('active');
-            activeBtn.setAttribute('aria-pressed', 'true');
-            
-            // Update HTML lang attribute
-            document.documentElement.lang = lang;
-            
-            // Save preference
-            localStorage.setItem('preferred-lang', lang);
-        }
-        
-        // Load saved language preference
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'es';
-            const btn = document.querySelector(`.lang-btn[onclick="changeLang('${savedLang}')"]`);
-            if (btn) {
-                btn.click();
-            }
-        });
-
-        // Generar Certificados
+        // Certificates Generation
         const wrapper = document.getElementById('cert-wrapper');
-        for (let i = 1; i <= 15; i++) {
+        for (let j = 1; j <= 15; j++) {
             wrapper.innerHTML += `
                 <div class="swiper-slide cert-slide">
-                    <img src="img/certs/cert_${i}.png" onclick="openCert(this.src)">
+                    <img src="img/certs/cert_${j}.png" onclick="openCert(this.src)" alt="Certificate ${j}">
                 </div>`;
         }
 
@@ -256,13 +571,36 @@
             modal.style.display = 'flex';
         }
 
+        // Intersection Observer for Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
         // Swipers
-        new Swiper(".projectSwiper", { slidesPerView: 1, spaceBetween: 30, breakpoints: { 768: { slidesPerView: 2 } } });
+        new Swiper(".projectSwiper", { 
+            slidesPerView: 1, 
+            spaceBetween: 30, 
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } 
+        });
+        
         new Swiper(".certSwiper", { 
             slidesPerView: 2, spaceBetween: 20, loop: true, 
             autoplay: { delay: 3000, disableOnInteraction: false }, 
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
             breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 5 } } 
+        });
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'es';
+            changeLang(savedLang);
         });
     </script>
 </body>
