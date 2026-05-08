@@ -18,38 +18,43 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     
     <title>Nicolas Zalazar | Data & Hospitality Specialist</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root {
-            --bg-color: #0a0a0c;
-            --accent-color: #00f2ff;
-            --secondary-accent: #00ff9d;
+            --bg-main: #0a0a0c;
+            --bg-navy: #060d1a;
+            --bg-slate: #0a1628;
+            --bg-teal: #071820;
+            --bg-green-tint: #060f0e;
+            
+            --accent-cyan: #00f2ff;
+            --accent-green: #00ff9d;
+            --accent-blue: #3a86ff;
             --text-color: #e0e0e0;
-            --card-bg: #16161a;
+            --card-bg: rgba(22, 22, 26, 0.7);
             --border-tech: 1px solid rgba(0, 242, 255, 0.2);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body { 
-            background-color: var(--bg-color); 
+            background-color: var(--bg-main); 
             color: var(--text-color); 
             font-family: 'Inter', sans-serif; 
             margin: 0; 
             line-height: 1.6; 
             overflow-x: hidden; 
         }
-        
-        body::before { 
-            content: ""; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-image: radial-gradient(circle at 2px 2px, rgba(0, 242, 255, 0.05) 1px, transparent 0); 
-            background-size: 40px 40px; 
-            z-index: -1; 
+
+        /* Particles */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
         }
 
         /* Lang Switcher */
@@ -58,13 +63,14 @@
             top: 20px; 
             right: 20px; 
             z-index: 1000; 
-            background: rgba(22, 22, 26, 0.9); 
+            background: rgba(10, 22, 40, 0.8); 
             padding: 5px 10px; 
-            border: var(--border-tech); 
-            border-radius: 4px; 
+            border: 1px solid rgba(0, 242, 255, 0.3); 
+            border-radius: 50px; 
             display: flex; 
-            gap: 10px;
-            backdrop-filter: blur(5px);
+            gap: 5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         .lang-btn { 
             background: none; 
@@ -72,354 +78,429 @@
             color: var(--text-color); 
             cursor: pointer; 
             font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             transition: var(--transition);
-            opacity: 0.6;
+            opacity: 0.5;
+            padding: 5px 10px;
+            border-radius: 20px;
         }
         .lang-btn.active { 
-            color: var(--accent-color); 
+            color: var(--accent-cyan); 
             opacity: 1;
-            border-bottom: 2px solid var(--accent-color); 
+            background: rgba(0, 242, 255, 0.1);
         }
 
-        /* Header & Hero */
-        header { 
-            padding: 120px 20px 80px; 
-            text-align: center; 
-            border-bottom: var(--border-tech);
-            background: linear-gradient(to bottom, rgba(0, 242, 255, 0.03), transparent);
-        }
-        h1 { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            margin: 0; 
-            text-transform: uppercase; 
-            color: #fff; 
-            letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-        }
-        .subtitle { 
-            color: var(--accent-color); 
-            font-family: 'JetBrains Mono'; 
-            font-size: clamp(0.9rem, 3vw, 1.2rem); 
-            margin-top: 15px;
-            min-height: 1.5em;
-        }
-        .location {
-            font-family: 'JetBrains Mono';
-            font-size: 0.8rem;
-            opacity: 0.6;
-            margin-top: 10px;
+        /* Social Profile Banner */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 5% 60px;
+            background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 255, 157, 0.15) 0%, transparent 40%),
+                        linear-gradient(135deg, #060d1a 0%, #071820 100%);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
         }
 
-        .contact-bar { 
-            margin-top: 35px; 
-            display: flex; 
-            justify-content: center; 
-            gap: clamp(10px, 3vw, 20px); 
-            flex-wrap: wrap; 
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            width: 100%;
         }
-        .glitch-link { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.75rem; 
-            color: var(--accent-color); 
-            text-decoration: none; 
-            padding: 8px 15px; 
-            border: 1px solid rgba(0, 242, 255, 0.3); 
-            transition: var(--transition);
-            background: rgba(0, 242, 255, 0.02);
-        }
-        .glitch-link:hover { 
-            border-color: var(--accent-color); 
-            background: rgba(0, 242, 255, 0.1); 
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-            transform: translateY(-2px);
+
+        .profile-pic-container {
+            flex-shrink: 0;
+            width: clamp(150px, 20vw, 220px);
+            height: clamp(150px, 20vw, 220px);
+            border-radius: 50%;
+            position: relative;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-green));
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
         }
         
-        /* Sections */
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid #060d1a;
+        }
+        
+        .profile-pic span {
+            font-size: 5rem;
+            filter: grayscale(1);
+            opacity: 0.5;
+        }
+
+        .hero-info {
+            flex-grow: 1;
+        }
+
+        .hero-info h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin: 0;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-cyan);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            margin: 15px 0 25px;
+            display: block;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        .social-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 18px;
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-pill:hover {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Section Layouts & Backgrounds */
         section { 
             padding: 100px 10%; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #about { background-color: var(--bg-navy); }
+        #hospitality { background-color: var(--bg-slate); }
+        #projects { background-color: var(--bg-teal); }
+        #certs { background-color: var(--bg-green-tint); }
+        #languages { background-color: var(--bg-navy); }
+
+        .section-container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        section.visible {
+        
+        .section-container.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
         h2 { 
-            font-family: 'JetBrains Mono', monospace; 
-            border-left: 4px solid var(--accent-color); 
-            padding-left: 15px; 
-            text-transform: uppercase; 
-            font-size: clamp(1.2rem, 4vw, 1.8rem); 
-            margin-bottom: 50px; 
-            color: #fff; 
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 50px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        /* About & Stack */
+        /* About & Stack Richness */
         .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
-        .about-text p { margin-bottom: 20px; font-size: 1.05rem; }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; opacity: 0.9; }
+        
         .highlight-box { 
-            background: rgba(22, 22, 26, 0.6); 
-            border: var(--border-tech); 
-            padding: 30px; 
-            border-radius: 4px;
-            height: fit-content;
+            background: rgba(10, 22, 40, 0.5); 
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            padding: 35px; 
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-cyan);
         }
+
         .tech-tag { 
             display: inline-block; 
-            background: rgba(0, 242, 255, 0.05); 
-            color: var(--accent-color); 
-            padding: 5px 12px; 
-            font-size: 0.8rem; 
-            border: 1px solid rgba(0, 242, 255, 0.2); 
-            border-radius: 3px; 
-            margin: 5px; 
+            background: rgba(255, 255, 255, 0.03); 
+            color: #fff;
+            padding: 6px 14px; 
+            font-size: 0.85rem; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 50px; 
+            margin: 6px; 
             font-family: 'JetBrains Mono'; 
             cursor: pointer; 
             transition: var(--transition);
         }
+
         .tech-tag:hover {
-            background: rgba(0, 242, 255, 0.15);
-            border-color: var(--accent-color);
-            transform: scale(1.05);
-        }
-        #stack-info { 
-            margin-top: 25px; 
-            font-size: 0.85rem; 
-            color: var(--secondary-accent); 
-            font-family: 'JetBrains Mono'; 
-            border-top: 1px dashed rgba(0, 242, 255, 0.2); 
-            padding-top: 20px; 
-            min-height: 60px; 
+            background: linear-gradient(45deg, rgba(0, 242, 255, 0.2), rgba(0, 255, 157, 0.2));
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
         }
 
-        /* Hospitality Section */
-        .hosp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* Hospitality Cards Variation */
+        .hosp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .hosp-card { 
             background: var(--card-bg); 
-            border: var(--border-tech); 
-            padding: 25px; 
-            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px; 
+            border-radius: 12px;
             transition: var(--transition);
+            border-left: 4px solid var(--accent-green);
+            backdrop-filter: blur(10px);
         }
-        .hosp-card:hover { border-color: var(--secondary-accent); transform: translateY(-5px); }
-        .hosp-card h3 { color: var(--secondary-accent); margin-top: 0; font-family: 'JetBrains Mono'; }
-        .hosp-card .role { font-size: 0.8rem; color: var(--accent-color); text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .hosp-card:nth-child(2) { border-left-color: var(--accent-blue); }
+        .hosp-card:nth-child(3) { border-left-color: var(--accent-cyan); }
 
-        /* Projects Swiper */
-        .projectSwiper { padding-bottom: 50px; }
+        .hosp-card:hover { 
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Project Cards Richness */
         .project-card {
             background: var(--card-bg); 
-            border: var(--border-tech); 
-            cursor: pointer; 
-            border-radius: 4px; 
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px; 
             overflow: hidden;
             transition: var(--transition);
             height: 100%;
+            border-left: 4px solid var(--accent-cyan);
         }
-        .project-card:hover { border-color: var(--accent-color); transform: scale(1.02); }
-        .project-card img { height: 200px; width:100%; object-fit: cover; border-bottom: var(--border-tech); }
-        .project-content { padding: 25px; }
+        .project-card:hover { 
+            border-color: var(--accent-cyan); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+        }
+        .project-card img { filter: contrast(1.1) brightness(0.9); transition: var(--transition); }
+        .project-card:hover img { filter: contrast(1.2) brightness(1.1); }
 
-        /* Languages */
-        .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        /* Languages Colorful */
         .lang-item { 
-            text-align: center; 
-            padding: 20px; 
-            border: var(--border-tech); 
-            border-radius: 4px;
-            background: rgba(0, 242, 255, 0.02);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-left: 4px solid var(--accent-blue);
         }
-        .lang-name { display: block; font-weight: bold; color: var(--accent-color); }
-        .lang-level { font-family: 'JetBrains Mono'; font-size: 0.8rem; opacity: 0.7; }
-
-        /* Certs & CV */
-        .certSwiper { padding: 20px 0 50px; }
-        .cert-slide img { max-width: 100%; height: auto; border-radius: 4px; cursor: zoom-in; transition: 0.3s; border: var(--border-tech); }
-        .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
-        .cv-link { 
-            display: block; padding: 18px; color: var(--accent-color); text-decoration: none; 
-            font-family: 'JetBrains Mono', monospace; border: 1px solid var(--accent-color); 
-            text-align: center; transition: 0.3s; font-weight: bold; font-size: 0.9rem;
-        }
-        .cv-link:hover { background: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 25px var(--accent-color); }
+        .lang-item:nth-child(2) { border-left-color: var(--accent-green); }
+        .lang-item:nth-child(3) { border-left-color: var(--accent-cyan); }
+        .lang-item:nth-child(4) { border-left-color: #ff00c1; }
 
         /* Footer */
         footer { 
-            text-align: center; 
-            padding: 60px 20px; 
-            opacity: 0.5; 
-            font-family: 'JetBrains Mono'; 
-            font-size: 0.75rem; 
-            border-top: var(--border-tech);
-            letter-spacing: 1px;
+            background: #050505;
+            padding: 80px 20px; 
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-
-        /* Modal */
-        #certModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        #modalImg { max-width: 90%; max-height: 90%; border: 1px solid var(--accent-color); box-shadow: 0 0 50px rgba(0,242,255,0.3); }
 
         @media (max-width: 992px) {
+            .hero-content { flex-direction: column; text-align: center; gap: 30px; }
+            .social-pills { justify-content: center; }
             .about-grid { grid-template-columns: 1fr; }
-            section { padding: 60px 5%; }
-        }
-        @media (max-width: 600px) {
-            header { padding: 100px 20px 40px; }
-            .contact-bar { gap: 10px; }
-            .glitch-link { flex: 1 1 140px; text-align: center; }
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+
     <nav class="lang-switcher" role="navigation" aria-label="Language selection">
         <button class="lang-btn active" onclick="changeLang('es')" aria-label="Switch to Spanish">ES</button>
         <button class="lang-btn" onclick="changeLang('en')" aria-label="Switch to English">EN</button>
         <button class="lang-btn" onclick="changeLang('pt')" aria-label="Switch to Portuguese">PT</button>
     </nav>
 
-    <header>
-        <h1>Nicolás Zalazar</h1>
-        <div id="hero-subtitle" class="subtitle"></div>
-        <div class="location">📍 Spain (Coastal) // Available for Remote & Relocation</div>
-        <div class="contact-bar">
-            <a href="https://linkedin.com/in/nicolas-zalazar-63340923a/" target="_blank" class="glitch-link">[ LINKEDIN ]</a>
-            <a href="https://github.com/Nicolenki7" target="_blank" class="glitch-link">[ GITHUB ]</a>
-            <a href="mailto:zalazarn046@gmail.com" class="glitch-link">[ EMAIL ]</a>
-            <a href="https://wa.me/34614594035" target="_blank" class="glitch-link">[ WHATSAPP ]</a>
-            <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="glitch-link">[ KAGGLE ]</a>
+    <header class="hero-banner">
+        <div class="hero-content">
+            <div class="profile-pic-container">
+                <div class="profile-pic">
+                    <span>👤</span>
+                </div>
+            </div>
+            <div class="hero-info">
+                <h1>Nicolás Zalazar</h1>
+                <span id="hero-subtitle" class="hero-subtitle"></span>
+                <div class="social-pills">
+                    <a href="https://linkedin.com/in/nicolas-zalazar-63340923a/" target="_blank" class="social-pill">LinkedIn</a>
+                    <a href="https://github.com/Nicolenki7" target="_blank" class="social-pill">GitHub</a>
+                    <a href="mailto:zalazarn046@gmail.com" class="social-pill">Email</a>
+                    <a href="https://wa.me/34614594035" target="_blank" class="social-pill">WhatsApp</a>
+                    <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="social-pill">Kaggle</a>
+                </div>
+            </div>
         </div>
     </header>
 
     <section id="about">
-        <h2 id="txt-about-title">01. Perfil de Misión</h2>
-        <div class="about-grid">
-            <div class="about-text" id="txt-about-content">
-                <!-- Content injected by JS -->
-            </div>
-            <div class="highlight-box">
-                <h3 style="color: var(--accent-color); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem;">TECH_STACK (Interactivos)</h3>
-                <div id="stack-container">
-                    <span class="tech-tag" data-info="Microsoft Fabric: Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
-                    <span class="tech-tag" data-info="Snowflake: Data Warehouse en la nube para almacenamiento masivo.">Snowflake</span>
-                    <span class="tech-tag" data-info="PySpark: Procesamiento de datos distribuido a gran escala.">PySpark</span>
-                    <span class="tech-tag" data-info="Medallion Architecture: Diseño de capas Bronze, Silver y Gold para calidad de datos.">Medallion Arch</span>
-                    <span class="tech-tag" data-info="Delta Lake: Capa de almacenamiento open-source que aporta transacciones ACID a lagos de datos.">Delta Lake</span>
-                    <span class="tech-tag" data-info="n8n: Automatización de flujos de trabajo e integración de IA.">n8n / Automation</span>
-                    <span class="tech-tag" data-info="GenAI / LLMs: Implementación de soluciones basadas en modelos de lenguaje.">GenAI / LLMs</span>
-                    <span class="tech-tag" data-info="Power BI: Visualización avanzada y modelado complejo con DAX.">Power BI</span>
-                    <span class="tech-tag" data-info="Python & SQL: Lenguajes core para manipulación y análisis de datos.">Python & SQL</span>
+        <div class="section-container">
+            <h2 id="txt-about-title">01. Perfil de Misión</h2>
+            <div class="about-grid">
+                <div class="about-text" id="txt-about-content"></div>
+                <div class="highlight-box">
+                    <h3 style="color: var(--accent-cyan); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem; text-transform: uppercase;">Core Tech Matrix</h3>
+                    <div id="stack-container">
+                        <span class="tech-tag" data-info="Microsoft Fabric: Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
+                        <span class="tech-tag" data-info="Snowflake: Data Warehouse en la nube para almacenamiento masivo.">Snowflake</span>
+                        <span class="tech-tag" data-info="PySpark: Procesamiento de datos distribuido a gran escala.">PySpark</span>
+                        <span class="tech-tag" data-info="Medallion Architecture: Diseño de capas Bronze, Silver y Gold para calidad de datos.">Medallion Arch</span>
+                        <span class="tech-tag" data-info="Delta Lake: Capa de almacenamiento open-source que aporta transacciones ACID a lagos de datos.">Delta Lake</span>
+                        <span class="tech-tag" data-info="n8n: Automatización de flujos de trabajo e integración de IA.">n8n / Automation</span>
+                        <span class="tech-tag" data-info="GenAI / LLMs: Implementación de soluciones basadas en modelos de lenguaje.">GenAI / LLMs</span>
+                        <span class="tech-tag" data-info="Power BI: Visualización avanzada y modelado complejo con DAX.">Power BI</span>
+                        <span class="tech-tag" data-info="Python & SQL: Lenguajes core para manipulación y análisis de datos.">Python & SQL</span>
+                    </div>
+                    <div id="stack-info" style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--accent-green); min-height: 40px;">> Hover/Click tags for system info...</div>
                 </div>
-                <div id="stack-info">> Haz clic en una tecnología para ver detalles...</div>
             </div>
         </div>
     </section>
 
     <section id="hospitality">
-        <h2 id="txt-hosp-title">02. Expertise en Hospitalidad</h2>
-        <div class="hosp-grid" id="hosp-content">
-            <!-- Content injected by JS -->
+        <div class="section-container">
+            <h2 id="txt-hosp-title">02. Expertise en Hospitalidad</h2>
+            <div class="hosp-grid" id="hosp-content"></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 id="txt-projects-title">03. Ecosistemas de Análisis</h2>
-        <div class="swiper projectSwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="project-card" onclick="location.href='proyectos/crypto-medallion.html'">
-                        <img src="img/projects/crypto_cover.png" alt="Crypto Analytics">
-                        <div class="project-content">
-                            <h3>Crypto Analytics 2025</h3>
-                            <p id="txt-crypto-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Medallion en Fabric con predicción ML.</p>
+        <div class="section-container">
+            <h2 id="txt-projects-title">03. Ecosistemas de Análisis</h2>
+            <div class="swiper projectSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="project-card" onclick="location.href='proyectos/crypto-medallion.html'">
+                            <img src="img/projects/crypto_cover.png" alt="Crypto Analytics" style="width:100%; height:200px; object-fit:cover;">
+                            <div style="padding: 25px;">
+                                <h3 style="color:#fff; margin:0;">Crypto Analytics 2025</h3>
+                                <p id="txt-crypto-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-card" onclick="location.href='proyectos/online-retail-rfm.html'">
+                            <img src="img/projects/retail_rfm_cover.svg" alt="RFM Retail" style="width:100%; height:200px; object-fit:cover;">
+                            <div style="padding: 25px;">
+                                <h3 style="color:#fff; margin:0;">RFM Customer Segmentation</h3>
+                                <p id="txt-rfm-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="project-card" onclick="location.href='proyectos/datamesh-logistica.html'">
+                            <img src="img/projects/datamesh_dashboard.png" alt="DataMesh Logística" style="width:100%; height:200px; object-fit:cover;">
+                            <div style="padding: 25px;">
+                                <h3 style="color:#fff; margin:0;">DataMesh Logística</h3>
+                                <p id="txt-dm-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="project-card" onclick="location.href='proyectos/online-retail-rfm.html'">
-                        <img src="img/projects/retail_rfm_cover.svg" alt="RFM Retail">
-                        <div class="project-content">
-                            <h3>RFM Customer Segmentation</h3>
-                            <p id="txt-rfm-desc" style="font-size:0.9rem; opacity: 0.8;">Segmentación de clientes con análisis RFM en Python + SQL.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="project-card" onclick="location.href='proyectos/datamesh-logistica.html'">
-                        <img src="img/projects/datamesh_dashboard.png" alt="DataMesh Logística">
-                        <div class="project-content">
-                            <h3>DataMesh Logística</h3>
-                            <p id="txt-dm-desc" style="font-size:0.9rem; opacity: 0.8;">Arquitectura Data Mesh en Microsoft Fabric con OneLake Shortcuts.</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-pagination"></div>
         </div>
     </section>
 
     <section id="certs">
-        <h2 id="txt-certs-title">04. Validaciones Técnicas</h2>
-        <div style="position: relative;">
-            <div class="swiper certSwiper">
-                <div class="swiper-wrapper" id="cert-wrapper"></div>
+        <div class="section-container">
+            <h2 id="txt-certs-title">04. Validaciones Técnicas</h2>
+            <div style="position: relative;">
+                <div class="swiper certSwiper">
+                    <div class="swiper-wrapper" id="cert-wrapper"></div>
+                </div>
+                <div class="swiper-button-next" style="color:var(--accent-cyan)"></div>
+                <div class="swiper-button-prev" style="color:var(--accent-cyan)"></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
     <section id="languages">
-        <h2 id="txt-lang-title">05. Idiomas</h2>
-        <div class="lang-grid" id="lang-content">
-            <!-- Content injected by JS -->
+        <div class="section-container">
+            <h2 id="txt-lang-title">05. Idiomas</h2>
+            <div class="lang-grid" id="lang-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;"></div>
         </div>
     </section>
 
-    <section id="cv">
-        <h2 id="txt-cv-title">06. Documentación Técnica</h2>
-        <div class="cv-grid">
-            <a href="docs/cv_Es_Ult.pdf" download class="cv-link">[ ESPAÑOL_ES ]</a>
-            <a href="docs/cv_ENG_Ult.pdf" download class="cv-link">[ ENGLISH_EN ]</a>
-            <a href="docs/cv_PT_Ult_Remote.pdf" download class="cv-link">[ PORTUGUÊS_PT ]</a>
-        </div>
-    </section>
-
-    <div id="certModal" onclick="this.style.display='none'">
-        <img id="modalImg" src="">
+    <div id="certModal" onclick="this.style.display='none'" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
+        <img id="modalImg" src="" style="max-width: 90%; max-height: 90%; border: 1px solid var(--accent-cyan); box-shadow: 0 0 50px rgba(0,242,255,0.3);">
     </div>
 
     <footer>
-        NICOLÁS ZALAZAR // DATA & HOSPITALITY SPECIALIST // 2026 // SYSTEM_OPERATIONAL
+        <div style="opacity: 0.6; font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px;">
+            NICOLÁS ZALAZAR // SYSTEM_OPERATIONAL // 2026 // SPAIN
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Language Content
         const translations = {
             es: {
-                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                subtitle: ">_ Data & Hospitality Specialist",
                 aboutTitle: "01. Perfil de Misión",
                 aboutContent: `<p>Ingeniero de Datos con una trayectoria única que fusiona la precisión técnica con la visión estratégica del sector hospitality. Especialista en arquitecturas <strong>Medallion, Delta Lake y Microsoft Fabric</strong>, transformando datos complejos en decisiones accionables.</p>
                                <p>Mi experiencia en operaciones hoteleras de lujo me permite entender el dato no solo como un registro, sino como una herramienta para la excelencia operativa y la maximización de ingresos. Enfoque en <strong>AI & Automation</strong> para optimizar procesos críticos.</p>`,
-                hospTitle: "02. Expertise en Hospitalidad",
+                hospTitle: "02. Hospitality Domain",
                 hospContent: `
                     <div class="hosp-card">
-                        <span class="role">Night Audit Specialist</span>
-                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
+                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
                         <p>Experiencia en hoteles de alta gama en Argentina (Accor) y Portugal (Monchique Resort & Spa). Especializado en auditoría nocturna y control financiero operativo.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Hotel Operations</span>
-                        <h3>Boutique & Urban Hotels</h3>
+                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
+                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
                         <p>Gestión integral en hoteles boutique en España y Portugal. Visión 360° del Front Office y Guest Experience.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Data-Driven Domain</span>
-                        <h3>Smart Data Solutions</h3>
+                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
+                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
                         <p>Uso el conocimiento del terreno para diseñar soluciones BI que resuelven problemas reales de Revenue y Operaciones.</p>
                     </div>`,
                 projectsTitle: "03. Ecosistemas de Análisis",
@@ -429,32 +510,31 @@
                 certsTitle: "04. Validaciones Técnicas",
                 langTitle: "05. Idiomas",
                 langContent: `
-                    <div class="lang-item"><span class="lang-name">Español</span><span class="lang-level">Nativo</span></div>
-                    <div class="lang-item"><span class="lang-name">Portugués</span><span class="lang-level">C1 - Avanzado</span></div>
-                    <div class="lang-item"><span class="lang-name">Inglés</span><span class="lang-level">B2 - Profesional</span></div>
-                    <div class="lang-item"><span class="lang-name">Francés</span><span class="lang-level">B1 - Intermedio</span></div>`,
-                cvTitle: "06. Documentación Técnica"
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">ESPAÑOL</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVO</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - AVANZADO</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">INGLÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFESIONAL</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRANCÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIO</span></div>`
             },
             en: {
-                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                subtitle: ">_ Data & Hospitality Specialist",
                 aboutTitle: "01. Mission Profile",
                 aboutContent: `<p>Data Engineer with a unique background merging technical precision with strategic hospitality insights. Specialist in <strong>Medallion architectures, Delta Lake, and Microsoft Fabric</strong>, transforming complex data into actionable decisions.</p>
                                <p>My experience in luxury hotel operations allows me to understand data not just as a record, but as a tool for operational excellence and revenue maximization. Focused on <strong>AI & Automation</strong> to optimize critical processes.</p>`,
-                hospTitle: "02. Hospitality Expertise",
+                hospTitle: "02. Hospitality Domain",
                 hospContent: `
                     <div class="hosp-card">
-                        <span class="role">Night Audit Specialist</span>
-                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
+                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
                         <p>Experience in high-end hotels in Argentina (Accor) and Portugal (Monchique Resort & Spa). Specialized in night audit and financial operational control.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Hotel Operations</span>
-                        <h3>Boutique & Urban Hotels</h3>
+                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
+                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
                         <p>Full management in boutique hotels across Spain and Portugal. 360° vision of Front Office and Guest Experience.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Data-Driven Domain</span>
-                        <h3>Smart Data Solutions</h3>
+                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
+                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
                         <p>I use on-the-ground knowledge to design BI solutions that solve real Revenue and Operations challenges.</p>
                     </div>`,
                 projectsTitle: "03. Analysis Ecosystems",
@@ -464,50 +544,47 @@
                 certsTitle: "04. Technical Validations",
                 langTitle: "05. Languages",
                 langContent: `
-                    <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
-                    <div class="lang-item"><span class="lang-name">Portuguese</span><span class="lang-level">C1 - Advanced</span></div>
-                    <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">B2 - Professional</span></div>
-                    <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">B1 - Intermediate</span></div>`,
-                cvTitle: "06. Technical Documentation"
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">SPANISH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVE</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUESE</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - ADVANCED</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">ENGLISH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFESSIONAL</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRENCH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIATE</span></div>`
             },
             pt: {
-                subtitle: "Data & Hospitality Specialist | BI Engineer · Analytics · Revenue",
+                subtitle: ">_ Data & Hospitality Specialist",
                 aboutTitle: "01. Perfil de Missão",
                 aboutContent: `<p>Engenheiro de Dados com uma trajetória única que funde a precisão técnica com a visão estratégica do setor de hospitalidade. Especialista em arquiteturas <strong>Medallion, Delta Lake e Microsoft Fabric</strong>, transformando dados complexos em decisões acionáveis.</p>
-                               <p>Minha experiência em operações hoteleiras de luxo permite-me entender o dado não apenas como um registro, mas como uma ferramenta para a excelência operacional e a maximização de receitas. Foco em <strong>AI & Automação</strong> para otimizar processos críticos.</p>`,
-                hospTitle: "02. Expertise em Hospitalidade",
+                               <p>Minha experiência em operações hoteleiras de luxo permite-me entender o dado não apenas como um registro, mas como uma ferramenta para a excelência operacional e a maximização de receitas. Foco em <strong>AI & Automação</strong> para optimizar processos críticos.</p>`,
+                hospTitle: "02. Domínio de Hospitalidade",
                 hospContent: `
                     <div class="hosp-card">
-                        <span class="role">Night Audit Specialist</span>
-                        <h3>5★ Accor & Luxury Resorts</h3>
+                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
+                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
                         <p>Experiência em hotéis de luxo na Argentina (Accor) e Portugal (Monchique Resort & Spa). Especializado em auditoria noturna e controle financeiro operacional.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Hotel Operations</span>
-                        <h3>Boutique & Urban Hotels</h3>
+                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
+                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
                         <p>Gestão integral em hotéis boutique na Espanha e Portugal. Visão 360° de Front Office e Guest Experience.</p>
                     </div>
                     <div class="hosp-card">
-                        <span class="role">Data-Driven Domain</span>
-                        <h3>Smart Data Solutions</h3>
+                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
+                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
                         <p>Utilizo o conhecimento de campo para projetar soluções de BI que resolvem problemas reais de Revenue e Operações.</p>
                     </div>`,
                 projectsTitle: "03. Ecossistemas de Análise",
                 cryptoDesc: "Arquitetura Medallion em Fabric com predição ML.",
                 rfmDesc: "Segmentação de clientes com análise RFM em Python + SQL.",
-                dmDesc: "Arquitetura Data Mesh em Microsoft Fabric com OneLake Shortcuts.",
+                dmDesc: "Arquitetura Data Mesh em Microsoft Fabric con OneLake Shortcuts.",
                 certsTitle: "04. Validações Técnicas",
                 langTitle: "05. Idiomas",
                 langContent: `
-                    <div class="lang-item"><span class="lang-name">Espanhol</span><span class="lang-level">Nativo</span></div>
-                    <div class="lang-item"><span class="lang-name">Português</span><span class="lang-level">C1 - Avançado</span></div>
-                    <div class="lang-item"><span class="lang-name">Inglês</span><span class="lang-level">B2 - Profissional</span></div>
-                    <div class="lang-item"><span class="lang-name">Francês</span><span class="lang-level">B1 - Intermediário</span></div>`,
-                cvTitle: "06. Documentação Técnica"
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">ESPANHOL</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVO</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - AVANÇADO</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">INGLÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFISSIONAL</span></div>
+                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRANCÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIÁRIO</span></div>`
             }
         };
 
-        // Typing Effect
         let i = 0;
         let txt = "";
         let speed = 50;
@@ -521,8 +598,6 @@
 
         function changeLang(lang) {
             const t = translations[lang];
-            
-            // Subtitle typing reset
             document.getElementById('hero-subtitle').innerHTML = "";
             i = 0;
             txt = t.subtitle;
@@ -539,65 +614,66 @@
             document.getElementById('txt-certs-title').innerText = t.certsTitle;
             document.getElementById('txt-lang-title').innerText = t.langTitle;
             document.getElementById('lang-content').innerHTML = t.langContent;
-            document.getElementById('txt-cv-title').innerText = t.cvTitle;
             
-            // Active state
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event?.target?.classList?.add('active') || document.querySelector(`.lang-btn[onclick="changeLang('${lang}')"]`).classList.add('active');
+            const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.getAttribute('onclick').includes(lang));
+            if(activeBtn) activeBtn.classList.add('active');
             
             document.documentElement.lang = lang;
             localStorage.setItem('preferred-lang', lang);
         }
 
-        // Tech Stack Logic
+        // Tech Stack
         document.querySelectorAll('.tech-tag').forEach(tag => {
-            tag.addEventListener('click', function() {
+            tag.addEventListener('mouseenter', function() {
                 document.getElementById('stack-info').innerText = `> ${this.getAttribute('data-info')}`;
             });
         });
 
-        // Certificates Generation
+        // Certs
         const wrapper = document.getElementById('cert-wrapper');
         for (let j = 1; j <= 15; j++) {
             wrapper.innerHTML += `
-                <div class="swiper-slide cert-slide">
-                    <img src="img/certs/cert_${j}.png" onclick="openCert(this.src)" alt="Certificate ${j}">
+                <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center;">
+                    <img src="img/certs/cert_${j}.png" onclick="openCert(this.src)" style="max-width:100%; border-radius:8px; cursor:zoom-in; border:1px solid rgba(255,255,255,0.1);">
                 </div>`;
         }
-
         function openCert(src) {
             const modal = document.getElementById('certModal');
             document.getElementById('modalImg').src = src;
             modal.style.display = 'flex';
         }
 
-        // Intersection Observer for Animations
+        // Observer
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
+        document.querySelectorAll('.section-container').forEach(sc => observer.observe(sc));
 
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
+        // Particles
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 40 },
+                color: { value: "#00f2ff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2 },
+                size: { value: 2 },
+                line_linked: { enable: true, distance: 150, color: "#00f2ff", opacity: 0.1, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: { events: { onhover: { enable: true, mode: "grab" } } }
+        });
 
-        // Swipers
         new Swiper(".projectSwiper", { 
-            slidesPerView: 1, 
-            spaceBetween: 30, 
-            pagination: { el: ".swiper-pagination", clickable: true },
+            slidesPerView: 1, spaceBetween: 30, pagination: { el: ".swiper-pagination", clickable: true },
             breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } 
         });
-        
         new Swiper(".certSwiper", { 
-            slidesPerView: 2, spaceBetween: 20, loop: true, 
-            autoplay: { delay: 3000, disableOnInteraction: false }, 
+            slidesPerView: 2, spaceBetween: 20, loop: true, autoplay: { delay: 3000 },
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
             breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 5 } } 
         });
 
-        // Initial Load
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang') || 'es';
             changeLang(savedLang);
