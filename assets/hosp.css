@@ -27,6 +27,13 @@
 .hosp-card h3{margin:0 0 10px;font-size:1.05rem;letter-spacing:-.015em}
 .hosp-card p{margin:0;font-size:.9rem;color:var(--dim)}
 
+/* enlace de verificación del diploma (bloque de formación) */
+.cert__verify{
+  display:inline-block;margin-top:14px;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--acc);text-decoration:none;border-bottom:1px dotted rgba(76,194,255,.45);
+}
+.cert__verify:hover{border-bottom-style:solid}
+
 /* ---------- selector de idioma ---------- */
 .lang-switch{
   display:inline-flex;align-items:center;gap:2px;padding:3px;
