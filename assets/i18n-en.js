@@ -9,9 +9,9 @@ window.I18N.en = {
   "nav.creds": "Credentials",
   "nav.contact": "Contact",
 
-  "hero.eyebrow": "Madrid · remote · open to offers",
-  "hero.roles": ["Data Engineer", "Business analytics", "From Fabric to open source", "AI automation"],
-  "hero.lead": "I build data pipelines and models that end in a decision. <strong>15 public repositories</strong>, <strong>8 reports generated from the dataset itself</strong> and <strong>3 pipelines with tests that run on their own</strong>. If it can't be reproduced, it doesn't count.",
+  "hero.eyebrow": "Mallorca · remote · open to offers",
+  "hero.roles": ["Data Engineer", "Business analytics", "From Fabric to open source", "AI automation", "Computer Science student · UDDI"],
+  "hero.lead": "I build data pipelines and models that end in a decision. <strong>15 public repositories</strong>, <strong>8 reports generated from the dataset itself</strong> and <strong>3 pipelines with tests that run on their own</strong>. If it can't be reproduced, it doesn't count. I'm currently studying a <strong>BSc in Computer Science</strong> at UDDI, the digital university of the Universidad Europea group.",
   "hero.cta1": "See projects",
   "hero.cta2": "How I work with data",
   "hero.cta3": "GitHub ↗",
@@ -118,7 +118,13 @@ window.I18N.en = {
   "rp8": "German Credit · Risk", "rp8s": "1,000 applications · debt",
 
   "cr.title": "Education and certifications",
-  "cr.sub": "Fifteen credentials. Click any of them to enlarge.",
+  "cr.sub": "Fifteen credentials, plus current studies. Click any of them to enlarge.",
+  "edu.c1k": "Current studies",
+  "edu.c1t": "UDDI · Digital University",
+  "edu.c1d": "BSc in Computer Science at the Digital University, part of the Universidad Europea group. Currently enrolled alongside professional work.",
+  "edu.c2k": "Commitment to the university",
+  "edu.c2t": "Universidad Europea",
+  "edu.c2d": "Keeping up my studies while working, and giving back to the university community what I learn through documented, open projects.",
   "cr.label": "Credential",
 
   "lg.title": "Four working languages",
@@ -126,11 +132,11 @@ window.I18N.en = {
   "lg.native": "Native", "lg.b2": "B2 · Professional", "lg.c1": "C1 · Advanced", "lg.b1": "B1 · Intermediate",
 
   "ct.title": "Let's talk data",
-  "ct.sub": "Open to Data Engineer, Analytics Engineer and BI roles in Madrid or remote.",
+  "ct.sub": "Open to Data Engineer, Analytics Engineer and BI roles in Mallorca or remote.",
   "ct.cvtitle": "Résumé",
   "ct.cvtext": "Three versions of the same profile. The English one is what I use for international processes.",
   "ct.cv1": "CV · Español", "ct.cv2": "CV · English", "ct.cv3": "CV · Português",
 
-  "ft.a": "© 2026 Nicolas Zalazar · Madrid",
+  "ft.a": "© 2026 Nicolas Zalazar · Mallorca",
   "ft.b": "HTML, CSS and JS written by hand · no frameworks · <a href=\"https://github.com/Nicolenki7/Portfolio\" target=\"_blank\" rel=\"noopener\">site source</a>"
 };
