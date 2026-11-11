@@ -44,6 +44,12 @@
 .cert span i{font-style:normal}
 .nav__inner{flex-wrap:wrap;row-gap:10px}
 
+/* ---------- sección 06: la formación va después de la rejilla de certificados ---------- */
+#certificaciones{display:flex;flex-direction:column}
+#certificaciones > .section__head{order:1}
+#certificaciones > .certs{order:2}
+#certificaciones > .hosp-grid{order:3;margin-top:34px}
+
 @media (max-width:900px){
   .lang-switch{display:none}
 }

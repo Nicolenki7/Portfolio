@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataMesh Logística | Nicolas Zalazar</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="caso.css">
     <style>
         :root {
             --bg-color: #0a0a0c;
@@ -283,6 +284,32 @@
             <h1>DataMesh Logística</h1>
             <div class="tagline">MICROSOFT FABRIC | DATA MESH | REAL-TIME ANALYTICS</div>
         </header>
+
+        <section class="content-section" id="resumen">
+            <h2>00. Resumen en 30 segundos</h2>
+            <div class="resumen__grid">
+                <div class="resumen__kpi"><b>3</b><span>dominios de negocio unificados</span></div>
+                <div class="resumen__kpi"><b>2</b><span>latencias: batch y near real-time</span></div>
+                <div class="resumen__kpi"><b>0</b><span>copias de datos (OneLake Shortcuts)</span></div>
+                <div class="resumen__kpi"><b>4</b><span>páginas de dashboard</span></div>
+            </div>
+            <p class="resumen__txt">
+                Una operación logística con cuatro carriers, cada dominio con su propia latencia y su propia tecnología.
+                El proyecto los une en un único modelo semántico sin duplicar almacenamiento: los dominios de logística
+                y gobernanza viven en KQL Database y se leen por shortcut desde el lakehouse de consumo, donde viven las
+                ventas en Delta Lake. El resultado es un modelo en Power BI con medidas DAX que cruza ventas con tiempos
+                de entrega y cumplimiento de SLA.
+            </p>
+
+            <div class="aviso">
+                <b>Este caso no tiene gráficos, y es a propósito.</b> No hay dataset versionado en el repositorio, así que
+                no existe un informe que se pueda recalcular desde un CSV como en los otros proyectos. Preferí contarlo
+                antes que dibujar barras con números que nadie puede comprobar. Lo que sí está documentado es la
+                arquitectura, el KQL de ingesta, las medidas DAX y el PBIX del dashboard
+                (<a href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics/blob/main/docs/PLAN.md" target="_blank" rel="noopener">plan</a>,
+                <a href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics/blob/main/docs/STACK-ABIERTO.md" target="_blank" rel="noopener">ruta abierta</a>).
+            </div>
+        </section>
 
         <img src="../img/projects/datamesh_dashboard.png" alt="DataMesh Dashboard" class="hero-image">
 
