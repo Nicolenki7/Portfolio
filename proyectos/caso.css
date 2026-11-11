@@ -1,0 +1,28 @@
+/* ============================================================
+   caso.css — resumen y visualizaciones de las páginas de caso
+   Reutiliza las variables que cada página ya define en :root
+   (--accent-color, --card-bg, --border-tech, --text-color).
+   ============================================================ */
+
+/* ---------- resumen en 30 segundos ---------- */
+.resumen__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:26px 0 10px}
+.resumen__kpi{background:var(--card-bg);border:var(--border-tech);border-radius:6px;padding:16px}
+.resumen__kpi b{display:block;font-family:'JetBrains Mono',monospace;font-size:1.45rem;line-height:1.15;color:var(--accent-color);font-weight:700}
+.resumen__kpi span{display:block;margin-top:6px;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;opacity:.62;line-height:1.5}
+.resumen__txt{font-size:1rem;opacity:.88;margin-top:22px}
+
+/* ---------- bloque de gráfico ---------- */
+.viz{background:var(--card-bg);border:var(--border-tech);border-radius:8px;padding:22px 22px 18px;margin:26px 0 8px}
+.viz h3{margin:0 0 18px;font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-color);font-weight:500}
+.viz svg{display:block;width:100%;height:auto;overflow:visible}
+.viz__cap{margin:10px 0 0;font-size:.78rem;opacity:.6;line-height:1.6}
+.viz__cap a{color:var(--accent-color)}
+
+/* ---------- aviso de calidad del dato ---------- */
+.aviso{border-left:3px solid #ffb020;background:rgba(255,176,32,.06);border-radius:0 6px 6px 0;padding:14px 18px;margin:24px 0;font-size:.9rem;line-height:1.7}
+.aviso b{color:#ffb020}
+
+@media (max-width:600px){
+  .viz{padding:16px 14px}
+  .resumen__kpi b{font-size:1.2rem}
+}
