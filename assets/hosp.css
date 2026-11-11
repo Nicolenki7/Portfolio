@@ -1,0 +1,49 @@
+/* ============================================================
+   hosp.css — sección de hospitalidad, selector de idioma
+   y ajustes de nav que esos dos componentes necesitan.
+   ============================================================ */
+
+/* ---------- hospitalidad ---------- */
+.hosp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.hosp-card{
+  border:1px solid var(--line);border-radius:var(--r);padding:22px;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+  position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),border-color .35s;
+}
+.hosp-card::after{
+  content:"";position:absolute;inset:auto -30% -60% auto;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(76,194,255,.18),transparent 70%);
+  transition:transform .5s var(--ease);
+}
+.hosp-card:hover{transform:translateY(-4px);border-color:var(--line2)}
+.hosp-card:hover::after{transform:scale(1.35)}
+.hosp-card .kicker{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ok);display:block;margin-bottom:10px;line-height:1.4;
+}
+.hosp-card:nth-child(2) .kicker{color:var(--acc)}
+.hosp-card:nth-child(3) .kicker{color:var(--acc2)}
+.hosp-card h3{margin:0 0 10px;font-size:1.05rem;letter-spacing:-.015em}
+.hosp-card p{margin:0;font-size:.9rem;color:var(--dim)}
+
+/* ---------- selector de idioma ---------- */
+.lang-switch{
+  display:inline-flex;align-items:center;gap:2px;padding:3px;
+  border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);
+}
+.lang-btn{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--dim2);
+  background:transparent;border:0;border-radius:999px;padding:5px 10px;cursor:pointer;
+  transition:color .2s,background .2s;
+}
+.lang-btn:hover{color:var(--txt)}
+.lang-btn.is-on{background:var(--txt);color:#04070c;font-weight:600}
+
+/* ---------- ajustes ---------- */
+.cert span i{font-style:normal}
+.nav__inner{flex-wrap:wrap;row-gap:10px}
+
+@media (max-width:900px){
+  .lang-switch{display:none}
+}
