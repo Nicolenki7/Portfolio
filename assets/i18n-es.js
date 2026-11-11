@@ -9,9 +9,9 @@ window.I18N.es = {
   "nav.creds": "Credenciales",
   "nav.contact": "Contacto",
 
-  "hero.eyebrow": "Madrid · remoto · abierto a propuestas",
-  "hero.roles": ["Data Engineer", "Analítica de negocio", "De Fabric a stack abierto", "Automatización con IA"],
-  "hero.lead": "Construyo pipelines y modelos de datos que terminan en una decisión. <strong>15 repositorios públicos</strong>, <strong>8 informes generados desde el propio dataset</strong> y <strong>3 pipelines con tests que corren solos</strong>. Si no se puede reproducir, no cuenta.",
+  "hero.eyebrow": "Mallorca · remoto · abierto a propuestas",
+  "hero.roles": ["Data Engineer", "Analítica de negocio", "De Fabric a stack abierto", "Automatización con IA", "Estudiante de Informática · UDDI"],
+  "hero.lead": "Construyo pipelines y modelos de datos que terminan en una decisión. <strong>15 repositorios públicos</strong>, <strong>8 informes generados desde el propio dataset</strong> y <strong>3 pipelines con tests que corren solos</strong>. Si no se puede reproducir, no cuenta. Hoy curso el <strong>Bachelor en Informática</strong> en UDDI, la universidad digital del grupo Universidad Europea.",
   "hero.cta1": "Ver proyectos",
   "hero.cta2": "Cómo trabajo el dato",
   "hero.cta3": "GitHub ↗",
@@ -118,7 +118,13 @@ window.I18N.es = {
   "rp8": "German Credit · Riesgo", "rp8s": "1.000 solicitudes · deuda",
 
   "cr.title": "Formación y certificaciones",
-  "cr.sub": "Quince credenciales. Clic en cualquiera para ampliarla.",
+  "cr.sub": "Quince credenciales, más la formación en curso. Clic en cualquiera para ampliarla.",
+  "edu.c1k": "Formación actual",
+  "edu.c1t": "UDDI · Universidad Digital",
+  "edu.c1d": "Bachelor en Informática en la Universidad Digital, institución del grupo Universidad Europea. Formación en curso, compaginada con la actividad profesional.",
+  "edu.c2k": "Compromiso con la universidad",
+  "edu.c2t": "Universidad Europea",
+  "edu.c2d": "Seguir formándome mientras trabajo y devolver a la comunidad universitaria lo aprendido, con proyectos documentados y abiertos.",
   "cr.label": "Credencial",
 
   "lg.title": "Cuatro idiomas de trabajo",
@@ -126,11 +132,11 @@ window.I18N.es = {
   "lg.native": "Nativo", "lg.b2": "B2 · Profesional", "lg.c1": "C1 · Avanzado", "lg.b1": "B1 · Intermedio",
 
   "ct.title": "Hablemos de datos",
-  "ct.sub": "Abierto a posiciones de Data Engineer, Analytics Engineer y BI en Madrid o en remoto.",
+  "ct.sub": "Abierto a posiciones de Data Engineer, Analytics Engineer y BI en Mallorca o en remoto.",
   "ct.cvtitle": "Currículum",
   "ct.cvtext": "Tres versiones del mismo perfil. La de inglés es la que uso para procesos internacionales.",
   "ct.cv1": "CV · Español", "ct.cv2": "CV · English", "ct.cv3": "CV · Português",
 
-  "ft.a": "© 2026 Nicolás Zalazar · Madrid",
+  "ft.a": "© 2026 Nicolás Zalazar · Mallorca",
   "ft.b": "HTML, CSS y JS escritos a mano · sin frameworks · <a href=\"https://github.com/Nicolenki7/Portfolio\" target=\"_blank\" rel=\"noopener\">código del sitio</a>"
 };
