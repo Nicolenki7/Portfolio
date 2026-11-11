@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ---------- resumen en 30 segundos ---------- */
-.resumen__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:26px 0 10px}
+.resumen__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px;margin:26px 0 10px}
 .resumen__kpi{background:var(--card-bg);border:var(--border-tech);border-radius:6px;padding:16px}
 .resumen__kpi b{display:block;font-family:'JetBrains Mono',monospace;font-size:1.45rem;line-height:1.15;color:var(--accent-color);font-weight:700}
 .resumen__kpi span{display:block;margin-top:6px;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;opacity:.62;line-height:1.5}
@@ -24,5 +24,6 @@
 
 @media (max-width:600px){
   .viz{padding:16px 14px}
+  .resumen__kpi{padding:13px}
   .resumen__kpi b{font-size:1.2rem}
 }
