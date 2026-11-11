@@ -1,683 +1,418 @@
-<!DOCTYPE html>
-<html lang="es" style="scroll-behavior: smooth;">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nicolas Zalazar - Data & Hospitality Specialist | BI Engineer · Analytics · Revenue. Specialized in Microsoft Fabric, Medallion Architecture, and Delta Lake.">
-    <meta name="keywords" content="Data Engineer, BI Engineer, Microsoft Fabric, Snowflake, Medallion Architecture, Delta Lake, Power BI, Hospitality Data, Revenue Management, Python, SQL">
-    <meta name="author" content="Nicolas Zalazar">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nicolas Zalazar | Data & Hospitality Specialist">
-    <meta property="og:description" content="BI Engineer specializing in Analytics & Revenue. Merging Data Engineering with Hospitality Expertise.">
-    <meta property="og:url" content="https://nicolenki7.github.io/Portfolio/">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-    
-    <title>Nicolas Zalazar | Data & Hospitality Specialist</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <style>
-        :root {
-            --bg-main: #0a0a0c;
-            --bg-navy: #060d1a;
-            --bg-slate: #0a1628;
-            --bg-teal: #071820;
-            --bg-green-tint: #060f0e;
-            
-            --accent-cyan: #00f2ff;
-            --accent-green: #00ff9d;
-            --accent-blue: #3a86ff;
-            --text-color: #e0e0e0;
-            --card-bg: rgba(22, 22, 26, 0.7);
-            --border-tech: 1px solid rgba(0, 242, 255, 0.2);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body { 
-            background-color: var(--bg-main); 
-            color: var(--text-color); 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-        }
-
-        /* Particles */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Lang Switcher */
-        .lang-switcher { 
-            position: fixed; 
-            top: 20px; 
-            right: 20px; 
-            z-index: 1000; 
-            background: rgba(10, 22, 40, 0.8); 
-            padding: 5px 10px; 
-            border: 1px solid rgba(0, 242, 255, 0.3); 
-            border-radius: 50px; 
-            display: flex; 
-            gap: 5px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        .lang-btn { 
-            background: none; 
-            border: none; 
-            color: var(--text-color); 
-            cursor: pointer; 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.75rem; 
-            transition: var(--transition);
-            opacity: 0.5;
-            padding: 5px 10px;
-            border-radius: 20px;
-        }
-        .lang-btn.active { 
-            color: var(--accent-cyan); 
-            opacity: 1;
-            background: rgba(0, 242, 255, 0.1);
-        }
-
-        /* Social Profile Banner */
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            min-height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 5% 60px;
-            background: radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 255, 157, 0.15) 0%, transparent 40%),
-                        linear-gradient(135deg, #060d1a 0%, #071820 100%);
-            overflow: hidden;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .profile-pic-container {
-            flex-shrink: 0;
-            width: clamp(150px, 20vw, 220px);
-            height: clamp(150px, 20vw, 220px);
-            border-radius: 50%;
-            position: relative;
-            padding: 5px;
-            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-green));
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
-        }
-        
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 4px solid #060d1a;
-        }
-        
-        .profile-pic span {
-            font-size: 5rem;
-            filter: grayscale(1);
-            opacity: 0.5;
-        }
-
-        .hero-info {
-            flex-grow: 1;
-        }
-
-        .hero-info h1 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            margin: 0;
-            color: #fff;
-            line-height: 1;
-            letter-spacing: -2px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .hero-subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-cyan);
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            margin: 15px 0 25px;
-            display: block;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-        }
-
-        .social-pills {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .social-pill {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 18px;
-            border-radius: 50px;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            transition: var(--transition);
-            backdrop-filter: blur(5px);
-        }
-
-        .social-pill:hover {
-            background: rgba(0, 242, 255, 0.1);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* Section Layouts & Backgrounds */
-        section { 
-            padding: 100px 10%; 
-            position: relative;
-            overflow: hidden;
-        }
-
-        section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        #about { background-color: var(--bg-navy); }
-        #hospitality { background-color: var(--bg-slate); }
-        #projects { background-color: var(--bg-teal); }
-        #certs { background-color: var(--bg-green-tint); }
-        #languages { background-color: var(--bg-navy); }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .section-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h2 { 
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 50px;
-            background: linear-gradient(to right, var(--accent-cyan), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        /* About & Stack Richness */
-        .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; }
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; opacity: 0.9; }
-        
-        .highlight-box { 
-            background: rgba(10, 22, 40, 0.5); 
-            border: 1px solid rgba(0, 242, 255, 0.1);
-            padding: 35px; 
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-left: 4px solid var(--accent-cyan);
-        }
-
-        .tech-tag { 
-            display: inline-block; 
-            background: rgba(255, 255, 255, 0.03); 
-            color: #fff;
-            padding: 6px 14px; 
-            font-size: 0.85rem; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 50px; 
-            margin: 6px; 
-            font-family: 'JetBrains Mono'; 
-            cursor: pointer; 
-            transition: var(--transition);
-        }
-
-        .tech-tag:hover {
-            background: linear-gradient(45deg, rgba(0, 242, 255, 0.2), rgba(0, 255, 157, 0.2));
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-        }
-
-        /* Hospitality Cards Variation */
-        .hosp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .hosp-card { 
-            background: var(--card-bg); 
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 30px; 
-            border-radius: 12px;
-            transition: var(--transition);
-            border-left: 4px solid var(--accent-green);
-            backdrop-filter: blur(10px);
-        }
-        .hosp-card:nth-child(2) { border-left-color: var(--accent-blue); }
-        .hosp-card:nth-child(3) { border-left-color: var(--accent-cyan); }
-
-        .hosp-card:hover { 
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        /* Project Cards Richness */
-        .project-card {
-            background: var(--card-bg); 
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px; 
-            overflow: hidden;
-            transition: var(--transition);
-            height: 100%;
-            border-left: 4px solid var(--accent-cyan);
-        }
-        .project-card:hover { 
-            border-color: var(--accent-cyan); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            transform: translateY(-5px);
-        }
-        .project-card img { filter: contrast(1.1) brightness(0.9); transition: var(--transition); }
-        .project-card:hover img { filter: contrast(1.2) brightness(1.1); }
-
-        /* Languages Colorful */
-        .lang-item { 
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-left: 4px solid var(--accent-blue);
-        }
-        .lang-item:nth-child(2) { border-left-color: var(--accent-green); }
-        .lang-item:nth-child(3) { border-left-color: var(--accent-cyan); }
-        .lang-item:nth-child(4) { border-left-color: #ff00c1; }
-
-        /* Footer */
-        footer { 
-            background: #050505;
-            padding: 80px 20px; 
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        @media (max-width: 992px) {
-            .hero-content { flex-direction: column; text-align: center; gap: 30px; }
-            .social-pills { justify-content: center; }
-            .about-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nicolás Zalazar · Data Engineer</title>
+<meta name="description" content="Data Engineer en Madrid. Pipelines, modelos y dashboards: de Microsoft Fabric a un stack abierto con DuckDB, dbt y Python. 15 repositorios públicos con informes generados desde los datos, tests y planes de ejecución.">
+<meta name="author" content="Nicolás Zalazar">
+<meta name="theme-color" content="#07090d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nicolás Zalazar · Data Engineer">
+<meta property="og:description" content="De Microsoft Fabric a un stack abierto: proyectos de datos reproducibles, con informes generados desde el propio dataset.">
+<meta property="og:url" content="https://nicolenki7.github.io/Portfolio/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230b0f16'/><text x='16' y='22' font-family='monospace' font-size='15' font-weight='bold' text-anchor='middle' fill='%234cc2ff'>NZ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/components.css">
 </head>
 <body>
-    <div id="particles-js"></div>
 
-    <nav class="lang-switcher" role="navigation" aria-label="Language selection">
-        <button class="lang-btn active" onclick="changeLang('es')" aria-label="Switch to Spanish">ES</button>
-        <button class="lang-btn" onclick="changeLang('en')" aria-label="Switch to English">EN</button>
-        <button class="lang-btn" onclick="changeLang('pt')" aria-label="Switch to Portuguese">PT</button>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top"><i class="brand__dot" aria-hidden="true"></i>Nicolás Zalazar</a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a class="nav__link" href="#stack">Stack</a>
+      <a class="nav__link" href="#proyectos">Proyectos</a>
+      <a class="nav__link" href="#abierto">Stack abierto</a>
+      <a class="nav__link" href="#informes">Informes</a>
+      <a class="nav__link" href="#certificaciones">Credenciales</a>
+      <a class="nav__link" href="#contacto">Contacto</a>
     </nav>
+    <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf">CV</a>
+  </div>
+</header>
 
-    <header class="hero-banner">
-        <div class="hero-content">
-            <div class="profile-pic-container">
-                <div class="profile-pic">
-                    <span>👤</span>
-                </div>
-            </div>
-            <div class="hero-info">
-                <h1>Nicolás Zalazar</h1>
-                <span id="hero-subtitle" class="hero-subtitle"></span>
-                <div class="social-pills">
-                    <a href="https://linkedin.com/in/nicolas-zalazar-63340923a/" target="_blank" class="social-pill">LinkedIn</a>
-                    <a href="https://github.com/Nicolenki7" target="_blank" class="social-pill">GitHub</a>
-                    <a href="mailto:zalazarn046@gmail.com" class="social-pill">Email</a>
-                    <a href="https://wa.me/34614594035" target="_blank" class="social-pill">WhatsApp</a>
-                    <a href="https://www.kaggle.com/nicolaszalazar73" target="_blank" class="social-pill">Kaggle</a>
-                </div>
-            </div>
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div class="hero__grid">
+      <div>
+        <p class="eyebrow">Madrid · remoto · abierto a propuestas</p>
+        <h1>Nicolás<br>Zalazar</h1>
+        <div class="rotator" id="rotator" data-roles='["Data Engineer","Analítica de negocio","De Fabric a stack abierto","Automatización con IA"]'>
+          <span aria-hidden="true">&gt;</span><b>Data Engineer</b><span class="caret" aria-hidden="true"></span>
         </div>
-    </header>
-
-    <section id="about">
-        <div class="section-container">
-            <h2 id="txt-about-title">01. Perfil de Misión</h2>
-            <div class="about-grid">
-                <div class="about-text" id="txt-about-content"></div>
-                <div class="highlight-box">
-                    <h3 style="color: var(--accent-cyan); font-family: 'JetBrains Mono'; margin-top:0; font-size: 0.9rem; text-transform: uppercase;">Core Tech Matrix</h3>
-                    <div id="stack-container">
-                        <span class="tech-tag" data-info="Microsoft Fabric: Ecosistema unificado para analítica, desde ingesta hasta BI.">Microsoft Fabric</span>
-                        <span class="tech-tag" data-info="Snowflake: Data Warehouse en la nube para almacenamiento masivo.">Snowflake</span>
-                        <span class="tech-tag" data-info="PySpark: Procesamiento de datos distribuido a gran escala.">PySpark</span>
-                        <span class="tech-tag" data-info="Medallion Architecture: Diseño de capas Bronze, Silver y Gold para calidad de datos.">Medallion Arch</span>
-                        <span class="tech-tag" data-info="Delta Lake: Capa de almacenamiento open-source que aporta transacciones ACID a lagos de datos.">Delta Lake</span>
-                        <span class="tech-tag" data-info="n8n: Automatización de flujos de trabajo e integración de IA.">n8n / Automation</span>
-                        <span class="tech-tag" data-info="GenAI / LLMs: Implementación de soluciones basadas en modelos de lenguaje.">GenAI / LLMs</span>
-                        <span class="tech-tag" data-info="Power BI: Visualización avanzada y modelado complejo con DAX.">Power BI</span>
-                        <span class="tech-tag" data-info="Python & SQL: Lenguajes core para manipulación y análisis de datos.">Python & SQL</span>
-                    </div>
-                    <div id="stack-info" style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--accent-green); min-height: 40px;">> Hover/Click tags for system info...</div>
-                </div>
-            </div>
+        <p class="hero__lead">
+          Construyo pipelines y modelos de datos que terminan en una decisión.
+          <strong>15 repositorios públicos</strong>, <strong>8 informes generados desde el propio dataset</strong>
+          y <strong>3 pipelines con tests que corren solos</strong>.
+          Si no se puede reproducir, no cuenta.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn" href="#abierto">Cómo trabajo el dato</a>
+          <a class="btn" href="https://github.com/Nicolenki7" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
-    </section>
+      </div>
 
-    <section id="hospitality">
-        <div class="section-container">
-            <h2 id="txt-hosp-title">02. Expertise en Hospitalidad</h2>
-            <div class="hosp-grid" id="hosp-content"></div>
+      <div class="term" aria-hidden="true">
+        <div class="term__bar"><i></i><i></i><i></i><span>nicolas@portfolio:~</span></div>
+        <div class="term__body">
+          <div class="term__line"><span class="p">$</span> whoami</div>
+          <div class="term__line"><span class="k">nicolas-zalazar</span> <span class="c">· data engineer · madrid</span></div>
+          <div class="term__line"><span class="p">$</span> stack --now</div>
+          <div class="term__line"><span class="s">python</span> · sql · <span class="s">duckdb</span> · dbt · pyspark · airflow</div>
+          <div class="term__line"><span class="p">$</span> ls ./repos | wc -l</div>
+          <div class="term__line"><span class="k">15</span> <span class="c">públicos · 8 con informe · 3 con CI</span></div>
+          <div class="term__line"><span class="p">$</span> cat enfoque.txt</div>
+          <div class="term__line"><span class="c">el dato vive en el repo:</span> <span class="k">si no se puede</span></div>
+          <div class="term__line"><span class="k">reproducir, no cuenta.</span></div>
         </div>
-    </section>
-
-    <section id="projects">
-        <div class="section-container">
-            <h2 id="txt-projects-title">03. Ecosistemas de Análisis</h2>
-            <div class="swiper projectSwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="project-card" onclick="location.href='proyectos/crypto-medallion.html'">
-                            <img src="img/projects/crypto_cover.png" alt="Crypto Analytics" style="width:100%; height:200px; object-fit:cover;">
-                            <div style="padding: 25px;">
-                                <h3 style="color:#fff; margin:0;">Crypto Analytics 2025</h3>
-                                <p id="txt-crypto-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card" onclick="location.href='proyectos/online-retail-rfm.html'">
-                            <img src="img/projects/retail_rfm_cover.svg" alt="RFM Retail" style="width:100%; height:200px; object-fit:cover;">
-                            <div style="padding: 25px;">
-                                <h3 style="color:#fff; margin:0;">RFM Customer Segmentation</h3>
-                                <p id="txt-rfm-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="project-card" onclick="location.href='proyectos/datamesh-logistica.html'">
-                            <img src="img/projects/datamesh_dashboard.png" alt="DataMesh Logística" style="width:100%; height:200px; object-fit:cover;">
-                            <div style="padding: 25px;">
-                                <h3 style="color:#fff; margin:0;">DataMesh Logística</h3>
-                                <p id="txt-dm-desc" style="font-size:0.95rem; opacity: 0.8; margin-top:10px;"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="certs">
-        <div class="section-container">
-            <h2 id="txt-certs-title">04. Validaciones Técnicas</h2>
-            <div style="position: relative;">
-                <div class="swiper certSwiper">
-                    <div class="swiper-wrapper" id="cert-wrapper"></div>
-                </div>
-                <div class="swiper-button-next" style="color:var(--accent-cyan)"></div>
-                <div class="swiper-button-prev" style="color:var(--accent-cyan)"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="languages">
-        <div class="section-container">
-            <h2 id="txt-lang-title">05. Idiomas</h2>
-            <div class="lang-grid" id="lang-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;"></div>
-        </div>
-    </section>
-
-    <div id="certModal" onclick="this.style.display='none'" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); cursor: zoom-out; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
-        <img id="modalImg" src="" style="max-width: 90%; max-height: 90%; border: 1px solid var(--accent-cyan); box-shadow: 0 0 50px rgba(0,242,255,0.3);">
+      </div>
     </div>
 
-    <footer>
-        <div style="opacity: 0.6; font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px;">
-            NICOLÁS ZALAZAR // SYSTEM_OPERATIONAL // 2026 // SPAIN
+    <div class="kpis">
+      <div class="kpi"><div class="kpi__v"><span data-count="15">15</span></div><div class="kpi__l">repositorios públicos</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="8">8</span><em> · </em><span style="font-size:.95rem;font-weight:600">desde CSV</span></div><div class="kpi__l">informes reproducibles</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="3">3</span></div><div class="kpi__l">pipelines con CI</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="4">4</span></div><div class="kpi__l">idiomas</div></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__item">Python</div><div class="marquee__item">SQL</div><div class="marquee__item">DuckDB</div>
+      <div class="marquee__item">dbt</div><div class="marquee__item">PySpark</div><div class="marquee__item">Airflow</div>
+      <div class="marquee__item">Snowflake</div><div class="marquee__item">Power BI</div><div class="marquee__item">Tableau</div>
+      <div class="marquee__item">Streamlit</div><div class="marquee__item">n8n</div><div class="marquee__item">Git</div>
+      <div class="marquee__item">Delta Lake</div><div class="marquee__item">Pandas</div>
+    </div>
+  </div>
+
+  <!-- ============ STACK ============ -->
+  <section class="section wrap" id="stack">
+    <div class="section__head reveal">
+      <span class="num">01 — Stack</span>
+      <h2 class="section__title">Con qué construyo, y qué estoy adoptando</h2>
+      <p class="section__sub">Lo que ya usé en producción y lo que estoy migrando a herramientas abiertas van separados a propósito: en verde, la ruta abierta.</p>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-card reveal"><h3>Datos &amp; ETL</h3><div class="chips">
+        <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">PySpark</span>
+        <span class="chip">Power Query M</span><span class="chip chip--oss">DuckDB</span><span class="chip chip--oss">dbt</span>
+      </div></div>
+      <div class="stack-card reveal"><h3>Almacenamiento &amp; modelado</h3><div class="chips">
+        <span class="chip">Delta Lake</span><span class="chip">OneLake</span><span class="chip">Esquema estrella</span>
+        <span class="chip">Medallion</span><span class="chip chip--oss">Parquet</span><span class="chip chip--oss">Postgres</span>
+      </div></div>
+      <div class="stack-card reveal"><h3>BI &amp; visualización</h3><div class="chips">
+        <span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Streamlit</span>
+        <span class="chip">Plotly</span><span class="chip chip--oss">Superset</span>
+      </div></div>
+      <div class="stack-card reveal"><h3>Código &amp; calidad</h3><div class="chips">
+        <span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Tests de contrato</span>
+        <span class="chip chip--oss">pytest</span><span class="chip chip--oss">Great Expectations</span>
+      </div></div>
+      <div class="stack-card reveal"><h3>Automatización &amp; IA</h3><div class="chips">
+        <span class="chip">n8n</span><span class="chip">APIs REST</span><span class="chip">LLM · triage de reseñas</span>
+        <span class="chip chip--oss">Airflow</span><span class="chip chip--oss">Dagster</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section class="section wrap" id="proyectos">
+    <div class="section__head reveal">
+      <span class="num">02 — Proyectos</span>
+      <h2 class="section__title">Doce repositorios, con lo que hay dentro</h2>
+      <p class="section__sub">Cada tarjeta enlaza al código, al plan de ejecución y —cuando el dataset lo permite— a un informe generado leyendo el CSV del repo.</p>
+    </div>
+
+    <div class="filters reveal" role="tablist" aria-label="Filtrar proyectos">
+      <button class="filter is-on" data-filter="all">Todos</button>
+      <button class="filter" data-filter="datos">Ingeniería de datos</button>
+      <button class="filter" data-filter="analitica">Analítica</button>
+      <button class="filter" data-filter="ml">Machine learning</button>
+      <button class="filter" data-filter="finanzas">Finanzas</button>
+      <button class="filter" data-filter="fabric">Origen Fabric</button>
+    </div>
+
+    <div class="grid">
+      <article class="card reveal" data-cat="datos fabric">
+        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--fabric">Fabric · original</span></div>
+        <h3>Data Mesh · Logística</h3>
+        <p>Arquitectura Data Mesh multi-dominio sobre Microsoft Fabric: ingesta, modelo semántico en DAX y gobernanza documentada con linaje.</p>
+        <ul class="stack-list"><li>PySpark</li><li>KQL</li><li>OneLake</li><li>DAX</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
+          <a class="card__link card__link--muted" href="proyectos/datamesh-logistica.html">Caso completo</a>
         </div>
-    </footer>
+      </article>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        const translations = {
-            es: {
-                subtitle: ">_ Data & Hospitality Specialist",
-                aboutTitle: "01. Perfil de Misión",
-                aboutContent: `<p>Ingeniero de Datos con una trayectoria única que fusiona la precisión técnica con la visión estratégica del sector hospitality. Especialista en arquitecturas <strong>Medallion, Delta Lake y Microsoft Fabric</strong>, transformando datos complejos en decisiones accionables.</p>
-                               <p>Mi experiencia en operaciones hoteleras de lujo me permite entender el dato no solo como un registro, sino como una herramienta para la excelencia operativa y la maximización de ingresos. Enfoque en <strong>AI & Automation</strong> para optimizar procesos críticos.</p>`,
-                hospTitle: "02. Hospitality Domain",
-                hospContent: `
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
-                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
-                        <p>Experiencia en hoteles de alta gama en Argentina (Accor) y Portugal (Monchique Resort & Spa). Especializado en auditoría nocturna y control financiero operativo.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
-                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
-                        <p>Gestión integral en hoteles boutique en España y Portugal. Visión 360° del Front Office y Guest Experience.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
-                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
-                        <p>Uso el conocimiento del terreno para diseñar soluciones BI que resuelven problemas reales de Revenue y Operaciones.</p>
-                    </div>`,
-                projectsTitle: "03. Ecosistemas de Análisis",
-                cryptoDesc: "Arquitectura Medallion en Fabric con predicción ML.",
-                rfmDesc: "Segmentación de clientes con análisis RFM en Python + SQL.",
-                dmDesc: "Arquitectura Data Mesh en Microsoft Fabric con OneLake Shortcuts.",
-                certsTitle: "04. Validaciones Técnicas",
-                langTitle: "05. Idiomas",
-                langContent: `
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">ESPAÑOL</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVO</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - AVANZADO</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">INGLÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFESIONAL</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRANCÉS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIO</span></div>`
-            },
-            en: {
-                subtitle: ">_ Data & Hospitality Specialist",
-                aboutTitle: "01. Mission Profile",
-                aboutContent: `<p>Data Engineer with a unique background merging technical precision with strategic hospitality insights. Specialist in <strong>Medallion architectures, Delta Lake, and Microsoft Fabric</strong>, transforming complex data into actionable decisions.</p>
-                               <p>My experience in luxury hotel operations allows me to understand data not just as a record, but as a tool for operational excellence and revenue maximization. Focused on <strong>AI & Automation</strong> to optimize critical processes.</p>`,
-                hospTitle: "02. Hospitality Domain",
-                hospContent: `
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
-                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
-                        <p>Experience in high-end hotels in Argentina (Accor) and Portugal (Monchique Resort & Spa). Specialized in night audit and financial operational control.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
-                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
-                        <p>Full management in boutique hotels across Spain and Portugal. 360° vision of Front Office and Guest Experience.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
-                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
-                        <p>I use on-the-ground knowledge to design BI solutions that solve real Revenue and Operations challenges.</p>
-                    </div>`,
-                projectsTitle: "03. Analysis Ecosystems",
-                cryptoDesc: "Medallion architecture in Fabric with ML prediction.",
-                rfmDesc: "Customer segmentation with RFM analysis in Python + SQL.",
-                dmDesc: "Data Mesh architecture in Microsoft Fabric with OneLake Shortcuts.",
-                certsTitle: "04. Technical Validations",
-                langTitle: "05. Languages",
-                langContent: `
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">SPANISH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVE</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUESE</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - ADVANCED</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">ENGLISH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFESSIONAL</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRENCH</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIATE</span></div>`
-            },
-            pt: {
-                subtitle: ">_ Data & Hospitality Specialist",
-                aboutTitle: "01. Perfil de Missão",
-                aboutContent: `<p>Engenheiro de Dados com uma trajetória única que funde a precisão técnica com a visão estratégica do setor de hospitalidade. Especialista em arquiteturas <strong>Medallion, Delta Lake e Microsoft Fabric</strong>, transformando dados complexos em decisões acionáveis.</p>
-                               <p>Minha experiência em operações hoteleiras de luxo permite-me entender o dado não apenas como um registro, mas como uma ferramenta para a excelência operacional e a maximização de receitas. Foco em <strong>AI & Automação</strong> para optimizar processos críticos.</p>`,
-                hospTitle: "02. Domínio de Hospitalidade",
-                hospContent: `
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-green); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Night Audit Specialist</span>
-                        <h3 style="color:#fff; margin:10px 0;">5★ Accor & Luxury Resorts</h3>
-                        <p>Experiência em hotéis de luxo na Argentina (Accor) e Portugal (Monchique Resort & Spa). Especializado em auditoria noturna e controle financeiro operacional.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-blue); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Hotel Operations</span>
-                        <h3 style="color:#fff; margin:10px 0;">Boutique & Urban Hotels</h3>
-                        <p>Gestão integral em hotéis boutique na Espanha e Portugal. Visão 360° de Front Office e Guest Experience.</p>
-                    </div>
-                    <div class="hosp-card">
-                        <span style="color:var(--accent-cyan); font-family:'JetBrains Mono'; font-size:0.8rem; text-transform:uppercase;">Revenue Data Strategy</span>
-                        <h3 style="color:#fff; margin:10px 0;">Smart Data Solutions</h3>
-                        <p>Utilizo o conhecimento de campo para projetar soluções de BI que resolvem problemas reais de Revenue e Operações.</p>
-                    </div>`,
-                projectsTitle: "03. Ecossistemas de Análise",
-                cryptoDesc: "Arquitetura Medallion em Fabric com predição ML.",
-                rfmDesc: "Segmentação de clientes com análise RFM em Python + SQL.",
-                dmDesc: "Arquitetura Data Mesh em Microsoft Fabric con OneLake Shortcuts.",
-                certsTitle: "04. Validações Técnicas",
-                langTitle: "05. Idiomas",
-                langContent: `
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-cyan);">ESPANHOL</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">NATIVO</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-green);">PORTUGUÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">C1 - AVANÇADO</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:var(--accent-blue);">INGLÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B2 - PROFISSIONAL</span></div>
-                    <div class="lang-item" style="padding:25px; border-radius:12px; text-align:center;"><span style="display:block; font-weight:800; color:#ff00c1;">FRANCÊS</span><span style="font-family:'JetBrains Mono'; font-size:0.8rem; opacity:0.7;">B1 - INTERMEDIÁRIO</span></div>`
-            }
-        };
+      <article class="card reveal" data-cat="datos ml">
+        <div class="card__top"><span class="tag">Datos + ML</span><span class="badge">Snowflake</span></div>
+        <h3>AdTech · Detección de fraude</h3>
+        <p>Detección de fraude publicitario con SQL avanzado y Snowpark en Snowflake, más dashboard operativo en Streamlit.</p>
+        <ul class="stack-list"><li>SQL</li><li>Snowpark</li><li>Streamlit</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
+        </div>
+      </article>
 
-        let i = 0;
-        let txt = "";
-        let speed = 50;
-        function typeWriter() {
-            if (i < txt.length) {
-                document.getElementById("hero-subtitle").innerHTML += txt.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
+      <article class="card reveal" data-cat="datos fabric finanzas">
+        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--data">dato fuente vacío</span></div>
+        <h3>Crypto · Arquitectura medallion</h3>
+        <p>Bronze, silver y gold para datos de criptomonedas en Fabric, con Power BI encima. El informe declara que el CSV principal está vacío y trabaja sobre la copia: el problema está documentado, no escondido.</p>
+        <ul class="stack-list"><li>PySpark</li><li>Delta Lake</li><li>Power BI</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-        function changeLang(lang) {
-            const t = translations[lang];
-            document.getElementById('hero-subtitle').innerHTML = "";
-            i = 0;
-            txt = t.subtitle;
-            typeWriter();
+      <article class="card reveal" data-cat="datos analitica fabric">
+        <div class="card__top"><span class="tag">Datos + BI</span><span class="badge badge--fabric">Fabric · original</span></div>
+        <h3>Global Store · Retail</h3>
+        <p>ETL en PySpark y esquema estrella para 9.800 pedidos: ventas por modo de envío y evolución mensual desde 2015.</p>
+        <ul class="stack-list"><li>PySpark</li><li>Esquema estrella</li><li>Power BI</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-            document.getElementById('txt-about-title').innerText = t.aboutTitle;
-            document.getElementById('txt-about-content').innerHTML = t.aboutContent;
-            document.getElementById('txt-hosp-title').innerText = t.hospTitle;
-            document.getElementById('hosp-content').innerHTML = t.hospContent;
-            document.getElementById('txt-projects-title').innerText = t.projectsTitle;
-            document.getElementById('txt-crypto-desc').innerText = t.cryptoDesc;
-            document.getElementById('txt-rfm-desc').innerText = t.rfmDesc;
-            document.getElementById('txt-dm-desc').innerText = t.dmDesc;
-            document.getElementById('txt-certs-title').innerText = t.certsTitle;
-            document.getElementById('txt-lang-title').innerText = t.langTitle;
-            document.getElementById('lang-content').innerHTML = t.langContent;
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.getAttribute('onclick').includes(lang));
-            if(activeBtn) activeBtn.classList.add('active');
-            
-            document.documentElement.lang = lang;
-            localStorage.setItem('preferred-lang', lang);
-        }
+      <article class="card reveal" data-cat="datos analitica fabric">
+        <div class="card__top"><span class="tag">Datos + BI</span><span class="badge badge--fabric">Fabric · original</span></div>
+        <h3>Olist · E-commerce</h3>
+        <p>BI integral para el marketplace brasileño: siete consultas Power Query M, Dataflows Gen2 y modelo dimensional con geolocalización.</p>
+        <ul class="stack-list"><li>Power Query M</li><li>Dataflows Gen2</li><li>Esquema estrella</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
+        </div>
+      </article>
 
-        // Tech Stack
-        document.querySelectorAll('.tech-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                document.getElementById('stack-info').innerText = `> ${this.getAttribute('data-info')}`;
-            });
-        });
+      <article class="card reveal" data-cat="datos">
+        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--ci">CI verde</span></div>
+        <h3>EGATUR · Turismo (INE)</h3>
+        <p>ETL de cinco tablas del INE a un maestro longitudinal. El test de contrato detecta el separador <code>;</code>, el BOM y los cambios de cabecera antes de que rompan el análisis.</p>
+        <ul class="stack-list"><li>Python</li><li>Pandas</li><li>GitHub Actions</li><li>n8n</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-        // Certs
-        const wrapper = document.getElementById('cert-wrapper');
-        for (let j = 1; j <= 15; j++) {
-            wrapper.innerHTML += `
-                <div class="swiper-slide" style="display:flex; align-items:center; justify-content:center;">
-                    <img src="img/certs/cert_${j}.png" onclick="openCert(this.src)" style="max-width:100%; border-radius:8px; cursor:zoom-in; border:1px solid rgba(255,255,255,0.1);">
-                </div>`;
-        }
-        function openCert(src) {
-            const modal = document.getElementById('certModal');
-            document.getElementById('modalImg').src = src;
-            modal.style.display = 'flex';
-        }
+      <article class="card reveal" data-cat="analitica ml">
+        <div class="card__top"><span class="tag">Analítica + ML</span><span class="badge badge--ci">CI verde</span></div>
+        <h3>Churn · Telco</h3>
+        <p>Segmentación de riesgo y drivers de fuga sobre 7.043 clientes. Month-to-month concentra el 55% de la base y el gasto medio más bajo: el hallazgo que ordena la acción comercial.</p>
+        <ul class="stack-list"><li>Regresión logística</li><li>Tableau</li><li>Python</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-        // Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.section-container').forEach(sc => observer.observe(sc));
+      <article class="card reveal" data-cat="ml analitica">
+        <div class="card__top"><span class="tag">NLP</span><span class="badge badge--ci">CI verde</span></div>
+        <h3>Reseñas · Drivers de mejora</h3>
+        <p>100.000 reseñas puntuadas con VADER para priorizar qué arreglar primero: 89.858 positivas frente a 7.987 negativas, ordenadas por producto.</p>
+        <ul class="stack-list"><li>VADER</li><li>Pandas</li><li>n8n + LLM</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-        // Particles
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 40 },
-                color: { value: "#00f2ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.2 },
-                size: { value: 2 },
-                line_linked: { enable: true, distance: 150, color: "#00f2ff", opacity: 0.1, width: 1 },
-                move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: { events: { onhover: { enable: true, mode: "grab" } } }
-        });
+      <article class="card reveal" data-cat="finanzas analitica">
+        <div class="card__top"><span class="tag">Finanzas</span><span class="badge">BigQuery</span></div>
+        <h3>ETFbook · Flujos de ETFs</h3>
+        <p>SQL de ventana en BigQuery sobre flujos de ETFs y dashboard Streamlit. Su plan documenta el bug real que hoy rompe el script: pide <code>net_flow</code> y la columna es <code>net_flows_usd_m</code>.</p>
+        <ul class="stack-list"><li>BigQuery</li><li>SQL ventanas</li><li>Streamlit</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
 
-        new Swiper(".projectSwiper", { 
-            slidesPerView: 1, spaceBetween: 30, pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } 
-        });
-        new Swiper(".certSwiper", { 
-            slidesPerView: 2, spaceBetween: 20, loop: true, autoplay: { delay: 3000 },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-            breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 5 } } 
-        });
+      <article class="card reveal" data-cat="analitica">
+        <div class="card__top"><span class="tag">Analítica</span><span class="badge">RFM</span></div>
+        <h3>Retail · Segmentación RFM</h3>
+        <p>4.338 clientes segmentados por recencia, frecuencia y monto. Los leales son 1.050, pero hay 1.015 dormidos: ahí está el margen de una campaña de reactivación.</p>
+        <ul class="stack-list"><li>Pandas</li><li>RFM</li><li>Python</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link card__link--muted" href="proyectos/online-retail-rfm.html">Caso completo</a>
+        </div>
+      </article>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'es';
-            changeLang(savedLang);
-        });
-    </script>
+      <article class="card reveal" data-cat="ml finanzas">
+        <div class="card__top"><span class="tag">Riesgo de crédito</span><span class="badge">1.000 solicitudes</span></div>
+        <h3>German Credit · Scoring</h3>
+        <p>Modelo de riesgo con regresión logística y lectura de coeficientes como historia de negocio: qué variables mueven la decisión y cuánto pesa cada una.</p>
+        <ul class="stack-list"><li>Scikit-learn</li><li>Pandas</li><li>Storytelling</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="finanzas datos">
+        <div class="card__top"><span class="tag">Finanzas</span><span class="badge">Streamlit</span></div>
+        <h3>ETF Market Terminal</h3>
+        <p>Terminal interactiva para comparar ETFs: indicadores técnicos, filtros por categoría y exportación. Sin dataset versionado, así que no tiene informe: publicar gráficos con datos efímeros sería vender humo.</p>
+        <ul class="stack-list"><li>Streamlit</li><li>Plotly</li><li>Pandas</li></ul>
+        <div class="card__links">
+          <a class="card__link" href="https://github.com/Nicolenki7/etf-market-terminal" target="_blank" rel="noopener">Repo ↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ STACK ABIERTO ============ -->
+  <section class="section wrap" id="abierto">
+    <div class="section__head reveal">
+      <span class="num">03 — Ruta abierta</span>
+      <h2 class="section__title">Lo hice en Fabric. Ahora lo hago correr sin licencia.</h2>
+      <p class="section__sub">
+        Varios proyectos nacieron en Microsoft Fabric y quedan documentados con capturas, PDF y modelo semántico.
+        Como ese entorno ya no está disponible, la dirección es la misma arquitectura con piezas abiertas:
+        el objetivo es que cualquiera pueda clonar y ejecutar.
+      </p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="matrix">
+        <thead><tr><th>Pieza</th><th>Implementación original</th><th>Ruta abierta</th></tr></thead>
+        <tbody>
+          <tr><td>Ingesta</td><td>Dataflows Gen2, Shortcuts</td><td class="oss">Python + DuckDB + cron</td></tr>
+          <tr><td>Almacenamiento</td><td>OneLake, tablas Delta</td><td class="oss">Parquet local + DuckDB</td></tr>
+          <tr><td>Modelado</td><td>Warehouse y modelo semántico</td><td class="oss">dbt + Postgres</td></tr>
+          <tr><td>Orquestación</td><td>Pipelines de Fabric</td><td class="oss">Airflow / Dagster</td></tr>
+          <tr><td>Visualización</td><td>Power BI</td><td class="oss">Superset / Metabase</td></tr>
+          <tr><td>Calidad de datos</td><td>Validación manual</td><td class="oss">Tests de contrato + Great Expectations</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section__sub reveal" style="margin-top:18px">
+      La misma lógica aplica a Snowflake y BigQuery: SQL estándar que se puede mover a DuckDB sin reescribir el modelo.
+      Lo que cambia es la factura; lo que queda es el diseño.
+    </p>
+  </section>
+
+  <!-- ============ INFORMES ============ -->
+  <section class="section wrap" id="informes">
+    <div class="section__head reveal">
+      <span class="num">04 — Informes</span>
+      <h2 class="section__title">Ocho informes que se recalculan desde el CSV</h2>
+      <p class="section__sub">
+        Un generador en Python puro lee el dataset de cada repositorio, detecta separador y columnas, y dibuja el SVG inline.
+        Sin dependencias, sin datos inventados: la cifra que ves sale del archivo versionado.
+      </p>
+    </div>
+    <div class="reports">
+      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Churn · Telco</b><small>7.043 filas · gasto por contrato</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Reseñas · Sentimiento</b><small>100.000 filas · score por categoría</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener"><b>EGATUR · Turismo</b><small>2.881 filas · gasto por tabla y mes</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Global Store · Retail</b><small>9.800 filas · ventas por envío</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Crypto · Retornos</b><small>100 activos · con aviso de calidad</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener"><b>ETFbook · Flujos</b><small>12 filas · flujos por ticker</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Retail · RFM</b><small>4.338 clientes · segmentos</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener"><b>German Credit · Riesgo</b><small>1.000 solicitudes · deuda</small></a>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICACIONES ============ -->
+  <section class="section wrap" id="certificaciones">
+    <div class="section__head reveal">
+      <span class="num">05 — Credenciales</span>
+      <h2 class="section__title">Formación y certificaciones</h2>
+      <p class="section__sub">Quince credenciales. Clic en cualquiera para ampliarla.</p>
+    </div>
+    <div class="certs reveal">
+      <button class="cert" type="button" aria-label="Ampliar certificado 1"><img src="img/certs/cert_1.png" alt="Certificado 1" loading="lazy" width="190" height="132"><span>Credencial 01</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 2"><img src="img/certs/cert_2.png" alt="Certificado 2" loading="lazy" width="190" height="132"><span>Credencial 02</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 3"><img src="img/certs/cert_3.png" alt="Certificado 3" loading="lazy" width="190" height="132"><span>Credencial 03</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 4"><img src="img/certs/cert_4.png" alt="Certificado 4" loading="lazy" width="190" height="132"><span>Credencial 04</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 5"><img src="img/certs/cert_5.png" alt="Certificado 5" loading="lazy" width="190" height="132"><span>Credencial 05</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 6"><img src="img/certs/cert_6.png" alt="Certificado 6" loading="lazy" width="190" height="132"><span>Credencial 06</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 7"><img src="img/certs/cert_7.png" alt="Certificado 7" loading="lazy" width="190" height="132"><span>Credencial 07</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 8"><img src="img/certs/cert_8.png" alt="Certificado 8" loading="lazy" width="190" height="132"><span>Credencial 08</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 9"><img src="img/certs/cert_9.png" alt="Certificado 9" loading="lazy" width="190" height="132"><span>Credencial 09</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 10"><img src="img/certs/cert_10.png" alt="Certificado 10" loading="lazy" width="190" height="132"><span>Credencial 10</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 11"><img src="img/certs/cert_11.png" alt="Certificado 11" loading="lazy" width="190" height="132"><span>Credencial 11</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 12"><img src="img/certs/cert_12.png" alt="Certificado 12" loading="lazy" width="190" height="132"><span>Credencial 12</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 13"><img src="img/certs/cert_13.png" alt="Certificado 13" loading="lazy" width="190" height="132"><span>Credencial 13</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 14"><img src="img/certs/cert_14.png" alt="Certificado 14" loading="lazy" width="190" height="132"><span>Credencial 14</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 15"><img src="img/certs/cert_15.png" alt="Certificado 15" loading="lazy" width="190" height="132"><span>Credencial 15</span></button>
+    </div>
+  </section>
+
+  <!-- ============ IDIOMAS ============ -->
+  <section class="section wrap" id="idiomas">
+    <div class="section__head reveal">
+      <span class="num">06 — Idiomas</span>
+      <h2 class="section__title">Cuatro idiomas de trabajo</h2>
+    </div>
+    <div class="langs">
+      <div class="lang" style="--lvl:1"><b>Español</b><small>Nativo</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.86"><b>Inglés</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.8"><b>Portugués</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.6"><b>Francés</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="section wrap" id="contacto">
+    <div class="section__head reveal">
+      <span class="num">07 — Contacto</span>
+      <h2 class="section__title">Hablemos de datos</h2>
+      <p class="section__sub">Abierto a posiciones de Data Engineer, Analytics Engineer y BI en Madrid o en remoto.</p>
+    </div>
+    <div class="contact">
+      <div class="contact__links reveal">
+        <a class="social" href="mailto:zalazarn046@gmail.com"><b>Email</b><small>zalazarn046@gmail.com</small><i>↗</i></a>
+        <a class="social" href="https://www.linkedin.com/in/nicolas-zalazar-63340923a" target="_blank" rel="noopener"><b>LinkedIn</b><small>nicolas-zalazar-63340923a</small><i>↗</i></a>
+        <a class="social" href="https://github.com/Nicolenki7" target="_blank" rel="noopener"><b>GitHub</b><small>Nicolenki7 · 15 repos públicos</small><i>↗</i></a>
+        <a class="social" href="https://wa.me/34614594035" target="_blank" rel="noopener"><b>WhatsApp</b><small>+34 614 594 035</small><i>↗</i></a>
+        <a class="social" href="https://www.kaggle.com/nicolaszalazar73" target="_blank" rel="noopener"><b>Kaggle</b><small>nicolaszalazar73</small><i>↗</i></a>
+        <a class="social" href="https://public.tableau.com/app/profile/nicolas.zalazar6519/vizzes" target="_blank" rel="noopener"><b>Tableau Public</b><small>nicolas.zalazar6519</small><i>↗</i></a>
+      </div>
+      <div class="cv-box reveal">
+        <h3>Currículum</h3>
+        <p>Tres versiones del mismo perfil. La de inglés es la que uso para procesos internacionales.</p>
+        <div class="cv-list">
+          <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf">CV · Español</a>
+          <a class="btn btn--sm" href="docs/cv_ENG_Ult.pdf">CV · English</a>
+          <a class="btn btn--sm" href="docs/cv_PT_Ult_Remote.pdf">CV · Português</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© <span id="year">2026</span> Nicolás Zalazar · Madrid</span>
+    <span>HTML, CSS y JS escritos a mano · sin frameworks · <a href="https://github.com/Nicolenki7/Portfolio" target="_blank" rel="noopener">código del sitio</a></span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Certificado ampliado" tabindex="-1">
+  <button class="modal__close" type="button" aria-label="Cerrar">✕</button>
+  <img id="modalImg" src="" alt="">
+</div>
+
+<script src="assets/site.js" defer></script>
 </body>
 </html>
