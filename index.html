@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/components.css">
+<link rel="stylesheet" href="assets/hosp.css">
 </head>
 <body>
 
@@ -27,14 +28,19 @@
   <div class="nav__inner">
     <a class="brand" href="#top"><i class="brand__dot" aria-hidden="true"></i>Nicolás Zalazar</a>
     <nav class="nav__links" aria-label="Secciones">
-      <a class="nav__link" href="#stack">Stack</a>
-      <a class="nav__link" href="#proyectos">Proyectos</a>
-      <a class="nav__link" href="#abierto">Stack abierto</a>
-      <a class="nav__link" href="#informes">Informes</a>
-      <a class="nav__link" href="#certificaciones">Credenciales</a>
-      <a class="nav__link" href="#contacto">Contacto</a>
+      <a class="nav__link" href="#stack" data-i18n="nav.stack">Stack</a>
+      <a class="nav__link" href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a class="nav__link" href="#hospitalidad" data-i18n="nav.hosp">Hospitalidad</a>
+      <a class="nav__link" href="#abierto" data-i18n="nav.open">Stack abierto</a>
+      <a class="nav__link" href="#informes" data-i18n="nav.reports">Informes</a>
+      <a class="nav__link" href="#certificaciones" data-i18n="nav.creds">Credenciales</a>
+      <a class="nav__link" href="#contacto" data-i18n="nav.contact">Contacto</a>
     </nav>
-    <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf">CV</a>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button class="lang-btn is-on" type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf" data-cv>CV</a>
   </div>
 </header>
 
@@ -44,21 +50,21 @@
   <section class="hero wrap">
     <div class="hero__grid">
       <div>
-        <p class="eyebrow">Madrid · remoto · abierto a propuestas</p>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Madrid · remoto · abierto a propuestas</p>
         <h1>Nicolás<br>Zalazar</h1>
         <div class="rotator" id="rotator" data-roles='["Data Engineer","Analítica de negocio","De Fabric a stack abierto","Automatización con IA"]'>
           <span aria-hidden="true">&gt;</span><b>Data Engineer</b><span class="caret" aria-hidden="true"></span>
         </div>
-        <p class="hero__lead">
+        <p class="hero__lead" data-i18n-html="hero.lead">
           Construyo pipelines y modelos de datos que terminan en una decisión.
           <strong>15 repositorios públicos</strong>, <strong>8 informes generados desde el propio dataset</strong>
           y <strong>3 pipelines con tests que corren solos</strong>.
           Si no se puede reproducir, no cuenta.
         </p>
         <div class="hero__cta">
-          <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
-          <a class="btn" href="#abierto">Cómo trabajo el dato</a>
-          <a class="btn" href="https://github.com/Nicolenki7" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn--primary" href="#proyectos" data-i18n="hero.cta1">Ver proyectos</a>
+          <a class="btn" href="#abierto" data-i18n="hero.cta2">Cómo trabajo el dato</a>
+          <a class="btn" href="https://github.com/Nicolenki7" target="_blank" rel="noopener" data-i18n="hero.cta3">GitHub ↗</a>
         </div>
       </div>
 
@@ -79,10 +85,10 @@
     </div>
 
     <div class="kpis">
-      <div class="kpi"><div class="kpi__v"><span data-count="15">15</span></div><div class="kpi__l">repositorios públicos</div></div>
-      <div class="kpi"><div class="kpi__v"><span data-count="8">8</span><em> · </em><span style="font-size:.95rem;font-weight:600">desde CSV</span></div><div class="kpi__l">informes reproducibles</div></div>
-      <div class="kpi"><div class="kpi__v"><span data-count="3">3</span></div><div class="kpi__l">pipelines con CI</div></div>
-      <div class="kpi"><div class="kpi__v"><span data-count="4">4</span></div><div class="kpi__l">idiomas</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="15">15</span></div><div class="kpi__l" data-i18n="kpi.repos">repositorios públicos</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="8">8</span><em> · </em><span style="font-size:.95rem;font-weight:600" data-i18n="kpi.csv">desde CSV</span></div><div class="kpi__l" data-i18n="kpi.reports">informes reproducibles</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="3">3</span></div><div class="kpi__l" data-i18n="kpi.ci">pipelines con CI</div></div>
+      <div class="kpi"><div class="kpi__v"><span data-count="4">4</span></div><div class="kpi__l" data-i18n="kpi.langs">idiomas</div></div>
     </div>
   </section>
 
@@ -100,27 +106,27 @@
   <section class="section wrap" id="stack">
     <div class="section__head reveal">
       <span class="num">01 — Stack</span>
-      <h2 class="section__title">Con qué construyo, y qué estoy adoptando</h2>
-      <p class="section__sub">Lo que ya usé en producción y lo que estoy migrando a herramientas abiertas van separados a propósito: en verde, la ruta abierta.</p>
+      <h2 class="section__title" data-i18n="stack.title">Con qué construyo, y qué estoy adoptando</h2>
+      <p class="section__sub" data-i18n="stack.sub">Lo que ya usé en producción y lo que estoy migrando a herramientas abiertas van separados a propósito: en verde, la ruta abierta.</p>
     </div>
     <div class="stack-grid">
-      <div class="stack-card reveal"><h3>Datos &amp; ETL</h3><div class="chips">
+      <div class="stack-card reveal"><h3 data-i18n="stack.c1">Datos &amp; ETL</h3><div class="chips">
         <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">PySpark</span>
         <span class="chip">Power Query M</span><span class="chip chip--oss">DuckDB</span><span class="chip chip--oss">dbt</span>
       </div></div>
-      <div class="stack-card reveal"><h3>Almacenamiento &amp; modelado</h3><div class="chips">
+      <div class="stack-card reveal"><h3 data-i18n="stack.c2">Almacenamiento &amp; modelado</h3><div class="chips">
         <span class="chip">Delta Lake</span><span class="chip">OneLake</span><span class="chip">Esquema estrella</span>
         <span class="chip">Medallion</span><span class="chip chip--oss">Parquet</span><span class="chip chip--oss">Postgres</span>
       </div></div>
-      <div class="stack-card reveal"><h3>BI &amp; visualización</h3><div class="chips">
+      <div class="stack-card reveal"><h3 data-i18n="stack.c3">BI &amp; visualización</h3><div class="chips">
         <span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Streamlit</span>
         <span class="chip">Plotly</span><span class="chip chip--oss">Superset</span>
       </div></div>
-      <div class="stack-card reveal"><h3>Código &amp; calidad</h3><div class="chips">
+      <div class="stack-card reveal"><h3 data-i18n="stack.c4">Código &amp; calidad</h3><div class="chips">
         <span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Tests de contrato</span>
         <span class="chip chip--oss">pytest</span><span class="chip chip--oss">Great Expectations</span>
       </div></div>
-      <div class="stack-card reveal"><h3>Automatización &amp; IA</h3><div class="chips">
+      <div class="stack-card reveal"><h3 data-i18n="stack.c5">Automatización &amp; IA</h3><div class="chips">
         <span class="chip">n8n</span><span class="chip">APIs REST</span><span class="chip">LLM · triage de reseñas</span>
         <span class="chip chip--oss">Airflow</span><span class="chip chip--oss">Dagster</span>
       </div></div>
@@ -131,151 +137,177 @@
   <section class="section wrap" id="proyectos">
     <div class="section__head reveal">
       <span class="num">02 — Proyectos</span>
-      <h2 class="section__title">Doce repositorios, con lo que hay dentro</h2>
-      <p class="section__sub">Cada tarjeta enlaza al código, al plan de ejecución y —cuando el dataset lo permite— a un informe generado leyendo el CSV del repo.</p>
+      <h2 class="section__title" data-i18n="proj.title">Doce repositorios, con lo que hay dentro</h2>
+      <p class="section__sub" data-i18n="proj.sub">Cada tarjeta enlaza al código, al plan de ejecución y —cuando el dataset lo permite— a un informe generado leyendo el CSV del repo.</p>
     </div>
 
     <div class="filters reveal" role="tablist" aria-label="Filtrar proyectos">
-      <button class="filter is-on" data-filter="all">Todos</button>
-      <button class="filter" data-filter="datos">Ingeniería de datos</button>
-      <button class="filter" data-filter="analitica">Analítica</button>
-      <button class="filter" data-filter="ml">Machine learning</button>
-      <button class="filter" data-filter="finanzas">Finanzas</button>
-      <button class="filter" data-filter="fabric">Origen Fabric</button>
+      <button class="filter is-on" data-filter="all" data-i18n="f.all">Todos</button>
+      <button class="filter" data-filter="datos" data-i18n="f.data">Ingeniería de datos</button>
+      <button class="filter" data-filter="analitica" data-i18n="f.analytics">Analítica</button>
+      <button class="filter" data-filter="ml" data-i18n="f.ml">Machine learning</button>
+      <button class="filter" data-filter="finanzas" data-i18n="f.fin">Finanzas</button>
+      <button class="filter" data-filter="fabric" data-i18n="f.fabric">Origen Fabric</button>
     </div>
 
     <div class="grid">
       <article class="card reveal" data-cat="datos fabric">
-        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--fabric">Fabric · original</span></div>
-        <h3>Data Mesh · Logística</h3>
-        <p>Arquitectura Data Mesh multi-dominio sobre Microsoft Fabric: ingesta, modelo semántico en DAX y gobernanza documentada con linaje.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.dataeng">Ingeniería de datos</span><span class="badge badge--fabric" data-i18n="badge.fabric">Fabric · original</span></div>
+        <h3 data-i18n="c1.title">Data Mesh · Logística</h3>
+        <p data-i18n-html="c1.desc">Arquitectura Data Mesh multi-dominio sobre Microsoft Fabric: ingesta, modelo semántico en DAX y gobernanza documentada con linaje.</p>
         <ul class="stack-list"><li>PySpark</li><li>KQL</li><li>OneLake</li><li>DAX</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics" target="_blank" rel="noopener">Repo ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
-          <a class="card__link card__link--muted" href="proyectos/datamesh-logistica.html">Caso completo</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/DataMesh_Fabric_Logistics/blob/main/docs/PLAN.md" target="_blank" rel="noopener"><span data-i18n="lk.plan">Plan</span> ↗</a>
+          <a class="card__link card__link--muted" href="proyectos/datamesh-logistica.html" data-i18n="lk.case">Caso completo</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="datos ml">
-        <div class="card__top"><span class="tag">Datos + ML</span><span class="badge">Snowflake</span></div>
-        <h3>AdTech · Detección de fraude</h3>
-        <p>Detección de fraude publicitario con SQL avanzado y Snowpark en Snowflake, más dashboard operativo en Streamlit.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.dataml">Datos + ML</span><span class="badge">Snowflake</span></div>
+        <h3 data-i18n="c2.title">AdTech · Detección de fraude</h3>
+        <p data-i18n-html="c2.desc">Detección de fraude publicitario con SQL avanzado y Snowpark en Snowflake, más dashboard operativo en Streamlit.</p>
         <ul class="stack-list"><li>SQL</li><li>Snowpark</li><li>Streamlit</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform" target="_blank" rel="noopener">Repo ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/AdTech-Fraud-Detection-Platform/blob/main/docs/PLAN.md" target="_blank" rel="noopener"><span data-i18n="lk.plan">Plan</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="datos fabric finanzas">
-        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--data">dato fuente vacío</span></div>
-        <h3>Crypto · Arquitectura medallion</h3>
-        <p>Bronze, silver y gold para datos de criptomonedas en Fabric, con Power BI encima. El informe declara que el CSV principal está vacío y trabaja sobre la copia: el problema está documentado, no escondido.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.dataeng">Ingeniería de datos</span><span class="badge badge--data" data-i18n="badge.dataq">dato fuente vacío</span></div>
+        <h3 data-i18n="c3.title">Crypto · Arquitectura medallion</h3>
+        <p data-i18n-html="c3.desc">Bronze, silver y gold para datos de criptomonedas en Fabric, con Power BI encima. El informe declara que el CSV principal está vacío y trabaja sobre la copia: el problema está documentado, no escondido.</p>
         <ul class="stack-list"><li>PySpark</li><li>Delta Lake</li><li>Power BI</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="datos analitica fabric">
-        <div class="card__top"><span class="tag">Datos + BI</span><span class="badge badge--fabric">Fabric · original</span></div>
-        <h3>Global Store · Retail</h3>
-        <p>ETL en PySpark y esquema estrella para 9.800 pedidos: ventas por modo de envío y evolución mensual desde 2015.</p>
-        <ul class="stack-list"><li>PySpark</li><li>Esquema estrella</li><li>Power BI</li></ul>
+        <div class="card__top"><span class="tag" data-i18n="tag.databi">Datos + BI</span><span class="badge badge--fabric" data-i18n="badge.fabric">Fabric · original</span></div>
+        <h3 data-i18n="c4.title">Global Store · Retail</h3>
+        <p data-i18n-html="c4.desc">ETL en PySpark y esquema estrella para 9.800 pedidos: ventas por modo de envío y evolución mensual desde 2015. Tiene además una versión en DuckDB que corre sin licencia.</p>
+        <ul class="stack-list"><li>PySpark</li><li>Esquema estrella</li><li>DuckDB</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="datos analitica fabric">
-        <div class="card__top"><span class="tag">Datos + BI</span><span class="badge badge--fabric">Fabric · original</span></div>
-        <h3>Olist · E-commerce</h3>
-        <p>BI integral para el marketplace brasileño: siete consultas Power Query M, Dataflows Gen2 y modelo dimensional con geolocalización.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.databi">Datos + BI</span><span class="badge badge--fabric" data-i18n="badge.fabric">Fabric · original</span></div>
+        <h3 data-i18n="c5.title">Olist · E-commerce</h3>
+        <p data-i18n-html="c5.desc">BI integral para el marketplace brasileño: siete consultas Power Query M, Dataflows Gen2 y modelo dimensional con geolocalización.</p>
         <ul class="stack-list"><li>Power Query M</li><li>Dataflows Gen2</li><li>Esquema estrella</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project" target="_blank" rel="noopener">Repo ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project/blob/main/docs/PLAN.md" target="_blank" rel="noopener">Plan ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Olist_E-commerce-Microsoft-Fabric-Project/blob/main/docs/PLAN.md" target="_blank" rel="noopener"><span data-i18n="lk.plan">Plan</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="datos">
-        <div class="card__top"><span class="tag">Ingeniería de datos</span><span class="badge badge--ci">CI verde</span></div>
-        <h3>EGATUR · Turismo (INE)</h3>
-        <p>ETL de cinco tablas del INE a un maestro longitudinal. El test de contrato detecta el separador <code>;</code>, el BOM y los cambios de cabecera antes de que rompan el análisis.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.dataeng">Ingeniería de datos</span><span class="badge badge--ci" data-i18n="badge.ci">CI verde</span></div>
+        <h3 data-i18n="c6.title">EGATUR · Turismo (INE)</h3>
+        <p data-i18n-html="c6.desc">ETL de cinco tablas del INE a un maestro longitudinal. El test de contrato detecta el separador <code>;</code>, el BOM y los cambios de cabecera antes de que rompan el análisis.</p>
         <ul class="stack-list"><li>Python</li><li>Pandas</li><li>GitHub Actions</li><li>n8n</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="analitica ml">
-        <div class="card__top"><span class="tag">Analítica + ML</span><span class="badge badge--ci">CI verde</span></div>
-        <h3>Churn · Telco</h3>
-        <p>Segmentación de riesgo y drivers de fuga sobre 7.043 clientes. Month-to-month concentra el 55% de la base y el gasto medio más bajo: el hallazgo que ordena la acción comercial.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.analytsml">Analítica + ML</span><span class="badge badge--ci" data-i18n="badge.ci">CI verde</span></div>
+        <h3 data-i18n="c7.title">Churn · Telco</h3>
+        <p data-i18n-html="c7.desc">Segmentación de riesgo y drivers de fuga sobre 7.043 clientes. Month-to-month concentra el 55% de la base y el gasto medio más bajo: el hallazgo que ordena la acción comercial.</p>
         <ul class="stack-list"><li>Regresión logística</li><li>Tableau</li><li>Python</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Churn-Project" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="ml analitica">
-        <div class="card__top"><span class="tag">NLP</span><span class="badge badge--ci">CI verde</span></div>
-        <h3>Reseñas · Drivers de mejora</h3>
-        <p>100.000 reseñas puntuadas con VADER para priorizar qué arreglar primero: 89.858 positivas frente a 7.987 negativas, ordenadas por producto.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.nlp">NLP</span><span class="badge badge--ci" data-i18n="badge.ci">CI verde</span></div>
+        <h3 data-i18n="c8.title">Reseñas · Drivers de mejora</h3>
+        <p data-i18n-html="c8.desc">100.000 reseñas puntuadas con VADER para priorizar qué arreglar primero: 89.858 positivas frente a 7.987 negativas, ordenadas por producto.</p>
         <ul class="stack-list"><li>VADER</li><li>Pandas</li><li>n8n + LLM</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="finanzas analitica">
-        <div class="card__top"><span class="tag">Finanzas</span><span class="badge">BigQuery</span></div>
-        <h3>ETFbook · Flujos de ETFs</h3>
-        <p>SQL de ventana en BigQuery sobre flujos de ETFs y dashboard Streamlit. Su plan documenta el bug real que hoy rompe el script: pide <code>net_flow</code> y la columna es <code>net_flows_usd_m</code>.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.finance">Finanzas</span><span class="badge">BigQuery</span></div>
+        <h3 data-i18n="c9.title">ETFbook · Flujos de ETFs</h3>
+        <p data-i18n-html="c9.desc">SQL de ventana en BigQuery sobre flujos de ETFs y dashboard Streamlit. Su plan documenta el bug real que hoy rompe el script: pide <code>net_flow</code> y la columna es <code>net_flows_usd_m</code>.</p>
         <ul class="stack-list"><li>BigQuery</li><li>SQL ventanas</li><li>Streamlit</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="analitica">
-        <div class="card__top"><span class="tag">Analítica</span><span class="badge">RFM</span></div>
-        <h3>Retail · Segmentación RFM</h3>
-        <p>4.338 clientes segmentados por recencia, frecuencia y monto. Los leales son 1.050, pero hay 1.015 dormidos: ahí está el margen de una campaña de reactivación.</p>
+        <div class="card__top"><span class="tag" data-i18n="f.analytics">Analítica</span><span class="badge">RFM</span></div>
+        <h3 data-i18n="c10.title">Retail · Segmentación RFM</h3>
+        <p data-i18n-html="c10.desc">4.338 clientes segmentados por recencia, frecuencia y monto. Los leales son 1.050, pero hay 1.015 dormidos: ahí está el margen de una campaña de reactivación.</p>
         <ul class="stack-list"><li>Pandas</li><li>RFM</li><li>Python</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis" target="_blank" rel="noopener">Repo ↗</a>
-          <a class="card__link card__link--muted" href="proyectos/online-retail-rfm.html">Caso completo</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
+          <a class="card__link card__link--muted" href="proyectos/online-retail-rfm.html" data-i18n="lk.case">Caso completo</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="ml finanzas">
-        <div class="card__top"><span class="tag">Riesgo de crédito</span><span class="badge">1.000 solicitudes</span></div>
-        <h3>German Credit · Scoring</h3>
-        <p>Modelo de riesgo con regresión logística y lectura de coeficientes como historia de negocio: qué variables mueven la decisión y cuánto pesa cada una.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.credit">Riesgo de crédito</span><span class="badge" data-i18n="badge.apps">1.000 solicitudes</span></div>
+        <h3 data-i18n="c11.title">German Credit · Scoring</h3>
+        <p data-i18n-html="c11.desc">Modelo de riesgo con regresión logística y lectura de coeficientes como historia de negocio: qué variables mueven la decisión y cuánto pesa cada una.</p>
         <ul class="stack-list"><li>Scikit-learn</li><li>Pandas</li><li>Storytelling</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener">Informe ↗</a>
-          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener"><span data-i18n="lk.report">Informe</span> ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="finanzas datos">
-        <div class="card__top"><span class="tag">Finanzas</span><span class="badge">Streamlit</span></div>
-        <h3>ETF Market Terminal</h3>
-        <p>Terminal interactiva para comparar ETFs: indicadores técnicos, filtros por categoría y exportación. Sin dataset versionado, así que no tiene informe: publicar gráficos con datos efímeros sería vender humo.</p>
+        <div class="card__top"><span class="tag" data-i18n="tag.finance">Finanzas</span><span class="badge">Streamlit</span></div>
+        <h3 data-i18n="c12.title">ETF Market Terminal</h3>
+        <p data-i18n-html="c12.desc">Terminal interactiva para comparar ETFs: indicadores técnicos, filtros por categoría y exportación. Sin dataset versionado, así que no tiene informe: publicar gráficos con datos efímeros sería vender humo.</p>
         <ul class="stack-list"><li>Streamlit</li><li>Plotly</li><li>Pandas</li></ul>
         <div class="card__links">
-          <a class="card__link" href="https://github.com/Nicolenki7/etf-market-terminal" target="_blank" rel="noopener">Repo ↗</a>
+          <a class="card__link" href="https://github.com/Nicolenki7/etf-market-terminal" target="_blank" rel="noopener"><span data-i18n="lk.repo">Repo</span> ↗</a>
         </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ HOSPITALIDAD ============ -->
+  <section class="section wrap" id="hospitalidad">
+    <div class="section__head reveal">
+      <span class="num">03 — Hospitalidad</span>
+      <h2 class="section__title" data-i18n="hs.title">La parte del perfil que no sale de un notebook</h2>
+      <p class="section__sub" data-i18n="hs.sub">Antes del dato estuvo el mostrador. Años de operación hotelera real, y eso cambia cómo leo un número de Revenue.</p>
+    </div>
+    <div class="hosp-grid">
+      <article class="hosp-card reveal">
+        <span class="kicker" data-i18n="hs.c1k">Night Audit Specialist</span>
+        <h3 data-i18n="hs.c1t">5★ Accor &amp; Luxury Resorts</h3>
+        <p data-i18n="hs.c1d">Experiencia en hoteles de alta gama en Argentina (Accor) y Portugal (Monchique Resort &amp; Spa). Especializado en auditoría nocturna y control financiero operativo.</p>
+      </article>
+      <article class="hosp-card reveal">
+        <span class="kicker" data-i18n="hs.c2k">Hotel Operations</span>
+        <h3 data-i18n="hs.c2t">Boutique &amp; Urban Hotels</h3>
+        <p data-i18n="hs.c2d">Gestión integral en hoteles boutique en España y Portugal. Visión 360° del Front Office y Guest Experience.</p>
+      </article>
+      <article class="hosp-card reveal">
+        <span class="kicker" data-i18n="hs.c3k">Revenue Data Strategy</span>
+        <h3 data-i18n="hs.c3t">Smart Data Solutions</h3>
+        <p data-i18n="hs.c3d">Uso el conocimiento del terreno para diseñar soluciones BI que resuelven problemas reales de Revenue y Operaciones.</p>
       </article>
     </div>
   </section>
@@ -283,101 +315,91 @@
   <!-- ============ STACK ABIERTO ============ -->
   <section class="section wrap" id="abierto">
     <div class="section__head reveal">
-      <span class="num">03 — Ruta abierta</span>
-      <h2 class="section__title">Lo hice en Fabric. Ahora lo hago correr sin licencia.</h2>
-      <p class="section__sub">
-        Varios proyectos nacieron en Microsoft Fabric y quedan documentados con capturas, PDF y modelo semántico.
-        Como ese entorno ya no está disponible, la dirección es la misma arquitectura con piezas abiertas:
-        el objetivo es que cualquiera pueda clonar y ejecutar.
-      </p>
+      <span class="num">04 — Ruta abierta</span>
+      <h2 class="section__title" data-i18n="op.title">Lo hice en Fabric. Ahora lo hago correr sin licencia.</h2>
+      <p class="section__sub" data-i18n="op.sub">Varios proyectos nacieron en Microsoft Fabric y quedan documentados con capturas, PDF y modelo semántico. Como ese entorno ya no está disponible, la dirección es la misma arquitectura con piezas abiertas: el objetivo es que cualquiera pueda clonar y ejecutar.</p>
     </div>
     <div class="table-wrap reveal">
       <table class="matrix">
-        <thead><tr><th>Pieza</th><th>Implementación original</th><th>Ruta abierta</th></tr></thead>
+        <thead><tr><th data-i18n="op.th1">Pieza</th><th data-i18n="op.th2">Implementación original</th><th data-i18n="op.th3">Ruta abierta</th></tr></thead>
         <tbody>
-          <tr><td>Ingesta</td><td>Dataflows Gen2, Shortcuts</td><td class="oss">Python + DuckDB + cron</td></tr>
-          <tr><td>Almacenamiento</td><td>OneLake, tablas Delta</td><td class="oss">Parquet local + DuckDB</td></tr>
-          <tr><td>Modelado</td><td>Warehouse y modelo semántico</td><td class="oss">dbt + Postgres</td></tr>
-          <tr><td>Orquestación</td><td>Pipelines de Fabric</td><td class="oss">Airflow / Dagster</td></tr>
-          <tr><td>Visualización</td><td>Power BI</td><td class="oss">Superset / Metabase</td></tr>
-          <tr><td>Calidad de datos</td><td>Validación manual</td><td class="oss">Tests de contrato + Great Expectations</td></tr>
+          <tr><td data-i18n="op.r1l">Ingesta</td><td data-i18n="op.r1o">Dataflows Gen2, Shortcuts</td><td class="oss">Python + DuckDB + cron</td></tr>
+          <tr><td data-i18n="op.r2l">Almacenamiento</td><td data-i18n="op.r2o">OneLake, tablas Delta</td><td class="oss">Parquet + DuckDB</td></tr>
+          <tr><td data-i18n="op.r3l">Modelado</td><td data-i18n="op.r3o">Warehouse y modelo semántico</td><td class="oss">dbt + Postgres</td></tr>
+          <tr><td data-i18n="op.r4l">Orquestación</td><td data-i18n="op.r4o">Pipelines de Fabric</td><td class="oss">Airflow / Dagster</td></tr>
+          <tr><td data-i18n="op.r5l">Visualización</td><td data-i18n="op.r5o">Power BI</td><td class="oss">Superset / Metabase</td></tr>
+          <tr><td data-i18n="op.r6l">Calidad de datos</td><td data-i18n="op.r6o">Validación manual</td><td class="oss">Tests de contrato + Great Expectations</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="section__sub reveal" style="margin-top:18px">
-      La misma lógica aplica a Snowflake y BigQuery: SQL estándar que se puede mover a DuckDB sin reescribir el modelo.
-      Lo que cambia es la factura; lo que queda es el diseño.
-    </p>
+    <p class="section__sub reveal" style="margin-top:18px" data-i18n="op.note">La misma lógica aplica a Snowflake y BigQuery: SQL estándar que se puede mover a DuckDB sin reescribir el modelo. Lo que cambia es la factura; lo que queda es el diseño.</p>
   </section>
 
   <!-- ============ INFORMES ============ -->
   <section class="section wrap" id="informes">
     <div class="section__head reveal">
-      <span class="num">04 — Informes</span>
-      <h2 class="section__title">Ocho informes que se recalculan desde el CSV</h2>
-      <p class="section__sub">
-        Un generador en Python puro lee el dataset de cada repositorio, detecta separador y columnas, y dibuja el SVG inline.
-        Sin dependencias, sin datos inventados: la cifra que ves sale del archivo versionado.
-      </p>
+      <span class="num">05 — Informes</span>
+      <h2 class="section__title" data-i18n="rp.title">Ocho informes que se recalculan desde el CSV</h2>
+      <p class="section__sub" data-i18n="rp.sub">Un generador en Python puro lee el dataset de cada repositorio, detecta separador y columnas, y dibuja el SVG inline. Sin dependencias, sin datos inventados: la cifra que ves sale del archivo versionado.</p>
     </div>
     <div class="reports">
-      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Churn · Telco</b><small>7.043 filas · gasto por contrato</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Reseñas · Sentimiento</b><small>100.000 filas · score por categoría</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener"><b>EGATUR · Turismo</b><small>2.881 filas · gasto por tabla y mes</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Global Store · Retail</b><small>9.800 filas · ventas por envío</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Crypto · Retornos</b><small>100 activos · con aviso de calidad</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener"><b>ETFbook · Flujos</b><small>12 filas · flujos por ticker</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener"><b>Retail · RFM</b><small>4.338 clientes · segmentos</small></a>
-      <a class="report reveal" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener"><b>German Credit · Riesgo</b><small>1.000 solicitudes · deuda</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Churn-Project/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp1">Churn · Telco</b><small data-i18n="rp1s">7.043 filas · gasto por contrato</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp2">Reseñas · Sentimiento</b><small data-i18n="rp2s">100.000 filas · score por categoría</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/ETL_Egatur_INE_Esp/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp3">EGATUR · Turismo</b><small data-i18n="rp3s">2.881 filas · gasto por tabla y mes</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp4">Global Store · Retail</b><small data-i18n="rp4s">9.800 filas · ventas por envío</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Crypto_Medallion_Analytics/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp5">Crypto · Retornos</b><small data-i18n="rp5s">100 activos · con aviso de calidad</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/ETFbook-data-analytics-case-study/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp6">ETFbook · Flujos</b><small data-i18n="rp6s">12 filas · flujos por ticker</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp7">Retail · RFM</b><small data-i18n="rp7s">4.338 clientes · segmentos</small></a>
+      <a class="report reveal" href="https://github.com/Nicolenki7/German_Credit_Scoring_Data/blob/main/docs/report.html" target="_blank" rel="noopener"><b data-i18n="rp8">German Credit · Riesgo</b><small data-i18n="rp8s">1.000 solicitudes · deuda</small></a>
     </div>
   </section>
 
   <!-- ============ CERTIFICACIONES ============ -->
   <section class="section wrap" id="certificaciones">
     <div class="section__head reveal">
-      <span class="num">05 — Credenciales</span>
-      <h2 class="section__title">Formación y certificaciones</h2>
-      <p class="section__sub">Quince credenciales. Clic en cualquiera para ampliarla.</p>
+      <span class="num">06 — Credenciales</span>
+      <h2 class="section__title" data-i18n="cr.title">Formación y certificaciones</h2>
+      <p class="section__sub" data-i18n="cr.sub">Quince credenciales. Clic en cualquiera para ampliarla.</p>
     </div>
     <div class="certs reveal">
-      <button class="cert" type="button" aria-label="Ampliar certificado 1"><img src="img/certs/cert_1.png" alt="Certificado 1" loading="lazy" width="190" height="132"><span>Credencial 01</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 2"><img src="img/certs/cert_2.png" alt="Certificado 2" loading="lazy" width="190" height="132"><span>Credencial 02</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 3"><img src="img/certs/cert_3.png" alt="Certificado 3" loading="lazy" width="190" height="132"><span>Credencial 03</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 4"><img src="img/certs/cert_4.png" alt="Certificado 4" loading="lazy" width="190" height="132"><span>Credencial 04</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 5"><img src="img/certs/cert_5.png" alt="Certificado 5" loading="lazy" width="190" height="132"><span>Credencial 05</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 6"><img src="img/certs/cert_6.png" alt="Certificado 6" loading="lazy" width="190" height="132"><span>Credencial 06</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 7"><img src="img/certs/cert_7.png" alt="Certificado 7" loading="lazy" width="190" height="132"><span>Credencial 07</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 8"><img src="img/certs/cert_8.png" alt="Certificado 8" loading="lazy" width="190" height="132"><span>Credencial 08</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 9"><img src="img/certs/cert_9.png" alt="Certificado 9" loading="lazy" width="190" height="132"><span>Credencial 09</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 10"><img src="img/certs/cert_10.png" alt="Certificado 10" loading="lazy" width="190" height="132"><span>Credencial 10</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 11"><img src="img/certs/cert_11.png" alt="Certificado 11" loading="lazy" width="190" height="132"><span>Credencial 11</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 12"><img src="img/certs/cert_12.png" alt="Certificado 12" loading="lazy" width="190" height="132"><span>Credencial 12</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 13"><img src="img/certs/cert_13.png" alt="Certificado 13" loading="lazy" width="190" height="132"><span>Credencial 13</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 14"><img src="img/certs/cert_14.png" alt="Certificado 14" loading="lazy" width="190" height="132"><span>Credencial 14</span></button>
-      <button class="cert" type="button" aria-label="Ampliar certificado 15"><img src="img/certs/cert_15.png" alt="Certificado 15" loading="lazy" width="190" height="132"><span>Credencial 15</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 1"><img src="img/certs/cert_1.png" alt="Certificado 1" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 01</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 2"><img src="img/certs/cert_2.png" alt="Certificado 2" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 02</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 3"><img src="img/certs/cert_3.png" alt="Certificado 3" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 03</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 4"><img src="img/certs/cert_4.png" alt="Certificado 4" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 04</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 5"><img src="img/certs/cert_5.png" alt="Certificado 5" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 05</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 6"><img src="img/certs/cert_6.png" alt="Certificado 6" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 06</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 7"><img src="img/certs/cert_7.png" alt="Certificado 7" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 07</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 8"><img src="img/certs/cert_8.png" alt="Certificado 8" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 08</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 9"><img src="img/certs/cert_9.png" alt="Certificado 9" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 09</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 10"><img src="img/certs/cert_10.png" alt="Certificado 10" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 10</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 11"><img src="img/certs/cert_11.png" alt="Certificado 11" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 11</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 12"><img src="img/certs/cert_12.png" alt="Certificado 12" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 12</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 13"><img src="img/certs/cert_13.png" alt="Certificado 13" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 13</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 14"><img src="img/certs/cert_14.png" alt="Certificado 14" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 14</span></button>
+      <button class="cert" type="button" aria-label="Ampliar certificado 15"><img src="img/certs/cert_15.png" alt="Certificado 15" loading="lazy" width="190" height="132"><span><i data-i18n="cr.label">Credencial</i> 15</span></button>
     </div>
   </section>
 
   <!-- ============ IDIOMAS ============ -->
   <section class="section wrap" id="idiomas">
     <div class="section__head reveal">
-      <span class="num">06 — Idiomas</span>
-      <h2 class="section__title">Cuatro idiomas de trabajo</h2>
+      <span class="num">07 — Idiomas</span>
+      <h2 class="section__title" data-i18n="lg.title">Cuatro idiomas de trabajo</h2>
     </div>
     <div class="langs">
-      <div class="lang" style="--lvl:1"><b>Español</b><small>Nativo</small><div class="lang__bar"><i></i></div></div>
-      <div class="lang" style="--lvl:.86"><b>Inglés</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
-      <div class="lang" style="--lvl:.8"><b>Portugués</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
-      <div class="lang" style="--lvl:.6"><b>Francés</b><small>Fluido</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:1"><b data-i18n="lg.es">Español</b><small data-i18n="lg.native">Nativo</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.72"><b data-i18n="lg.en">Inglés</b><small data-i18n="lg.b2">B2 · Profesional</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.86"><b data-i18n="lg.pt">Portugués</b><small data-i18n="lg.c1">C1 · Avanzado</small><div class="lang__bar"><i></i></div></div>
+      <div class="lang" style="--lvl:.55"><b data-i18n="lg.fr">Francés</b><small data-i18n="lg.b1">B1 · Intermedio</small><div class="lang__bar"><i></i></div></div>
     </div>
   </section>
 
   <!-- ============ CONTACTO ============ -->
   <section class="section wrap" id="contacto">
     <div class="section__head reveal">
-      <span class="num">07 — Contacto</span>
-      <h2 class="section__title">Hablemos de datos</h2>
-      <p class="section__sub">Abierto a posiciones de Data Engineer, Analytics Engineer y BI en Madrid o en remoto.</p>
+      <span class="num">08 — Contacto</span>
+      <h2 class="section__title" data-i18n="ct.title">Hablemos de datos</h2>
+      <p class="section__sub" data-i18n="ct.sub">Abierto a posiciones de Data Engineer, Analytics Engineer y BI en Madrid o en remoto.</p>
     </div>
     <div class="contact">
       <div class="contact__links reveal">
@@ -389,12 +411,12 @@
         <a class="social" href="https://public.tableau.com/app/profile/nicolas.zalazar6519/vizzes" target="_blank" rel="noopener"><b>Tableau Public</b><small>nicolas.zalazar6519</small><i>↗</i></a>
       </div>
       <div class="cv-box reveal">
-        <h3>Currículum</h3>
-        <p>Tres versiones del mismo perfil. La de inglés es la que uso para procesos internacionales.</p>
+        <h3 data-i18n="ct.cvtitle">Currículum</h3>
+        <p data-i18n="ct.cvtext">Tres versiones del mismo perfil. La de inglés es la que uso para procesos internacionales.</p>
         <div class="cv-list">
-          <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf">CV · Español</a>
-          <a class="btn btn--sm" href="docs/cv_ENG_Ult.pdf">CV · English</a>
-          <a class="btn btn--sm" href="docs/cv_PT_Ult_Remote.pdf">CV · Português</a>
+          <a class="btn btn--primary btn--sm" href="docs/cv_Es_Ult.pdf" data-i18n="ct.cv1">CV · Español</a>
+          <a class="btn btn--sm" href="docs/cv_ENG_Ult.pdf" data-i18n="ct.cv2">CV · English</a>
+          <a class="btn btn--sm" href="docs/cv_PT_Ult_Remote.pdf" data-i18n="ct.cv3">CV · Português</a>
         </div>
       </div>
     </div>
@@ -403,8 +425,8 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span>© <span id="year">2026</span> Nicolás Zalazar · Madrid</span>
-    <span>HTML, CSS y JS escritos a mano · sin frameworks · <a href="https://github.com/Nicolenki7/Portfolio" target="_blank" rel="noopener">código del sitio</a></span>
+    <span data-i18n="ft.a">© 2026 Nicolás Zalazar · Madrid</span>
+    <span data-i18n-html="ft.b">HTML, CSS y JS escritos a mano · sin frameworks · <a href="https://github.com/Nicolenki7/Portfolio" target="_blank" rel="noopener">código del sitio</a></span>
   </div>
 </footer>
 
@@ -413,6 +435,9 @@
   <img id="modalImg" src="" alt="">
 </div>
 
+<script src="assets/i18n-es.js" defer></script>
+<script src="assets/i18n-en.js" defer></script>
+<script src="assets/i18n.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
