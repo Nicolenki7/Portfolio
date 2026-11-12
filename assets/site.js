@@ -155,17 +155,23 @@
   $$(".card").forEach(function (card) {
     var row = card.querySelector(".card__links");
     if (!row || row.querySelector('a[href*="colab.research.google.com"]')) return;
-    var repoLink = row.querySelector('a[href^="https://github.com/Nicolenki7/"]');
-    if (!repoLink) return;
-    var repo = repoLink.getAttribute("href").replace(/\/$/, "").split("/").pop();
-    var nb = COLAB[repo];
+    /* el primer enlace a GitHub del repo no siempre es el del repo: muchas
+       tarjetas empiezan por el informe (…/blob/main/docs/report.html). */
+    var links = row.querySelectorAll('a[href^="https://github.com/Nicolenki7/"]');
+    var repo = null;
+    for (var k = 0; k < links.length; k++) {
+      var seg = links[k].getAttribute("href")
+        .replace(/^https:\/\/github\.com\/Nicolenki7\//, "").replace(/\/$/, "");
+      if (seg && seg.indexOf("/") === -1) { repo = seg; break; }
+    }
+    var nb = repo && COLAB[repo];
     if (!nb) return;
     var a = document.createElement("a");
     a.className = "card__link";
     a.href = "https://colab.research.google.com/github/Nicolenki7/" + repo + "/blob/main/" + nb;
     a.target = "_blank";
     a.rel = "noopener";
-    a.title = "Abrir notebook en Google Colab";
+    a.title = "Abrir en Colab";
     a.textContent = "Colab";
     a.appendChild(document.createTextNode(" ↗"));
     row.appendChild(a);
