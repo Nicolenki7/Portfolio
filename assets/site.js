@@ -18,6 +18,14 @@
         .replace("15 repositorios", "22 repositorios")
         .replace("15 public repositories", "22 public repositories");
     });
+    /* i18n.js corre antes (los dos van con defer) y ya escribió el texto viejo
+       en el DOM, así que aquí se corrige también lo que está en pantalla. */
+    var lead = $(".hero__lead");
+    if (lead) {
+      lead.innerHTML = lead.innerHTML
+        .replace(/15 repositorios/g, "22 repositorios")
+        .replace(/15 public repositories/g, "22 public repositories");
+    }
   }
 
   /* ---------- 1. barra de progreso + nav ---------- */
