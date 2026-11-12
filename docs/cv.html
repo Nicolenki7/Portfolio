@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nicolás Zalazar · CV · Data Engineer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+<header class="cv-head">
+  <div class="cv-head__main">
+    <h1>Nicolás Zalazar</h1>
+    <p class="cv-role">Data Engineer · Analytics Engineer · BI</p>
+  </div>
+  <div class="cv-head__meta">
+    <span>Mallorca, España</span>
+    <span>Residencia UE · sin permiso de trabajo</span>
+    <span>Remoto o híbrido (España / UE)</span>
+    <span><a href="mailto:zalazarn046@gmail.com">zalazarn046@gmail.com</a></span>
+    <span>+34 614 594 035</span>
+  </div>
+</header>
+
+<nav class="cv-links">
+  <a href="https://nicolenki7.github.io/Portfolio/">nicolenki7.github.io/Portfolio</a>
+  <span aria-hidden="true">·</span>
+  <a href="https://github.com/Nicolenki7">github.com/Nicolenki7</a>
+  <span aria-hidden="true">·</span>
+  <a href="https://www.linkedin.com/in/nicolas-zalazar-63340923a">linkedin.com/in/nicolas-zalazar-63340923a</a>
+</nav>
+
+<section>
+  <h2>Perfil</h2>
+  <p>
+    Data Engineer con perfil híbrido de negocio y datos. Construyo pipelines y modelos que
+    terminan en una decisión: ETL/ELT en Python y SQL, modelado dimensional, DuckDB y dbt para
+    el stack abierto, y Power BI para la capa de consumo. Vengo de Microsoft Fabric —Data Mesh,
+    arquitectura medallion y modelos semánticos en DAX— y hoy llevo lo mismo a herramientas que
+    cualquiera puede clonar y ejecutar: 15 repositorios públicos, 8 informes que se recalculan
+    desde el CSV y 3 pipelines con tests en CI. Cursando el Bachelor en Informática en UDDI
+    (grupo Universidad Europea).
+  </p>
+</section>
+
+<section>
+  <h2>Stack</h2>
+  <dl class="cv-grid">
+    <div><dt>Datos</dt><dd>Python (Pandas, PySpark) · SQL · DuckDB · dbt · Power Query M</dd></div>
+    <div><dt>Almacenamiento</dt><dd>Delta Lake · Parquet · esquema estrella · medallion</dd></div>
+    <div><dt>BI</dt><dd>Power BI (DAX, Power Query) · Tableau · Looker Studio · Streamlit</dd></div>
+    <div><dt>Calidad</dt><dd>Tests de contrato · validación QA/QC · GitHub Actions</dd></div>
+    <div><dt>Cloud</dt><dd>Azure · Snowflake · BigQuery · AWS</dd></div>
+    <div><dt>Origen</dt><dd>Microsoft Fabric (OneLake, Dataflows Gen2, KQL, Eventhouse, DP-600)</dd></div>
+  </dl>
+</section>
+
+<section>
+  <h2>Experiencia</h2>
+
+  <article class="job">
+    <div class="job__top">
+      <h3>Socio y Consultor Técnico BI / Datos</h3>
+      <span class="job__when">sep 2025 – presente</span>
+    </div>
+    <p class="job__where">Lumo Digital Solutions · remoto</p>
+    <ul>
+      <li>Diseño e implementación de arquitecturas Data Mesh sobre Microsoft Fabric, integrando varios dominios de datos.</li>
+      <li>Pipelines ETL/ELT, modelos semánticos y datasets gobernados para analítica avanzada.</li>
+      <li>Dashboards ejecutivos y operativos, y automatización de la validación y el control de calidad del dato.</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job__top">
+      <h3>Auditor Nocturno / Soporte de Datos</h3>
+      <span class="job__when">nov 2024 – ago 2025</span>
+    </div>
+    <p class="job__where">Elitelma Realizações Turísticas · Portugal</p>
+    <ul>
+      <li>Auditoría y control de calidad de datos operativos y financieros en entornos de alta carga.</li>
+      <li>Estandarización de datasets para reporting y soporte a análisis de explotación.</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job__top">
+      <h3>Data Entry &amp; Quality Control Manager</h3>
+      <span class="job__when">ene 2020 – nov 2021</span>
+    </div>
+    <p class="job__where">ACA Market · Asociación de Cooperativas Argentinas · remoto</p>
+    <ul>
+      <li>Gestión y validación de grandes volúmenes de datos estructurados.</li>
+      <li>Procesos de data cleaning y QA/QC para asegurar integridad y trazabilidad.</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job__top">
+      <h3>Agente de Datos y Reservas</h3>
+      <span class="job__when">ene 2018 – nov 2019</span>
+    </div>
+    <p class="job__where">Pullman City Center Hotel &amp; Casino · Rosario, Argentina</p>
+    <ul>
+      <li>Mantenimiento de bases de clientes en sistemas PMS con foco en integridad y confidencialidad.</li>
+    </ul>
+  </article>
+
+  <article class="job">
+    <div class="job__top">
+      <h3>Atención al Cliente y Ventas</h3>
+      <span class="job__when">ene 2015 – dic 2017</span>
+    </div>
+    <p class="job__where">Claro Argentina · Rosario, Argentina</p>
+    <ul>
+      <li>Análisis de datos de comportamiento de clientes para sostener los KPI de ventas y retención.</li>
+    </ul>
+  </article>
+</section>
+
+<section id="proyectos">
+  <h2>Proyectos (cifras verificables)</h2>
+  <ul class="cv-projects">
+    <li><b>Retail RFM</b> — 4.338 clientes segmentados; 1.050 leales y 1.015 dormidos, la bolsa de reactivación.</li>
+    <li><b>Churn telco</b> — 7.043 clientes; el contrato month-to-month concentra el 55% de la base.</li>
+    <li><b>EGATUR (INE)</b> — ETL de 5 tablas a un maestro longitudinal, con tests de contrato sobre separador, BOM y cabeceras.</li>
+    <li><b>Global Store</b> — 9.800 pedidos, esquema estrella y port a DuckDB que se ejecuta sin licencia.</li>
+    <li><b>Crypto medallion</b> — 3 capas; el informe declara el CSV de origen vacío en lugar de taparlo.</li>
+  </ul>
+</section>
+
+<section id="formacion">
+  <h2>Formación y certificaciones</h2>
+  <ul class="cv-edu">
+    <li><b>Bachelor en Informática</b> — UDDI · Universidad Digital (grupo Universidad Europea), en curso.</li>
+    <li><b>DP-600 · Fabric Analytics Engineer Associate</b> — Microsoft Certified.</li>
+    <li><b>Corporate Finance (ADGN028PO)</b> — SEPE · 48 h · 2026 · verificable en verificatudiploma.es, código 1002356.</li>
+    <li><b>Controler Financiero (ADGN027PO)</b> — SEPE / Nascor Formación · 150 h · 2026.</li>
+    <li><b>Google Data Analytics</b> — Coursera · 2025.</li>
+    <li><b>Azure AI Essentials</b> · <b>Fundamentos Profesionales del Análisis de Datos</b> · <b>Fundamentos de Administración de Sistemas</b> — Microsoft &amp; LinkedIn · 2025.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Idiomas</h2>
+  <p class="cv-langs">Español — nativo · Inglés — B2 profesional · Francés — B1</p>
+</section>
+
+<footer class="cv-foot">
+  <span>Nicolás Zalazar · CV 2026</span>
+  <span>Portfolio con los proyectos y sus informes: nicolenki7.github.io/Portfolio</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* ============================================================
+   cv.css — currículum imprimible (A4)
+   Pensado para impresión/PDF: fondo blanco, texto negro,
+   un solo acento de color. Sin imágenes ni fuentes externas.
+   ============================================================ */
+
+@page { size: A4; margin: 13mm 14mm 12mm; }
+
+:root{
+  --ink:#12161c;
+  --dim:#4a5560;
+  --line:#d8dee6;
+  --acc:#0b5cd5;
+}
+
+*{box-sizing:border-box}
+
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+body{
+  margin:0;
+  font-family:"Helvetica Neue",Arial,"Liberation Sans",sans-serif;
+  font-size:9.7pt;
+  line-height:1.5;
+  color:var(--ink);
+  background:#fff;
+}
+
+a{color:var(--acc);text-decoration:none;border-bottom:1px solid rgba(11,92,213,.35)}
+
+/* ---------- cabecera ---------- */
+.cv-head{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:18px;
+  padding-bottom:10px;border-bottom:2px solid var(--ink);
+}
+.cv-head h1{
+  margin:0;font-size:25pt;line-height:1.02;letter-spacing:-.02em;font-weight:700;
+}
+.cv-role{
+  margin:5px 0 0;font-size:9.6pt;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--acc);font-weight:600;
+}
+.cv-head__meta{
+  display:flex;flex-direction:column;align-items:flex-end;gap:1px;
+  font-size:8.4pt;color:var(--dim);text-align:right;line-height:1.45;
+}
+
+.cv-links{
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  margin:7px 0 0;font-size:8.4pt;color:var(--dim);
+}
+.cv-links a{border-bottom:none}
+.cv-links span{color:var(--line)}
+
+/* ---------- secciones ---------- */
+section{margin-top:13px}
+
+h2{
+  margin:0 0 7px;font-size:8.6pt;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);font-weight:700;
+  padding-bottom:3px;border-bottom:1px solid var(--line);
+}
+
+p{margin:0 0 6px}
+ul{margin:0;padding-left:14px}
+li{margin:0 0 2px}
+
+/* ---------- stack en dos columnas ---------- */
+.cv-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;margin:0;
+}
+.cv-grid > div{display:block}
+.cv-grid dt{
+  font-size:7.7pt;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--acc);font-weight:700;margin:0 0 1px;
+}
+.cv-grid dd{margin:0;font-size:9.2pt;line-height:1.42}
+
+/* ---------- experiencia ---------- */
+.job{margin-bottom:8px;break-inside:avoid;page-break-inside:avoid}
+.job:last-child{margin-bottom:0}
+.job__top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.job h3{margin:0;font-size:10pt;font-weight:700}
+.job__when{
+  flex:0 0 auto;font-size:8.3pt;color:var(--dim);white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.job__where{margin:1px 0 3px;font-size:8.7pt;color:var(--acc)}
+.job ul{padding-left:13px}
+.job li{font-size:9.3pt}
+
+/* ---------- proyectos y formación ---------- */
+.cv-projects li,.cv-edu li{font-size:9.3pt;margin-bottom:2.5px}
+.cv-projects b,.cv-edu b{font-weight:700}
+
+.cv-langs{margin:0;font-size:9.4pt}
+
+/* ---------- pie ---------- */
+.cv-foot{
+  display:flex;justify-content:space-between;gap:12px;
+  margin-top:14px;padding-top:6px;border-top:1px solid var(--line);
+  font-size:7.8pt;color:var(--dim);
+}
+
+/* ---------- pantalla: se ve como una hoja A4 ---------- */
+@media screen{
+  body{
+    max-width:210mm;margin:0 auto;padding:13mm 14mm;
+    box-shadow:0 0 0 1px var(--line),0 18px 50px rgba(0,0,0,.10);
+    background:#fff;
+  }
+  html{background:#eef1f5}
+}
+
+/* ---------- salto de página controlado ---------- */
+section{break-inside:auto}
+.job,li,.cv-grid > div{break-inside:avoid;page-break-inside:avoid}
+
+/* la formación arranca en la segunda página */
+#proyectos{break-before:page;page-break-before:always;margin-top:0}
