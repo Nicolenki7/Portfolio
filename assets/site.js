@@ -5,6 +5,21 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---------- 0. correctivos de contenido ---------- */
+  /* El contador de repos públicos cambia con el tiempo (15 -> 22). Se corrige en
+     los diccionarios antes de que i18n.js los aplique, así el arreglo sobrevive
+     al botón ES/EN. Cuando el HTML y los diccionarios del repo estén al día, esto
+     no encontrará nada que cambiar. */
+  if (window.I18N) {
+    ["es", "en"].forEach(function (lang) {
+      var d = window.I18N[lang];
+      if (!d || typeof d["hero.lead"] !== "string") return;
+      d["hero.lead"] = d["hero.lead"]
+        .replace("15 repositorios", "22 repositorios")
+        .replace("15 public repositories", "22 public repositories");
+    });
+  }
+
   /* ---------- 1. barra de progreso + nav ---------- */
   var bar = $("#progress"), nav = $(".nav");
   function onScroll() {
@@ -186,4 +201,14 @@
   if (ghRepos && /15 repos/.test(ghRepos.textContent)) {
     ghRepos.textContent = "Nicolenki7 · 22 repos públicos";
   }
+  var kpiRepos = $('.kpi [data-count="15"]');
+  if (kpiRepos) {
+    kpiRepos.setAttribute("data-count", "22");
+    kpiRepos.textContent = "22";
+  }
+  $$(".term__line").forEach(function (line) {
+    if (line.textContent.indexOf("públicos") === -1) return;
+    var k = line.querySelector(".k");
+    if (k && k.textContent.trim() === "15") k.textContent = "22";
+  });
 })();
