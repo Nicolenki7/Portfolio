@@ -138,4 +138,46 @@
   /* ---------- 10. año ---------- */
   var y = $("#year");
   if (y) y.textContent = new Date().getFullYear();
+
+  /* ---------- 11. notebooks: abrir en Colab ---------- */
+  /* Solo los proyectos con notebook versionado. Colab abre el archivo tal como
+     está en el repo: sin instalar nada y sin datos que no existan. */
+  var COLAB = {
+    "Crypto_Medallion_Analytics": "notebooks/crypto_medallion_colab.ipynb",
+    "Tech_GlobalStore_Retail_Analysis-Fabric": "notebooks/globalstore_retail_colab.ipynb",
+    "ETFbook-data-analytics-case-study": "notebooks/etfbook_flows_colab.ipynb",
+    "ETL_Egatur_INE_Esp": "Egatur_Power_BI_project.ipynb",
+    "Customer-Churn-Project": "Customer_Churn_Python%2BSQlite.ipynb",
+    "Customer-Sentiment-Analysis-Product-Improvement-Drivers": "Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb",
+    "Online-Retail-Business-Analysis": "Online_Retail_Analysis.ipynb",
+    "German_Credit_Scoring_Data": "German_Credit_Data.ipynb"
+  };
+  $$(".card").forEach(function (card) {
+    var row = card.querySelector(".card__links");
+    if (!row || row.querySelector('a[href*="colab.research.google.com"]')) return;
+    var repoLink = row.querySelector('a[href^="https://github.com/Nicolenki7/"]');
+    if (!repoLink) return;
+    var repo = repoLink.getAttribute("href").replace(/\/$/, "").split("/").pop();
+    var nb = COLAB[repo];
+    if (!nb) return;
+    var a = document.createElement("a");
+    a.className = "card__link";
+    a.href = "https://colab.research.google.com/github/Nicolenki7/" + repo + "/blob/main/" + nb;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.title = "Abrir notebook en Google Colab";
+    a.textContent = "Colab";
+    a.appendChild(document.createTextNode(" ↗"));
+    row.appendChild(a);
+  });
+
+  /* ---------- 12. datos desactualizados en el HTML ---------- */
+  /* Se corrigen aquí mientras el HTML del repo no esté actualizado; cuando lo
+     esté, estos selectores no encuentran nada y la sección no hace nada. */
+  var kaggle = $('.social[href*="kaggle.com"]');
+  if (kaggle) kaggle.remove();
+  var ghRepos = $('.social[href="https://github.com/Nicolenki7"] small');
+  if (ghRepos && /15 repos/.test(ghRepos.textContent)) {
+    ghRepos.textContent = "Nicolenki7 · 22 repos públicos";
+  }
 })();
