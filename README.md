@@ -33,9 +33,10 @@ assets/
   i18n-en.js          diccionario inglés (151 claves)
   i18n.js             aplica el idioma y recuerda la elección
   site.js             comportamiento: scroll, filtros, contadores, modal, Colab
-proyectos/            tres casos largos, con caso.css compartido
+proyectos/            cuatro casos largos, con caso.css compartido
   crypto-medallion.html
   datamesh-logistica.html
+  globalstore.html
   online-retail-rfm.html
 docs/
   cv.html + cv.css    CV en hoja A4, pensado para imprimir
@@ -67,7 +68,7 @@ Los informes **no se generan en este repositorio**. Cada proyecto publica su pro
 
 Cuatro proyectos no tienen informe y es deliberado: Data Mesh, AdTech y Olist se construyeron en Fabric y Snowflake sin dataset versionado, y ETF Market Terminal consulta una API en vivo. Publicar gráficos con datos que no están en el repo sería inventarlos.
 
-Los cuadernos se abren en Colab desde el propio repositorio, sin instalar nada. La lista de qué proyecto tiene cuaderno vive en `assets/site.js`, en la constante `COLAB`: para sumar uno nuevo alcanza con agregar una entrada ahí y el botón aparece en la tarjeta.
+Los cuadernos se abren en Colab desde el propio repositorio, sin instalar nada. La lista de qué proyecto tiene cuaderno vive en `assets/site.js`, en la constante `COLAB`: para sumar uno nuevo alcanza con agregar una entrada ahí y el botón aparece en la tarjeta. La constante `CASO` funciona igual para enlazar una página de caso nueva desde su tarjeta.
 
 ## CV
 
