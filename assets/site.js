@@ -200,6 +200,33 @@
     row.appendChild(a);
   });
 
+  /* ---------- 11b. páginas de caso propias ---------- */
+  /* La tarjeta ya enlaza al repo, al plan, al informe y al cuaderno. Cuando el
+     proyecto tiene una página de caso en este sitio, el enlace se agrega acá:
+     una lista repo -> página en vez de tocar la tarjeta en el HTML. */
+  var CASO = {
+    "Tech_GlobalStore_Retail_Analysis-Fabric": "proyectos/globalstore.html"
+  };
+  $$(".card").forEach(function (card) {
+    var row = card.querySelector(".card__links");
+    if (!row || row.querySelector("a[data-caso]")) return;
+    var links = row.querySelectorAll('a[href^="https://github.com/Nicolenki7/"]');
+    for (var m = 0; m < links.length; m++) {
+      var seg = links[m].getAttribute("href")
+        .replace(/^https:\/\/github\.com\/Nicolenki7\//, "").replace(/\/$/, "");
+      if (!seg || seg.indexOf("/") !== -1 || !CASO[seg]) continue;
+      var dict = (window.I18N && window.I18N[document.documentElement.lang || "es"]) || null;
+      var a = document.createElement("a");
+      a.className = "card__link card__link--muted";
+      a.setAttribute("data-caso", "");
+      a.setAttribute("data-i18n", "lk.case");
+      a.href = CASO[seg];
+      a.textContent = (dict && dict["lk.case"]) || "Caso completo";
+      row.appendChild(a);
+      break;
+    }
+  });
+
   /* ---------- 12. datos desactualizados en el HTML ---------- */
   /* Se corrigen aquí mientras el HTML del repo no esté actualizado; cuando lo
      esté, estos selectores no encuentran nada y la sección no hace nada. */
