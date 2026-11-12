@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Store · Retail en Fabric | Nicolas Zalazar</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="caso.css">
+    <style>
+        :root{--bg-color:#0a0a0c;--accent-color:#00f2ff;--text-color:#e0e0e0;--card-bg:#16161a;--border-tech:1px solid rgba(0,242,255,.2)}
+        body{background:var(--bg-color);color:var(--text-color);font-family:'Inter',sans-serif;margin:0;line-height:1.8}
+        body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(0,242,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,242,255,.02) 1px,transparent 1px);background-size:50px 50px;z-index:-1}
+        nav{padding:20px 10%;border-bottom:var(--border-tech);background:rgba(10,10,12,.9);position:sticky;top:0;z-index:100}
+        nav a{color:var(--accent-color);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.9rem}
+        .container{max-width:900px;margin:0 auto;padding:60px 20px}
+        header{margin-bottom:50px}
+        h1{font-family:'JetBrains Mono',monospace;font-size:2.4rem;color:#fff;margin-bottom:10px;text-transform:uppercase;line-height:1.15}
+        .tagline{color:var(--accent-color);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.95rem}
+        h2{font-family:'JetBrains Mono',monospace;color:var(--accent-color);font-size:1.35rem;border-bottom:1px solid rgba(0,242,255,.3);padding-bottom:10px;margin-bottom:26px}
+        h3{font-family:'JetBrains Mono',monospace;font-size:1rem;color:#fff;margin:0 0 14px}
+        p{margin-bottom:22px;font-size:1.05rem;opacity:.9}
+        .content-section{margin-bottom:70px}
+        .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:30px 0}
+        .tech-card{background:var(--card-bg);padding:20px;border:var(--border-tech);border-left:4px solid var(--accent-color)}
+        .tech-card h3{font-size:.95rem;margin-bottom:10px}
+        .tech-card p{font-size:.88rem;margin:0;opacity:.8}
+        code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:rgba(0,242,255,.08);padding:1px 5px;border-radius:3px}
+        table{width:100%;border-collapse:collapse;margin:22px 0;font-size:.88rem}
+        th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+        th{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-color);font-weight:500}
+        td.n,th.n{text-align:right;font-family:'JetBrains Mono',monospace}
+        .cta-box{background:rgba(0,242,255,.05);border:1px dashed var(--accent-color);padding:38px;text-align:center;margin-top:50px}
+        .btn-live{display:inline-block;padding:14px 30px;background:var(--accent-color);color:var(--bg-color);text-decoration:none;font-family:'JetBrains Mono',monospace;font-weight:bold;border-radius:4px;transition:.3s;margin:6px 4px}
+        .btn-live:hover{box-shadow:0 0 25px var(--accent-color);transform:scale(1.05)}
+        .btn-ghost{display:inline-block;padding:14px 30px;border:1px solid var(--accent-color);color:var(--accent-color);text-decoration:none;font-family:'JetBrains Mono',monospace;border-radius:4px;margin:6px 4px;transition:.3s}
+        .btn-ghost:hover{background:rgba(0,242,255,.1)}
+        footer{text-align:center;padding:60px;opacity:.4;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+        @media(max-width:768px){h1{font-size:1.7rem}.tech-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+<nav><a href="../index.html">< [ VOLVER_AL_SISTEMA ]</a></nav>
+
+<div class="container">
+    <header>
+        <h1>Global Store</h1>
+        <div class="tagline">DATA_ENGINEERING · PYSPARK · ESQUEMA_ESTRELLA · DUCKDB</div>
+    </header>
+
+    <section class="content-section" id="resumen">
+        <h2>00. Resumen en 30 segundos</h2>
+        <div class="resumen__grid">
+            <div class="resumen__kpi"><b>9.800</b><span>líneas de pedido en el CSV versionado</span></div>
+            <div class="resumen__kpi"><b>4.922</b><span>pedidos distintos</span></div>
+            <div class="resumen__kpi"><b>793</b><span>clientes</span></div>
+            <div class="resumen__kpi"><b>2,26 M</b><span>en ventas, 2015 a 2018</span></div>
+        </div>
+        <p class="resumen__txt">
+            Un CSV de pedidos planos convertido en esquema estrella: un hecho y cuatro dimensiones, siete controles
+            de calidad y un port a DuckDB que corre en un portátil sin licencia. Todas las cifras de esta página salen
+            de <code>train.csv</code>, que está en el repositorio: no hay una sola simulada.
+        </p>
+
+        <div class="viz">
+            <h3>Ventas por año · el CSV completo</h3>
+            <svg viewBox="0 0 740 190" role="img" aria-labelledby="gsAnio">
+                <title id="gsAnio">Ventas por año: 2015 479.856, 2016 459.436, 2017 600.193, 2018 722.052</title>
+                <defs>
+                    <linearGradient id="gGs" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#00f2ff" stop-opacity=".95"/>
+                        <stop offset="1" stop-color="#00f2ff" stop-opacity=".35"/>
+                    </linearGradient>
+                </defs>
+                <g font-family="'JetBrains Mono',monospace" font-size="12" fill="#e0e0e0">
+                    <text x="0" y="24">2015</text>
+                    <rect x="90" y="13" width="332" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="25" fill="#00f2ff">479.856</text>
+
+                    <text x="0" y="63">2016</text>
+                    <rect x="90" y="52" width="318" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="64" fill="#00f2ff">459.436</text>
+
+                    <text x="0" y="102">2017</text>
+                    <rect x="90" y="91" width="415" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="103" fill="#00f2ff">600.193</text>
+
+                    <text x="0" y="141">2018</text>
+                    <rect x="90" y="130" width="500" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="142" fill="#00f2ff">722.052</text>
+
+                    <text x="90" y="176" fill="#e0e0e0" opacity=".5" font-size="10.5">barra llena = 722.052 · suma de Sales, agregada por año de Order Date</text>
+                </g>
+            </svg>
+            <p class="viz__cap">
+                2016 cae 4,3% respecto de 2015; después el dataset crece 30,6% y 20,3%. El salto de 2017 no es
+                del negocio: el CSV trae más líneas cada año (1.953 → 2.055 → 2.534 → 3.258).
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>01. El desafío: un CSV sin modelo</h2>
+        <p>
+            <code>train.csv</code> trae 18 columnas y 9.800 líneas de pedido, con la fecha en formato
+            <strong>DD/MM/YYYY</strong> y todo mezclado: cliente, dirección, producto y venta en la misma fila.
+            Un archivo así no se puede consultar por región sin agrupar a mano en cada pregunta.
+        </p>
+        <p>
+            El trabajo fue modelarlo: separar el hecho de las dimensiones, tipar las fechas y dejar las métricas
+            escritas una sola vez. Con eso, cualquier pregunta —ventas por envío, por segmento, por subcategoría—
+            es una consulta de una línea.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>02. El modelo: un hecho y cuatro dimensiones</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>EN_FABRIC</h3>
+                <p>PySpark leyendo el CSV por URL raw, limpieza de nulos y duplicados, y modelo semántico con las medidas en DAX. El dashboard vive en el <code>.pbix</code> del repositorio.</p>
+            </div>
+            <div class="tech-card">
+                <h3>EN_ABIERTO</h3>
+                <p><code>stack-abierto/build.sql</code> arma <code>fact_orders</code>, <code>dim_customer</code>, <code>dim_product</code>, <code>dim_date</code> y <code>dim_ship_mode</code> en DuckDB, más las vistas <code>kpi_*</code>.</p>
+            </div>
+        </div>
+        <p>
+            La fecha es la trampa del dataset: <code>01/02/2017</code> es ambiguo, y una inferencia automática que
+            elija mes primero desplaza meses enteros del análisis. El SQL lo resuelve con una expresión regular
+            explícita en lugar de confiar en el parser.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>03. Qué dice el dato</h2>
+        <div class="viz">
+            <h3>Las seis subcategorías que más venden</h3>
+            <svg viewBox="0 0 740 210" role="img" aria-labelledby="gsSub">
+                <title id="gsSub">Ventas por subcategoría: Phones 327.782, Chairs 322.823, Storage 219.343, Tables 202.811, Binders 200.029, Machines 189.239</title>
+                <g font-family="'JetBrains Mono',monospace" font-size="12" fill="#e0e0e0">
+                    <text x="0" y="24">Phones</text>
+                    <rect x="110" y="13" width="500" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="25" fill="#00f2ff">327.782</text>
+
+                    <text x="0" y="55">Chairs</text>
+                    <rect x="110" y="44" width="492" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="56" fill="#00f2ff">322.823</text>
+
+                    <text x="0" y="86">Storage</text>
+                    <rect x="110" y="75" width="334" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="87" fill="#00f2ff">219.343</text>
+
+                    <text x="0" y="117">Tables</text>
+                    <rect x="110" y="106" width="309" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="118" fill="#00f2ff">202.811</text>
+
+                    <text x="0" y="148">Binders</text>
+                    <rect x="110" y="137" width="305" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="149" fill="#00f2ff">200.029</text>
+
+                    <text x="0" y="179">Machines</text>
+                    <rect x="110" y="168" width="289" height="14" rx="3" fill="url(#gGs)"/>
+                    <text x="660" y="180" fill="#00f2ff">189.239</text>
+                </g>
+            </svg>
+            <p class="viz__cap">
+                Binders vende parecido a Tables con casi cinco veces más líneas (1.492 contra 314): mucho ticket
+                chico contra poco ticket alto. Es la diferencia que un promedio esconde y una tabla muestra.
+            </p>
+        </div>
+
+        <table>
+            <tr><th>Región</th><th class="n">Ventas</th><th class="n">% del total</th></tr>
+            <tr><td>West</td><td class="n">710.220</td><td class="n">31,4%</td></tr>
+            <tr><td>East</td><td class="n">669.519</td><td class="n">29,6%</td></tr>
+            <tr><td>Central</td><td class="n">492.647</td><td class="n">21,8%</td></tr>
+            <tr><td>South</td><td class="n">389.151</td><td class="n">17,2%</td></tr>
+        </table>
+
+        <p>
+            Por categoría el reparto es parejo —Technology 36,6%, Furniture 32,2%, Office Supplies 31,2%— y por
+            segmento manda Consumer con 50,8% de las ventas y 409 de los 793 clientes. El gasto medio por cliente
+            es casi idéntico en los tres (2.807, 2.917 y 2.872): el segmento no cambia cuánto gasta cada uno,
+            cambia cuántos son.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>04. Envío: lo que el promedio esconde</h2>
+        <table>
+            <tr><th>Modo</th><th class="n">Líneas</th><th class="n">Pedidos</th><th class="n">Ventas</th><th class="n">Días</th></tr>
+            <tr><td>Standard Class</td><td class="n">5.859</td><td class="n">2.945</td><td class="n">1.340.831</td><td class="n">5,01</td></tr>
+            <tr><td>Second Class</td><td class="n">1.902</td><td class="n">944</td><td class="n">449.914</td><td class="n">3,25</td></tr>
+            <tr><td>First Class</td><td class="n">1.501</td><td class="n">772</td><td class="n">345.572</td><td class="n">2,18</td></tr>
+            <tr><td>Same Day</td><td class="n">538</td><td class="n">261</td><td class="n">125.219</td><td class="n">0,04</td></tr>
+        </table>
+        <p>
+            Seis de cada diez pedidos van por Standard Class y esperan cinco días. El ticket medio apenas se mueve
+            entre modos (228,85 a 236,55), así que el envío no está segmentando por valor de compra. El retraso
+            máximo del dataset es de 7 días y el mínimo de 0: ningún envío sale antes del pedido, que es uno de los
+            controles que corre el port.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>05. Dónde está la plata</h2>
+        <div class="resumen__grid">
+            <div class="resumen__kpi"><b>53,1%</b><span>de las ventas está en el 10% de pedidos más grandes</span></div>
+            <div class="resumen__kpi"><b>6,8%</b><span>concentran los diez clientes principales</span></div>
+            <div class="resumen__kpi"><b>6,21</b><span>pedidos por cliente en promedio</span></div>
+            <div class="resumen__kpi"><b>1,6%</b><span>compró una sola vez: 13 de 793</span></div>
+        </div>
+        <p>
+            La cartera está sana: casi todos los clientes repiten. Lo concentrado no son los clientes sino los
+            pedidos —medio pedido son 459,48 y el mayor llega a 23.661,23—, y los estados mandan: California
+            446.306, New York 306.361 y Texas 168.573 explican buena parte de las ventas.
+        </p>
+        <p>
+            La estacionalidad también es real y se repite los cuatro años: septiembre, noviembre y diciembre son
+            los meses fuertes (2018-11 con 117.938 es el pico), y febrero el valle (2015-02 con apenas 4.520).
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>06. El port abierto, verificado</h2>
+        <p>
+            Como el entorno de Fabric ya no está disponible, el repositorio incluye la misma arquitectura en
+            herramientas abiertas. Lo ejecuté sobre el CSV del repo antes de escribir esta página:
+        </p>
+        <p>
+            <code>python stack-abierto/run.py train.csv</code> → 9.800 filas, 4.922 pedidos, y los siete
+            controles en cero: fechas ilegibles, ventas no numéricas, ventas negativas, envíos anteriores al
+            pedido, hechos sin dimensión. Termina con código 0, así que se puede encadenar en CI.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>07. Lectura honesta</h2>
+        <div class="aviso">
+            <b>Tres límites, dichos de frente.</b> Primero: aunque el dataset se llame <em>Global Store</em>,
+            las 9.800 filas son de <strong>Estados Unidos</strong>; aquí no hay análisis por país porque el dato no
+            lo sostiene. Segundo: no hay columnas de <em>Profit</em>, <em>Quantity</em> ni <em>Discount</em>, así
+            que no hay margen ni unidades en esta página. Tercero: el crecimiento de ventas viene acompañado de más
+            líneas por año, así que no es un dato comparable sin normalizar.
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>08. Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>INGESTA_Y_MODELO</h3>
+                <p>PySpark, Delta Lake, Power Query M, esquema estrella con hecho y cuatro dimensiones.</p>
+            </div>
+            <div class="tech-card">
+                <h3>ANÁLISIS_Y_BI</h3>
+                <p>DAX, Power BI, DuckDB, SQL estándar, pandas, matplotlib y seaborn para las réplicas estáticas.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-box">
+        <h2 style="border:none;margin-bottom:18px;">Ver el trabajo completo</h2>
+        <p>El informe, el cuaderno y el port abierto están en el repositorio, y se ejecutan sin instalar nada más que <code>duckdb</code>.</p>
+        <a class="btn-live" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/docs/report.html" target="_blank" rel="noopener">[ INFORME ]</a>
+        <a class="btn-ghost" href="https://colab.research.google.com/github/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric/blob/main/notebooks/globalstore_retail_colab.ipynb" target="_blank" rel="noopener">[ COLAB ]</a>
+        <a class="btn-ghost" href="https://github.com/Nicolenki7/Tech_GlobalStore_Retail_Analysis-Fabric" target="_blank" rel="noopener">[ REPOSITORIO ]</a>
+    </div>
+</div>
+
+<footer>
+    NICOLAS ZALAZAR // PROJECT_ID: GLOBAL_STORE // 2026
+</footer>
+
+</body>
+</html>
