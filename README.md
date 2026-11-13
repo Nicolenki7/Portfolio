@@ -17,7 +17,7 @@ Se publica con GitHub Pages desde `main`: cada push a esa rama es un despliegue 
 | 03 | `#hospitalidad` | La parte del perfil que viene de la hotelería: auditoría nocturna, front office, operación de hotel. |
 | 04 | `#abierto` | Tabla de equivalencias Fabric → stack abierto (OneLake por DuckDB, Dataflows Gen2 por dbt, etc.). |
 | 05 | `#informes` | Los ocho informes reproducibles, con enlace directo a cada uno. |
-| 06 | `#certificaciones` | Credenciales en rejilla y, debajo, la formación: UDDI, DP-600 y los dos diplomas del SEPE 2026 con su código de verificación. |
+| 06 | `#certificaciones` | Dieciséis credenciales en rejilla (la primera, Microsoft DP-600) y, debajo, la formación: UDDI, DP-600 y los dos diplomas del SEPE 2026 con su código de verificación. |
 | 07 | `#idiomas` | Español nativo, inglés B2 y francés B1. |
 | 08 | `#contacto` | Email, LinkedIn, GitHub, WhatsApp, Tableau Public y el acceso al CV. |
 
@@ -32,7 +32,7 @@ assets/
   i18n-es.js          diccionario español (151 claves)
   i18n-en.js          diccionario inglés (151 claves)
   i18n.js             aplica el idioma y recuerda la elección
-  site.js             comportamiento: scroll, filtros, contadores, modal, Colab
+  site.js             comportamiento: scroll, filtros, contadores, modal, Colab, tarjeta DP-600
 proyectos/            cuatro casos largos, con caso.css compartido
   crypto-medallion.html
   datamesh-logistica.html
@@ -80,7 +80,7 @@ Los archivos `cv_Es_Ult.pdf`, `cv_ENG_Ult.pdf` y `cv_PT_Ult_Remote.pdf` son vers
 
 - **Textos en general:** los dos diccionarios. El HTML solo hace falta si cambia la estructura.
 - **Cifras del hero y de los KPIs:** el texto de `hero.lead` en los diccionarios y los atributos `data-count` de los `.kpi`.
-- **Certificados y diplomas:** sección `#certificaciones`, con las imágenes en `img/certs/`.
+- **Certificados y diplomas:** sección `#certificaciones`, con las imágenes en `img/certs/`. El DP-600 se publica como `dp-600.webp` (640×341), convertido desde el PDF original `dp_600.pdf`.
 - **CV:** `docs/cv.html`.
 
 ## Convenciones
