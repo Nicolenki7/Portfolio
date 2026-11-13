@@ -355,6 +355,7 @@
     );
   });
   var REPORTS_EXTRA = {
+    "AdTech-Fraud-Detection-Platform": 1,
     "Olist_E-commerce-Microsoft-Fabric-Project": 1,
     "etf-market-terminal": 1
   };
