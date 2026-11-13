@@ -43,6 +43,7 @@ docs/
   cv_ES_2026.pdf      PDF generado desde esa misma página
 img/certs/            imágenes de los diplomas
 img/projects/         capturas usadas en las páginas de caso
+assets/data/repos.csv inventario congelado de los repositorios públicos
 ```
 
 ## Bilingüe
@@ -69,6 +70,10 @@ Los informes **no se generan en este repositorio**. Cada proyecto publica su pro
 Cuatro proyectos no tienen informe y es deliberado: Data Mesh, AdTech y Olist se construyeron en Fabric y Snowflake sin dataset versionado, y ETF Market Terminal consulta una API en vivo. Publicar gráficos con datos que no están en el repo sería inventarlos.
 
 Los cuadernos se abren en Colab desde el propio repositorio, sin instalar nada. La lista de qué proyecto tiene cuaderno vive en `assets/site.js`, en la constante `COLAB`: para sumar uno nuevo alcanza con agregar una entrada ahí y el botón aparece en la tarjeta. La constante `CASO` funciona igual para enlazar una página de caso nueva desde su tarjeta.
+
+## Inventario de repositorios
+
+`proyectos/repositorios.html` cuenta qué hay en los 22 repositorios públicos: lenguaje principal, altas por mes y topics, más el recorrido por capas de la arquitectura de datos. No tiene una sola cifra escrita a mano: lee `assets/data/repos.csv` (una fila por repositorio, con lenguaje, fechas, topics, tamaño y descripción) y calcula los gráficos y la tabla en el navegador. Para actualizarlo alcanza con corregir la fila del CSV. El enlace desde la home lo agrega `assets/site.js`, en el bloque `11c`.
 
 ## CV
 
