@@ -121,6 +121,35 @@
     });
   }
 
+  /* ---------- 6b. credencial DP-600 (primera del carrusel) ---------- */
+  /* Se inyecta antes del bloque 7 porque ese bloque recoge las tarjetas ya
+     presentes en el DOM para abrirlas en el modal. */
+  var certs = $(".certs");
+  if (certs && !certs.querySelector("[data-cert-dp600]")) {
+    var dp600 = document.createElement("button");
+    dp600.className = "cert";
+    dp600.type = "button";
+    dp600.setAttribute("data-cert-dp600", "");
+    dp600.setAttribute("aria-label", "Ampliar certificado DP-600");
+    dp600.innerHTML = '<img src="img/certs/dp-600.webp" alt="Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)" loading="lazy" width="190" height="132"><span><i>Microsoft</i> DP-600</span>';
+    certs.insertBefore(dp600, certs.firstChild);
+  }
+  /* Recuento de credenciales: 15 + DP-600 = 16, en los dos idiomas. */
+  var SUB16 = {
+    es: "Dieciséis credenciales, más la formación en curso y dos diplomas de 2026. Clic en una credencial para ampliarla.",
+    en: "Sixteen credentials, plus current studies and two 2026 diplomas. Click a credential to enlarge it."
+  };
+  if (window.I18N) {
+    Object.keys(SUB16).forEach(function (lang) {
+      var d = window.I18N[lang];
+      if (d && /^(Quince|Fifteen) cred/.test(d["cr.sub"] || "")) d["cr.sub"] = SUB16[lang];
+    });
+  }
+  var crSub = $('[data-i18n="cr.sub"]');
+  if (crSub && /^(Quince|Fifteen) cred/.test(crSub.textContent.trim())) {
+    crSub.textContent = SUB16[document.documentElement.lang === "en" ? "en" : "es"];
+  }
+
   /* ---------- 7. modal de certificados ---------- */
   var modal = $("#modal"), modalImg = $("#modalImg");
   $$(".cert").forEach(function (c) {
