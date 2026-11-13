@@ -5,19 +5,19 @@ AdTech-Fraud-Model-Precision-PoC,sin lenguaje,2025-11-23,2026-03-02,si,9,0,,PoC 
 crypto-medallion-ml-app,Python,2025-12-25,2026-03-01,si,67,0,,Medallion en Fabric y modelo de precios desplegado en Streamlit
 Crypto_Medallion_Analytics,Jupyter Notebook,2025-12-26,2026-11-12,no,4137,1,crypto medallion-architecture microsoft-fabric powerbi pyspark,Medallion sobre Fabric con informe en Power BI
 Customer-Churn-Project,Jupyter Notebook,2025-10-12,2026-11-11,no,835,0,churn customer-retention logistic-regression pandas python tableau telco,Churn de telco: segmentos de riesgo y regresión logística
-Customer-Sentiment-Analysis-Product-Improvement-Drivers,Jupyter Notebook,2025-10-29,2026-11-11,no,1617,0,customer-experience ecommerce nlp pandas python sentiment-analysis vader,"Sentimiento de 100k reseñas con VADER para priorizar mejoras"
+Customer-Sentiment-Analysis-Product-Improvement-Drivers,Jupyter Notebook,2025-10-29,2026-11-11,no,1617,0,customer-experience ecommerce nlp pandas python sentiment-analysis vader,Sentimiento de 100k reseñas con VADER para priorizar mejoras
 Data-Analytics-Portfolio,Python,2025-07-31,2025-07-31,si,2645,0,,Portfolio de analítica anterior; archivado
 DataMesh_Fabric_Logistics,Python,2025-12-10,2026-11-11,no,591,1,data-engineering data-mesh logistics microsoft-fabric python,Data Mesh multidominio para logística en Fabric
-datapsphere-nexus,JavaScript,2025-08-22,2025-08-22,si,81,0,,Experimento web; archivado
-etf-market-terminal,Python,2026-01-29,2026-11-11,no,36,0,data-visualization etf finance python streamlit,"Terminal de mercado ETF en Python y Streamlit, con API en vivo"
-ETFbook-data-analytics-case-study,Python,2025-12-31,2026-11-12,no,88,0,,Análisis con SQL de BigQuery y visualización en Streamlit
+ datapsphere-nexus-dummy,JavaScript,2025-08-22,2025-08-22,si,81,0,,Experimento web; archivado
+ etf-market-terminal-placeholder,Python,2026-01-29,2026-11-11,no,36,0,data-visualization etf finance python streamlit,"Terminal de mercado ETF sobre cierres mensuales versionados: RSI, drawdown y volatilidad"
+ETFbook-data-analytics-case-study,Python,2025-12-31,2026-11-12,no,88,0,bigquery data-analysis python sql streamlit,Análisis con SQL de BigQuery y visualización en Streamlit
 ETL_Egatur_INE_Esp,Jupyter Notebook,2025-11-06,2026-11-11,no,1433,0,data-engineering egatur etl ine pandas powerbi python spain tourism,ETL de EGATUR/INE con Power BI
-German_Credit_Scoring_Data,Jupyter Notebook,2025-11-03,2026-11-11,no,197,0,,Coeficientes de una regresión logística para scoring de crédito
+German_Credit_Scoring_Data,Jupyter Notebook,2025-11-03,2026-11-11,no,197,0,business-storytelling credit-risk logistic-regression pandas python scikit-learn,Coeficientes de una regresión logística para scoring de crédito
 IBM-HR-Analytics-Employee-Attrition-Performance,Jupyter Notebook,2025-11-02,2026-03-01,si,491,0,,Feature engineering y drivers de rotación; archivado
 Nicolas_Zalazar,sin lenguaje,2025-07-31,2026-03-01,si,17,0,,Repositorio auxiliar; archivado
 Nicolenki7,sin lenguaje,2026-02-22,2026-09-22,no,7,0,ai-agents data-architect data-engineering defi microsoft-fabric portfolio,README de perfil de GitHub
 Nico_Web_Tech,HTML,2025-09-10,2025-09-10,si,123,0,,Proyecto web; archivado
-Olist_E-commerce-Microsoft-Fabric-Project,sin lenguaje,2025-11-15,2026-11-11,no,3662,0,,"Business Intelligence de Olist en Fabric: ingresos, geografía y cadena de suministro"
-Online-Retail-Business-Analysis,Jupyter Notebook,2025-10-23,2026-11-11,no,826,0,,Segmentación RFM sobre retail online
-Portfolio,HTML,2025-12-26,2026-11-13,no,6176,0,,"Este sitio: GitHub Pages, sin build ni dependencias"
+Olist_E-commerce-Microsoft-Fabric-Project,Python,2025-11-15,2026-11-11,no,3662,0,business-intelligence ecommerce microsoft-fabric powerbi python supply-chain,"Business Intelligence de Olist en Fabric: ingresos, geografía y cadena de suministro"
+Online-Retail-Business-Analysis,Jupyter Notebook,2025-10-23,2026-11-11,no,826,0,customer-segmentation ecommerce pandas python retail-analytics rfm,Segmentación RFM sobre retail online
+Portfolio,HTML,2025-12-26,2026-11-13,no,6176,0,github-pages html javascript portfolio,"Este sitio: GitHub Pages, sin build ni dependencias"
 Tech_GlobalStore_Retail_Analysis-Fabric,Python,2025-12-04,2026-11-12,no,1031,2,data-engineering fabric microsoft microsoft-fabric powerbi pyspark retail,"PySpark ETL, esquema estrella y panel en Power BI"
