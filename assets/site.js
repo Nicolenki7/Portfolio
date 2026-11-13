@@ -256,6 +256,22 @@
     }
   });
 
+  /* ---------- 11c. inventario de repositorios ---------- */
+  /* La página con los gráficos se calcula desde assets/data/repos.csv; acá
+     solo se enlaza desde la cabecera de proyectos. */
+  var headProy = $("#proyectos .section__head");
+  if (headProy && !headProy.querySelector("[data-inventario]")) {
+    var inv = document.createElement("a");
+    inv.className = "card__link";
+    inv.setAttribute("data-inventario", "");
+    inv.href = "proyectos/repositorios.html";
+    inv.style.marginTop = "14px";
+    inv.textContent = document.documentElement.lang === "en"
+      ? "See the repository inventory in numbers →"
+      : "Ver el inventario de repositorios, en números →";
+    headProy.appendChild(inv);
+  }
+
   /* ---------- 12. datos desactualizados en el HTML ---------- */
   /* Se corrigen aquí mientras el HTML del repo no esté actualizado; cuando lo
      esté, estos selectores no encuentran nada y la sección no hace nada. */
