@@ -234,7 +234,7 @@
         }
 
         .feature-list li:before {
-            content: "▶";
+            content: "\25B6";
             color: var(--accent-color);
             margin-right: 15px;
             font-family: 'JetBrains Mono', monospace;
@@ -349,7 +349,7 @@
                 </svg>
                 <p class="viz__cap">
                     Recuento por segmento desde
-                    <a href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis/blob/main/docs/report.html" target="_blank" rel="noopener">el informe del repo</a>.
+                    <a href="https://nicolenki7.github.io/Online-Retail-Business-Analysis/report.html" target="_blank" rel="noopener">el informe del repo</a>.
                     Suma 4.338 clientes. Barra llena = 1.050, el segmento más grande.
                 </p>
             </div>
@@ -463,37 +463,37 @@ GROUP BY CustomerID<br>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class="highlight">🏆 Campeones</span></td>
+                        <td><span class="highlight">Campeones</span></td>
                         <td>[4-5][4-5][4-5]</td>
                         <td>Compran reciente, frecuentemente y gastan mucho</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">💎 Clientes Leales</span></td>
+                        <td><span class="highlight">Clientes Leales</span></td>
                         <td>[3-5][3-5][2-5]</td>
                         <td>Base sólida del negocio, engagement consistente</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🌱 Potencial Leal</span></td>
+                        <td><span class="highlight">Potencial Leal</span></td>
                         <td>[3-4][1-3][1-3]</td>
                         <td>Recientes pero con bajo gasto, oportunidad de upsell</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">✨ Nuevos Clientes</span></td>
+                        <td><span class="highlight">Nuevos Clientes</span></td>
                         <td>[4-5][1-2][1-2]</td>
                         <td>Primera compra reciente, necesitan nurturing</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">⚠️ Clientes en Riesgo</span></td>
+                        <td><span class="highlight">Clientes en Riesgo</span></td>
                         <td>[1-2][3-5][3-5]</td>
                         <td>Valiosos pero sin compras recientes, requieren reactivación</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">🔴 No se pueden perder</span></td>
+                        <td><span class="highlight">No se pueden perder</span></td>
                         <td>[1-2][4-5][4-5]</td>
                         <td>Alto valor histórico, inactivos recientemente - PRIORIDAD</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">😴 Durmiendo</span></td>
+                        <td><span class="highlight">Durmiendo</span></td>
                         <td>[1-2][1-2][1-2]</td>
                         <td>Bajo engagement general, posible churn</td>
                     </tr>
@@ -507,7 +507,7 @@ GROUP BY CustomerID<br>
 
             <div class="tech-grid">
                 <div class="tech-card">
-                    <h3>📈 DISTRIBUCIÓN</h3>
+                    <h3>DISTRIBUCIÓN</h3>
                     <p style="font-size: 0.9rem;">
                         <strong>Clientes Leales:</strong> 1,050 (24.3%)<br>
                         <strong>Durmiendo:</strong> 1,015 (23.5%)<br>
@@ -518,7 +518,7 @@ GROUP BY CustomerID<br>
                     </p>
                 </div>
                 <div class="tech-card">
-                    <h3>🎯 ACCIONES RECOMENDADAS</h3>
+                    <h3>ACCIONES RECOMENDADAS</h3>
                     <p style="font-size: 0.9rem;">
                         • <strong>Campaña VIP:</strong> Para "No se pueden perder"<br>
                         • <strong>Email reactivación:</strong> Para "En Riesgo"<br>
@@ -610,19 +610,19 @@ df_rfm.to_csv('rfm_segmentation_final.csv', index=False)<br>
             <h2>05. Stack Tecnológico</h2>
             <div class="tech-grid">
                 <div class="tech-card">
-                    <h3>🐍 PYTHON</h3>
+                    <h3>PYTHON</h3>
                     <p style="font-size: 0.9rem;">Pandas, NumPy, SQLite3 - Procesamiento y análisis de datos</p>
                 </div>
                 <div class="tech-card">
-                    <h3>💾 SQL</h3>
+                    <h3>SQL</h3>
                     <p style="font-size: 0.9rem;">SQLite - Cálculo de agregaciones de Frecuencia y Monetario</p>
                 </div>
                 <div class="tech-card">
-                    <h3>📊 BI TOOLS</h3>
+                    <h3>BI TOOLS</h3>
                     <p style="font-size: 0.9rem;">Power BI, Looker Studio - Visualización de segmentos</p>
                 </div>
                 <div class="tech-card">
-                    <h3>📈 ANALYTICS</h3>
+                    <h3>ANALYTICS</h3>
                     <p style="font-size: 0.9rem;">RFM Analysis, Customer Segmentation, Cohort Analysis</p>
                 </div>
             </div>
@@ -631,6 +631,7 @@ df_rfm.to_csv('rfm_segmentation_final.csv', index=False)<br>
         <div class="cta-box">
             <h2 style="border:none; margin-bottom: 20px;">¿Interesado en el código completo?</h2>
             <p>El notebook completo con todo el pipeline de análisis está disponible en mi repositorio de GitHub.</p>
+            <p style="margin-top:-8px;"><a href="https://nicolenki7.github.io/Online-Retail-Business-Analysis/report.html" target="_blank" rel="noopener">Ver el informe con las cifras</a></p>
             <br>
             <a href="https://github.com/Nicolenki7/Online-Retail-Business-Analysis" target="_blank" class="btn-live">
                 [ VER_EN_GITHUB ]
