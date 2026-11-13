@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repositorios y arquitectura de datos | Nicolas Zalazar</title>
+<meta name="description" content="Inventario de los 22 repositorios públicos de Nicolás Zalazar: lenguaje principal, actividad por mes y arquitectura de datos, con los datos congelados en el propio repositorio.">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="caso.css">
+<style>
+:root{--bg-color:#0a0a0c;--accent-color:#00f2ff;--text-color:#e0e0e0;--card-bg:#16161a;--border-tech:1px solid rgba(0,242,255,.2)}
+body{background:var(--bg-color);color:var(--text-color);font-family:'Inter',sans-serif;margin:0;line-height:1.8}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(0,242,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,242,255,.02) 1px,transparent 1px);background-size:50px 50px;z-index:-1}
+nav{padding:20px 10%;border-bottom:var(--border-tech);background:rgba(10,10,12,.9);position:sticky;top:0;z-index:100}
+nav a{color:var(--accent-color);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.9rem}
+.container{max-width:900px;margin:0 auto;padding:60px 20px}
+header{margin-bottom:44px}
+h1{font-family:'JetBrains Mono',monospace;font-size:2.2rem;color:#fff;margin:0 0 10px;text-transform:uppercase;line-height:1.15}
+.tagline{color:var(--accent-color);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.92rem}
+h2{font-family:'JetBrains Mono',monospace;color:var(--accent-color);font-size:1.3rem;border-bottom:1px solid rgba(0,242,255,.3);padding-bottom:10px;margin:0 0 24px}
+p{margin:0 0 20px;font-size:1.02rem;opacity:.9}
+.content-section{margin-bottom:64px}
+code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:rgba(0,242,255,.08);padding:1px 5px;border-radius:3px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.82rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+th{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-color);font-weight:500}
+td a{color:#e0e0e0;text-decoration:none;border-bottom:1px dotted rgba(0,242,255,.35)}
+td a:hover{color:var(--accent-color)}
+td.n{font-family:'JetBrains Mono',monospace;white-space:nowrap}
+td.on{color:#43e08a}
+td.off{color:#8a8a92}
+.btn-ghost{display:inline-block;padding:12px 26px;border:1px solid var(--accent-color);color:var(--accent-color);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.85rem;border-radius:4px;transition:.3s}
+.btn-ghost:hover{background:rgba(0,242,255,.1)}
+footer{text-align:center;padding:50px;opacity:.4;font-family:'JetBrains Mono',monospace;font-size:.78rem}
+@media(max-width:700px){h1{font-size:1.6rem}.container{padding:40px 16px}table{font-size:.74rem}}
+</style>
+</head>
+<body>
+<nav><a href="../index.html">&lt; [ VOLVER_AL_SISTEMA ]</a></nav>
+<div class="container">
+<header>
+  <h1>Repositorios</h1>
+  <div class="tagline">PYTHON · ARQUITECTURA_DE_DATOS · FABRIC · SNOWFLAKE · BIGQUERY</div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00f2ff" stop-opacity=".85"/><stop offset="1" stop-color="#00a8c0" stop-opacity=".35"/></linearGradient></defs></svg>
+
+<section class="content-section" id="resumen">
+  <h2>00. Resumen en 30 segundos</h2>
+  <div class="resumen__grid">
+    <div class="resumen__kpi"><b data-kpi="total">—</b><span>repositorios públicos</span></div>
+    <div class="resumen__kpi"><b data-kpi="python">—</b><span>con Python o cuaderno</span></div>
+    <div class="resumen__kpi"><b data-kpi="activos">—</b><span>activos hoy</span></div>
+    <div class="resumen__kpi"><b data-kpi="mb">—</b><span>MB de repositorio</span></div>
+  </div>
+  <p class="resumen__txt">
+    Este inventario no está escrito a mano: sale de la API de GitHub y queda congelado en
+    <code>assets/data/repos.csv</code>, que es lo que alimenta los tres gráficos y la tabla de abajo.
+    El trabajo es de datos, así que el lenguaje dominante es Python: <b><span data-kpi="pct">—</span> %</b>
+    de los repositorios tienen Python o un cuaderno como lenguaje principal. El resto son archivos de
+    apoyo, el perfil de GitHub y dos experimentos web.
+  </p>
+</section>
+
+<section class="content-section" id="lenguajes">
+  <h2>01. Lenguaje principal del repositorio</h2>
+  <div class="viz">
+    <h3>Repositorios por lenguaje · conteo sobre el CSV</h3>
+    <div id="g-lang"></div>
+    <p class="viz__cap">Lenguaje que GitHub detecta como principal, no líneas de código: un cuaderno
+    cuenta como <i>Jupyter Notebook</i> aunque por dentro sea Python. Cuatro repositorios son proyectos
+    de Fabric sin código versionado y aparecen como «sin lenguaje detectado».</p>
+  </div>
+</section>
+
+<section class="content-section" id="actividad">
+  <h2>02. Cuándo se creó cada repositorio</h2>
+  <div class="viz">
+    <h3>Altas por mes</h3>
+    <div id="g-mes"></div>
+    <p class="viz__cap">Noviembre y diciembre de 2025 concentran <b><span data-kpi="pico">—</span></b> de
+    las altas: es el periodo en el que se armaron los casos de Fabric, Snowflake y la analítica de retail.</p>
+  </div>
+</section>
+
+<section class="content-section" id="temas">
+  <h2>03. Temas que se repiten</h2>
+  <div class="viz">
+    <h3>Topics de GitHub con dos o más apariciones</h3>
+    <div id="g-topics"></div>
+    <p class="viz__cap">Los topics los declara cada repositorio, no los infiero: ingeniería de datos,
+    Fabric y el stack de Python (pandas, PySpark, Streamlit) son el eje del trabajo.</p>
+  </div>
+</section>
+
+<section class="content-section" id="arquitectura">
+  <h2>04. Arquitectura de datos que hay detrás</h2>
+  <p>Los repositorios grandes no son cuadernos sueltos: siguen el mismo recorrido por capas y cambian el
+  motor según el caso. La lógica es la misma que la de un lakehouse medallion.</p>
+  <div class="viz">
+    <h3>Recorrido por capas, de la fuente al consumo</h3>
+    <svg viewBox="0 0 720 200" role="img" aria-label="Flujo por capas: fuentes, bronze, silver, gold y consumo">
+      <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#00f2ff" opacity=".7"/></marker></defs>
+      <g font-family="JetBrains Mono,monospace" font-size="11">
+        <rect x="0" y="46" width="126" height="72" rx="6" fill="#16161a" stroke="rgba(0,242,255,.3)"/>
+        <text x="63" y="74" fill="#fff" text-anchor="middle" font-size="12">FUENTES</text>
+        <text x="63" y="92" fill="#e0e0e0" opacity=".7" text-anchor="middle" font-size="9.5">CSV · API · INE</text>
+        <rect x="148" y="30" width="126" height="104" rx="6" fill="#16161a" stroke="rgba(0,242,255,.3)"/>
+        <text x="211" y="56" fill="#fff" text-anchor="middle" font-size="12">BRONZE</text>
+        <text x="211" y="74" fill="#e0e0e0" opacity=".7" text-anchor="middle" font-size="9.5">crudo, sin tocar</text>
+        <text x="211" y="104" fill="#00f2ff" text-anchor="middle" font-size="9">OneLake</text>
+        <text x="211" y="119" fill="#00f2ff" text-anchor="middle" font-size="9">S3 / GCS</text>
+        <rect x="296" y="30" width="126" height="104" rx="6" fill="#16161a" stroke="rgba(0,242,255,.3)"/>
+        <text x="359" y="56" fill="#fff" text-anchor="middle" font-size="12">SILVER</text>
+        <text x="359" y="74" fill="#e0e0e0" opacity=".7" text-anchor="middle" font-size="9.5">limpio y validado</text>
+        <text x="359" y="104" fill="#00f2ff" text-anchor="middle" font-size="9">PySpark</text>
+        <text x="359" y="119" fill="#00f2ff" text-anchor="middle" font-size="9">Snowpark</text>
+        <rect x="444" y="30" width="126" height="104" rx="6" fill="#16161a" stroke="rgba(0,242,255,.3)"/>
+        <text x="507" y="56" fill="#fff" text-anchor="middle" font-size="12">GOLD</text>
+        <text x="507" y="74" fill="#e0e0e0" opacity=".7" text-anchor="middle" font-size="9.5">modelo estrella</text>
+        <text x="507" y="104" fill="#00f2ff" text-anchor="middle" font-size="9">1 hecho + dims</text>
+        <text x="507" y="119" fill="#00f2ff" text-anchor="middle" font-size="9">SQL DuckDB</text>
+        <rect x="592" y="46" width="128" height="72" rx="6" fill="rgba(0,242,255,.07)" stroke="#00f2ff"/>
+        <text x="656" y="74" fill="#fff" text-anchor="middle" font-size="12">CONSUMO</text>
+        <text x="656" y="92" fill="#00f2ff" text-anchor="middle" font-size="9.5">Power BI · Streamlit</text>
+        <line x1="128" y1="82" x2="144" y2="82" stroke="#00f2ff" stroke-opacity=".7" marker-end="url(#ar)"/>
+        <line x1="276" y1="82" x2="292" y2="82" stroke="#00f2ff" stroke-opacity=".7" marker-end="url(#ar)"/>
+        <line x1="424" y1="82" x2="440" y2="82" stroke="#00f2ff" stroke-opacity=".7" marker-end="url(#ar)"/>
+        <line x1="572" y1="82" x2="588" y2="82" stroke="#00f2ff" stroke-opacity=".7" marker-end="url(#ar)"/>
+        <text x="0" y="176" fill="#e0e0e0" opacity=".55" font-size="10">Calidad en cada paso: recuentos, nulos, duplicados y rangos antes de publicar el modelo.</text>
+      </g>
+    </svg>
+  </div>
+  <table>
+    <thead><tr><th>Motor</th><th>Repositorios</th><th>Trabajo que hace</th></tr></thead>
+    <tbody>
+      <tr><td>Microsoft Fabric</td><td>Crypto_Medallion_Analytics · DataMesh_Fabric_Logistics · Tech_GlobalStore · Olist · crypto-medallion-ml-app</td><td>Lakehouse, PySpark y panel en Power BI</td></tr>
+      <tr><td>Snowflake</td><td>AdTech-Fraud-Detection-Platform</td><td>Snowpark para el modelo y Streamlit como interfaz</td></tr>
+      <tr><td>BigQuery</td><td>ETFbook-data-analytics-case-study</td><td>SQL analítico sobre datos de ETFs</td></tr>
+      <tr><td>Local (DuckDB)</td><td>Tech_GlobalStore (port) · Portfolio</td><td>Reproducir el modelo sin licencia ni nube</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="content-section" id="tabla">
+  <h2>05. Los 22 repositorios</h2>
+  <table>
+    <thead><tr><th>Repositorio</th><th>Lenguaje</th><th class="n">Creado</th><th>Estado</th></tr></thead>
+    <tbody id="repos"><tr><td colspan="4">Cargando desde el CSV…</td></tr></tbody>
+  </table>
+  <p class="viz__cap">La columna <i>Estado</i> marca <code>archivado</code> cuando GitHub lo tiene en solo
+  lectura: son pruebas unificadas en un repositorio posterior. Datos consultados el 13/11/2026.</p>
+</section>
+
+<section class="content-section" id="fuente">
+  <h2>06. De dónde salen estos números</h2>
+  <p>Del CSV versionado en este mismo repositorio, no de una captura de pantalla:
+  <code>assets/data/repos.csv</code> tiene una fila por repositorio con lenguaje, fechas, topics, tamaño y
+  descripción. Los gráficos y la tabla se calculan sobre ese archivo, así que el total de repositorios
+  coincidirá siempre con el CSV. Si mañana un repo cambia de lenguaje, se corrige la fila y la página se
+  actualiza sola: no hay ninguna cifra escrita a mano.</p>
+  <p><a class="btn-ghost" href="../assets/data/repos.csv">Descargar el CSV</a>
+     <a class="btn-ghost" href="globalstore.html">Ver un caso completo</a></p>
+</section>
+
+<footer>NICOLÁS ZALAZAR · MALLORCA · DATOS + INGENIERÍA</footer>
+</div>
+<script>
+var $ = function (s) { return document.querySelector(s); };
+var E = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+var MONO = 'font-family="JetBrains Mono,monospace"';
+
+function filas(txt) {
+  var CR = String.fromCharCode(13), LF = String.fromCharCode(10);
+  var lineas = txt.split(CR).join("").trim().split(LF), out = [], i, ch, cur, q, row;
+  for (var l = 1; l < lineas.length; l++) {
+    row = []; cur = ""; q = false;
+    for (i = 0; i < lineas[l].length; i++) {
+      ch = lineas[l][i];
+      if (q) { if (ch === '"') { if (lineas[l][i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+      else if (ch === '"') q = true;
+      else if (ch === ",") { row.push(cur); cur = ""; }
+      else cur += ch;
+    }
+    row.push(cur);
+    out.push(row);
+  }
+  return out;
+}
+
+function barras(items) {
+  var W = 720, L = 176, bar = 20, gap = 9, max = 1, i;
+  for (i = 0; i < items.length; i++) max = Math.max(max, items[i][1]);
+  var H = items.length * (bar + gap) + 8, wmax = W - L - 46, y = 4;
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img">';
+  for (i = 0; i < items.length; i++) {
+    var w = Math.max(2, Math.round(wmax * items[i][1] / max));
+    s += '<text x="0" y="' + (y + bar - 6) + '" font-size="11.5" fill="#e0e0e0" opacity=".85">' + E(items[i][0]) + '</text>';
+    s += '<rect x="' + L + '" y="' + y + '" width="' + w + '" height="' + bar + '" rx="3" fill="url(#bg)"/>';
+    s += '<text x="' + (L + w + 7) + '" y="' + (y + bar - 6) + '" font-size="11.5" fill="#00f2ff" ' + MONO + '>' + items[i][1] + '</text>';
+    y += bar + gap;
+  }
+  return s + '</svg>';
+}
+
+function columnas(items) {
+  var W = 720, H = 170, h = H - 46, gap = 14, max = 1, i;
+  for (i = 0; i < items.length; i++) max = Math.max(max, items[i][1]);
+  var bw = (W - gap * (items.length - 1)) / items.length;
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img">';
+  for (i = 0; i < items.length; i++) {
+    var bh = Math.max(2, Math.round(h * items[i][1] / max)), x = i * (bw + gap), cx = x + (bw - 2) / 2;
+    s += '<rect x="' + x + '" y="' + (h - bh) + '" width="' + (bw - 2) + '" height="' + bh + '" rx="3" fill="url(#bg)"/>';
+    s += '<text x="' + cx + '" y="' + (h - bh - 6) + '" font-size="11" fill="#00f2ff" text-anchor="middle" ' + MONO + '>' + items[i][1] + '</text>';
+    s += '<text x="' + cx + '" y="' + (h + 16) + '" font-size="10.5" fill="#e0e0e0" opacity=".6" text-anchor="middle">' + E(items[i][0]) + '</text>';
+  }
+  return s + '</svg>';
+}
+
+function cuenta(lista) {
+  var m = {}, i, k;
+  for (i = 0; i < lista.length; i++) { k = lista[i]; m[k] = (m[k] || 0) + 1; }
+  return m;
+}
+
+function kpi(clave, valor) {
+  var el = document.querySelector('[data-kpi="' + clave + '"]');
+  if (el) el.textContent = valor;
+}
+
+fetch("../assets/data/repos.csv").then(function (r) { return r.text(); }).then(function (txt) {
+  var d = filas(txt), i, r;
+  var total = d.length, pyth = 0, activos = 0, kb = 0, meses = [], topics = [], ap = "";
+  for (i = 0; i < d.length; i++) {
+    r = d[i];
+    if (r[1] === "Python" || r[1] === "Jupyter Notebook") pyth++;
+    if (r[4] !== "si") activos++;
+    kb += parseInt(r[5], 10) || 0;
+    meses.push(r[2].slice(0, 7));
+    ap += r[7] ? " " + r[7] : "";
+  }
+  topics = ap.split(/ +/).filter(Boolean);
+
+  kpi("total", total);
+  kpi("python", pyth);
+  kpi("activos", activos);
+  kpi("pct", Math.round(100 * pyth / total));
+  kpi("mb", (kb / 1024).toFixed(1).replace(".", ","));
+
+  var len = cuenta(d.map(function (x) { return x[1] || "sin lenguaje"; }));
+  var orden = Object.keys(len).sort(function (a, b) { return len[b] - len[a]; });
+  $("#g-lang").innerHTML = barras(orden.map(function (k) { return [k, len[k]]; }));
+
+  var mc = cuenta(meses), mk = Object.keys(mc).sort(), MES = {"01":"ene","02":"feb","03":"mar","04":"abr","05":"may","06":"jun","07":"jul","08":"ago","09":"sep","10":"oct","11":"nov","12":"dic"};
+  $("#g-mes").innerHTML = columnas(mk.map(function (k) { return [MES[k.slice(5)] + " " + k.slice(2, 4), mc[k]]; }));
+  kpi("pico", (mc["2025-11"] || 0) + (mc["2025-12"] || 0));
+
+  var tc = cuenta(topics), keep = ["python","data-engineering","microsoft-fabric","pandas","powerbi","pyspark","streamlit"];
+  var tp = keep.filter(function (k) { return tc[k] >= 2; }).map(function (k) { return [k, tc[k]]; });
+  tp.sort(function (a, b) { return b[1] - a[1]; });
+  $("#g-topics").innerHTML = barras(tp);
+
+  d.sort(function (a, b) { return (a[4] === "si") - (b[4] === "si") || (a[2] < b[2] ? 1 : -1); });
+  var html = "";
+  for (i = 0; i < d.length; i++) {
+    r = d[i];
+    var off = r[4] === "si";
+    html += '<tr><td><a href="https://github.com/Nicolenki7/' + r[0] + '" target="_blank" rel="noopener">' + E(r[0]) + '</a></td>' +
+            '<td>' + E(r[1]) + '</td><td class="n">' + r[2] + '</td>' +
+            '<td class="' + (off ? "off" : "on") + '">' + (off ? "archivado" : "activo") + '</td></tr>';
+  }
+  $("#repos").innerHTML = html;
+}).catch(function () {
+  $("#repos").innerHTML = '<tr><td colspan="4">No se pudo leer el CSV.</td></tr>';
+});
+</script>
+</body>
+</html>
