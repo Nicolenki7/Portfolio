@@ -11,7 +11,7 @@ window.I18N.es = {
 
   "hero.eyebrow": "Mallorca · remoto · abierto a propuestas",
   "hero.roles": ["Data Engineer", "Analítica de negocio", "De Fabric a stack abierto", "Automatización con IA", "Estudiante de Informática · UDDI"],
-  "hero.lead": "Construyo pipelines y modelos de datos que terminan en una decisión. <strong>15 repositorios públicos</strong>, <strong>8 informes generados desde el propio dataset</strong> y <strong>3 pipelines con tests que corren solos</strong>. Si no se puede reproducir, no cuenta. Hoy curso el <strong>Bachelor en Informática</strong> en UDDI, la universidad digital del grupo Universidad Europea.",
+  "hero.lead": "Construyo pipelines y modelos de datos que terminan en una decisión. <strong>22 repositorios públicos</strong>, <strong>11 informes generados desde el propio dataset</strong> y <strong>3 pipelines con tests que corren solos</strong>. Si no se puede reproducir, no cuenta. Hoy curso el <strong>Bachelor en Informática</strong> en UDDI, la universidad digital del grupo Universidad Europea.",
   "hero.cta1": "Ver proyectos",
   "hero.cta2": "Cómo trabajo el dato",
   "hero.cta3": "GitHub ↗",
@@ -30,7 +30,7 @@ window.I18N.es = {
   "stack.c4": "Código & calidad",
   "stack.c5": "Automatización & IA",
 
-  "proj.title": "Doce repositorios, con lo que hay dentro",
+  "proj.title": "Los proyectos activos, con lo que hay dentro",
   "proj.sub": "Cada tarjeta enlaza al código, al plan de ejecución y —cuando el dataset lo permite— a un informe generado leyendo el CSV del repo.",
   "f.all": "Todos",
   "f.data": "Ingeniería de datos",
@@ -60,7 +60,7 @@ window.I18N.es = {
   "c4.title": "Global Store · Retail",
   "c4.desc": "ETL en PySpark y esquema estrella para 9.800 pedidos: ventas por modo de envío y evolución mensual desde 2015. Tiene además una versión en DuckDB que corre sin licencia.",
   "c5.title": "Olist · E-commerce",
-  "c5.desc": "BI integral para el marketplace brasileño: siete consultas Power Query M, Dataflows Gen2 y modelo dimensional con geolocalización.",
+  "c5.desc": "BI integral para el marketplace brasileño: 98.199 pedidos agregados a un resumen mensual versionado, Power Query M y modelo dimensional con geolocalización.",
   "c6.title": "EGATUR · Turismo (INE)",
   "c6.desc": "ETL de cinco tablas del INE a un maestro longitudinal. El test de contrato detecta el separador <code>;</code>, el BOM y los cambios de cabecera antes de que rompan el análisis.",
   "c7.title": "Churn · Telco",
@@ -74,7 +74,7 @@ window.I18N.es = {
   "c11.title": "German Credit · Scoring",
   "c11.desc": "Modelo de riesgo con regresión logística y lectura de coeficientes como historia de negocio: qué variables mueven la decisión y cuánto pesa cada una.",
   "c12.title": "ETF Market Terminal",
-  "c12.desc": "Terminal interactiva para comparar ETFs: indicadores técnicos, filtros por categoría y exportación. Sin dataset versionado, así que no tiene informe: publicar gráficos con datos efímeros sería vender humo.",
+  "c12.desc": "Terminal interactiva para comparar ETFs sobre 185 cierres mensuales versionados: RSI, drawdown, volatilidad anualizada y correlación entre pares calculados con aritmética sobre el CSV. Sin métricas simuladas y sin credenciales.",
 
   "lk.repo": "Repo",
   "lk.plan": "Plan",
@@ -106,8 +106,8 @@ window.I18N.es = {
   "op.r6l": "Calidad de datos", "op.r6o": "Validación manual",
   "op.note": "La misma lógica aplica a Snowflake y BigQuery: SQL estándar que se puede mover a DuckDB sin reescribir el modelo. Lo que cambia es la factura; lo que queda es el diseño.",
 
-  "rp.title": "Ocho informes que se recalculan desde el CSV",
-  "rp.sub": "Un generador en Python puro lee el dataset de cada repositorio, detecta separador y columnas, y dibuja el SVG inline. Sin dependencias, sin datos inventados: la cifra que ves sale del archivo versionado.",
+  "rp.title": "Once informes que se recalculan desde el CSV",
+  "rp.sub": "Un generador en Python puro lee el dataset de cada repositorio, detecta separador y columnas, y dibuja el SVG inline. Sin dependencias, sin datos inventados: la cifra que ves sale del archivo versionado. Cada uno se publica con GitHub Pages y se regenera con un script del propio repo.",
   "rp1": "Churn · Telco", "rp1s": "7.043 filas · gasto por contrato",
   "rp2": "Reseñas · Sentimiento", "rp2s": "100.000 filas · score por categoría",
   "rp3": "EGATUR · Turismo", "rp3s": "2.881 filas · gasto por tabla y mes",
@@ -116,6 +116,9 @@ window.I18N.es = {
   "rp6": "ETFbook · Flujos", "rp6s": "12 filas · flujos por ticker",
   "rp7": "Retail · RFM", "rp7s": "4.338 clientes · segmentos",
   "rp8": "German Credit · Riesgo", "rp8s": "1.000 solicitudes · deuda",
+  "rp9": "AdTech · Fraude", "rp9s": "muestra sintética · etiquetada",
+  "rp10": "Olist · E-commerce", "rp10s": "98.199 pedidos · 24 meses",
+  "rp11": "ETF Terminal · Riesgo", "rp11s": "185 cierres · 5 ETFs",
 
   "cr.title": "Formación y certificaciones",
   "cr.sub": "Quince credenciales, más la formación en curso y dos diplomas de 2026. Clic en una credencial para ampliarla.",
