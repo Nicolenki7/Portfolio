@@ -286,10 +286,20 @@
     kpiRepos.setAttribute("data-count", "22");
     kpiRepos.textContent = "22";
   }
+  /* KPIs de informes y de la terminal: el HTML dice 8 informes desde CSV. */
+  var kpiReports = $('.kpi [data-count="8"]');
+  if (kpiReports) {
+    kpiReports.setAttribute("data-count", "11");
+    kpiReports.textContent = "11";
+  }
   $$(".term__line").forEach(function (line) {
     if (line.textContent.indexOf("públicos") === -1) return;
     var k = line.querySelector(".k");
     if (k && k.textContent.trim() === "15") k.textContent = "22";
+    var c = line.querySelector(".c");
+    if (c && /8 con informe/.test(c.textContent)) {
+      c.textContent = c.textContent.replace("8 con informe", "11 con informe");
+    }
   });
 
   /* ---------- 12b. galería de informes ---------- */
