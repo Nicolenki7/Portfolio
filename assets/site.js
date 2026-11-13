@@ -291,4 +291,82 @@
     var k = line.querySelector(".k");
     if (k && k.textContent.trim() === "15") k.textContent = "22";
   });
+
+  /* ---------- 12b. galería de informes ---------- */
+  /* Una sola lista manda: repositorio -> claves de texto en los diccionarios.
+     Se pinta desde acá para que añadir el informe número doce sea una línea y
+     no una edición a mano de once enlaces. Todas las tarjetas apuntan a la
+     página publicada en GitHub Pages, no al blob del repo (que muestra el
+     HTML como código fuente). */
+  var INFORMES = [
+    { repo: "Customer-Churn-Project", t: "rp1", s: "rp1s" },
+    { repo: "Customer-Sentiment-Analysis-Product-Improvement-Drivers", t: "rp2", s: "rp2s" },
+    { repo: "ETL_Egatur_INE_Esp", t: "rp3", s: "rp3s" },
+    { repo: "Tech_GlobalStore_Retail_Analysis-Fabric", t: "rp4", s: "rp4s" },
+    { repo: "Crypto_Medallion_Analytics", t: "rp5", s: "rp5s" },
+    { repo: "ETFbook-data-analytics-case-study", t: "rp6", s: "rp6s" },
+    { repo: "Online-Retail-Business-Analysis", t: "rp7", s: "rp7s" },
+    { repo: "German_Credit_Scoring_Data", t: "rp8", s: "rp8s" },
+    { repo: "AdTech-Fraud-Detection-Platform", t: "rp9", s: "rp9s" },
+    { repo: "Olist_E-commerce-Microsoft-Fabric-Project", t: "rp10", s: "rp10s" },
+    { repo: "etf-market-terminal", t: "rp11", s: "rp11s" }
+  ];
+  var reports = $(".reports");
+  if (reports) {
+    var dLang = document.documentElement.lang === "en" ? "en" : "es";
+    var dI18n = (window.I18N && window.I18N[dLang]) || {};
+    reports.innerHTML = "";
+    INFORMES.forEach(function (it) {
+      var a = document.createElement("a");
+      /* is-in directo: el observer del bloque 2 ya pasó y no vería estas. */
+      a.className = "report reveal is-in";
+      a.href = "https://nicolenki7.github.io/" + it.repo + "/report.html";
+      a.target = "_blank";
+      a.rel = "noopener";
+      var tb = document.createElement("b");
+      tb.setAttribute("data-i18n", it.t);
+      tb.textContent = dI18n[it.t] || it.repo;
+      var sm = document.createElement("small");
+      sm.setAttribute("data-i18n", it.s);
+      sm.textContent = dI18n[it.s] || "";
+      a.appendChild(tb);
+      a.appendChild(sm);
+      reports.appendChild(a);
+    });
+  }
+
+  /* ---------- 12c. informes de las tarjetas -> Pages ---------- */
+  /* Los enlaces a docs/report.html en el blob abren código fuente. Se reescriben
+     a la URL publicada, y se añade el enlace donde la tarjeta no lo tenía. */
+  $$('a[href*="/blob/main/docs/report.html"]').forEach(function (a) {
+    a.href = a.href.replace(
+      /^https:\/\/github\.com\/Nicolenki7\/([^\/]+)\/blob\/main\/docs\/report\.html$/,
+      "https://nicolenki7.github.io/$1/report.html"
+    );
+  });
+  var REPORTS_EXTRA = {
+    "Olist_E-commerce-Microsoft-Fabric-Project": 1,
+    "etf-market-terminal": 1
+  };
+  $$(".card").forEach(function (card) {
+    var row = card.querySelector(".card__links");
+    if (!row || row.querySelector('a[href*="nicolenki7.github.io"]')) return;
+    var links = row.querySelectorAll('a[href^="https://github.com/Nicolenki7/"]');
+    for (var n = 0; n < links.length; n++) {
+      var seg = links[n].getAttribute("href")
+        .replace(/^https:\/\/github\.com\/Nicolenki7\//, "").replace(/\/$/, "");
+      if (!seg || seg.indexOf("/") !== -1 || !REPORTS_EXTRA[seg]) continue;
+      var dict2 = (window.I18N && window.I18N[document.documentElement.lang || "es"]) || null;
+      var ra = document.createElement("a");
+      ra.className = "card__link";
+      ra.setAttribute("data-report", "");
+      ra.setAttribute("data-i18n", "lk.report");
+      ra.href = "https://nicolenki7.github.io/" + seg + "/report.html";
+      ra.target = "_blank";
+      ra.rel = "noopener";
+      ra.textContent = ((dict2 && dict2["lk.report"]) || "Informe") + " ↗";
+      row.insertBefore(ra, row.firstChild);
+      break;
+    }
+  });
 })();
