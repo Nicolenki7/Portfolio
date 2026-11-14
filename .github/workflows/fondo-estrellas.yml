@@ -1,0 +1,82 @@
+name: fondo-estrellas
+on:
+  push:
+    paths:
+      - '.github/workflows/fondo-estrellas.yml'
+permissions:
+  contents: write
+jobs:
+  aplicar:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Insertar bloque de estrellas
+        run: |
+          python3 - <<'PY'
+          import io, re, sys
+
+          BLOQUE = '''/* ---------- campo de estrellas ---------- */
+          body::SEL{
+            content:"";position:fixed;inset:-40%;z-index:-2;pointer-events:none;
+            background-repeat:repeat;background-size:420px 420px;
+            background-image:
+              radial-gradient(circle at 18px 26px,rgba(255,255,255,.95) 0 1.4px,transparent 2.1px),
+              radial-gradient(circle at 96px 74px,rgba(214,232,255,.85) 0 1.2px,transparent 1.9px),
+              radial-gradient(circle at 152px 168px,rgba(255,255,255,.7) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 238px 40px,rgba(255,255,255,.9) 0 1.6px,transparent 2.4px),
+              radial-gradient(circle at 266px 132px,rgba(226,240,255,.6) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 44px 108px,rgba(255,255,255,.75) 0 1.2px,transparent 1.9px),
+              radial-gradient(circle at 300px 196px,rgba(255,255,255,.55) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 356px 88px,rgba(220,236,255,.75) 0 1.3px,transparent 2px),
+              radial-gradient(circle at 382px 246px,rgba(255,255,255,.5) 0 .9px,transparent 1.6px),
+              radial-gradient(circle at 128px 268px,rgba(255,255,255,.6) 0 1.1px,transparent 1.8px),
+              radial-gradient(circle at 392px 152px,rgba(255,255,255,.55) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 176px 332px,rgba(206,228,255,.45) 0 .9px,transparent 1.6px),
+              radial-gradient(circle at 336px 352px,rgba(255,255,255,.55) 0 1.5px,transparent 2.2px),
+              radial-gradient(circle at 252px 286px,rgba(255,255,255,.4) 0 .8px,transparent 1.5px),
+              radial-gradient(circle at 96px 348px,rgba(255,255,255,.45) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 28px 296px,rgba(255,255,255,.4) 0 .9px,transparent 1.6px),
+              radial-gradient(circle at 380px 398px,rgba(214,232,255,.4) 0 1.1px,transparent 1.8px),
+              radial-gradient(circle at 212px 392px,rgba(255,255,255,.35) 0 .8px,transparent 1.5px),
+              radial-gradient(circle at 140px 220px,rgba(255,255,255,.55) 0 1.2px,transparent 1.9px),
+              radial-gradient(circle at 66px 388px,rgba(255,255,255,.35) 0 .8px,transparent 1.5px),
+              radial-gradient(circle at 300px 20px,rgba(255,255,255,.7) 0 1px,transparent 1.7px),
+              radial-gradient(circle at 406px 60px,rgba(255,255,255,.45) 0 .9px,transparent 1.6px);
+            opacity:.85;
+            animation:starsDrift 150s ease-in-out infinite alternate,starsGlow 13s ease-in-out infinite alternate;
+            will-change:transform,opacity;
+          }
+          @keyframes starsDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-90px,60px,0)}}
+          @keyframes starsGlow{from{opacity:.55}to{opacity:.95}}
+          '''
+
+          def limpiar(s):
+              i = s.find('/* ---------- campo de estrellas')
+              if i != -1:
+                  s = s[:i]
+              return s.rstrip() + '\n\n'
+
+          def aplicar(path, sel, vigneta=False):
+              s = io.open(path, encoding='utf-8').read()
+              base = limpiar(s)
+              if vigneta:
+                  antes = base.count('content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;')
+                  base = base.replace(
+                      'content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;',
+                      'content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;')
+                  print(path, 'vineta movida:', antes)
+              nuevo = base + BLOQUE.replace('SEL', sel)
+              io.open(path, 'w', encoding='utf-8').write(nuevo)
+              print(path, len(s), '->', len(nuevo), 'bytes')
+
+          aplicar('assets/base.css', 'before', vigneta=True)
+          aplicar('proyectos/caso.css', 'after')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/base.css proyectos/caso.css
+          git commit -m "feat: fondo animado de estrellas en portada y casos [skip ci]" || exit 0
+          git push
