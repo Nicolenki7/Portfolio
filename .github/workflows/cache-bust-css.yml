@@ -1,0 +1,37 @@
+name: cache-bust-css
+on:
+  push:
+    paths:
+      - '.github/workflows/cache-bust-css.yml'
+permissions:
+  contents: write
+jobs:
+  aplicar:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versionar los link a las hojas
+        run: |
+          python3 - <<'PY'
+          import io, re, glob
+
+          VERSION = 'v=2'
+          objetivos = re.compile(r'(assets/base\.css|assets/components\.css|assets/hosp\.css|\.\./assets/base\.css|caso\.css)(\?v=[A-Za-z0-9._-]+)?')
+          total = 0
+          for path in sorted(glob.glob('**/*.html', recursive=True)):
+              s = io.open(path, encoding='utf-8').read()
+              nuevo, n = objetivos.subn(lambda m: m.group(1) + '?' + VERSION, s)
+              if n:
+                  io.open(path, 'w', encoding='utf-8').write(nuevo)
+                  print(path, '->', n, 'enlaces')
+                  total += n
+          print('total enlaces versionados:', total)
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A '*.html'
+          git commit -m "chore: versionar hojas de estilo para evitar cache viejo [skip ci]" || exit 0
+          git push
