@@ -227,8 +227,8 @@ body::before{
     radial-gradient(circle at 300px 20px,rgba(255,255,255,.7) 0 1px,transparent 1.7px),
     radial-gradient(circle at 406px 60px,rgba(255,255,255,.45) 0 .9px,transparent 1.6px);
   opacity:.85;
-  animation:starsDrift 150s ease-in-out infinite alternate,starsGlow 13s ease-in-out infinite alternate;
+  animation:starsDrift 22s linear infinite alternate,starsGlow 9s ease-in-out infinite alternate;
   will-change:transform,opacity;
 }
-@keyframes starsDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-90px,60px,0)}}
+@keyframes starsDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-150px,100px,0)}}
 @keyframes starsGlow{from{opacity:.55}to{opacity:.95}}
